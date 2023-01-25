@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InterestViewController.swift
 //  SiseWebSocketSample
 //
 //  Created by jiwon Yoon on 2023/01/25.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class InterestViewController: UIViewController {
     private lazy var currentPriceCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 35.0)
@@ -31,15 +31,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemPurple
         setupViews()
+        configureNavigation()
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension InterestViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 5
+        return 50
     }
     
     func collectionView(
@@ -57,12 +58,12 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension InterestViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
 
-private extension ViewController {
+private extension InterestViewController {
     func setupViews() {
         view.backgroundColor = .systemBackground
         [
@@ -76,5 +77,10 @@ private extension ViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    func configureNavigation() {
+        navigationItem.title = "Items of Interest"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
