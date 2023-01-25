@@ -20,6 +20,8 @@
 		49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF932B298111FE009F8A58 /* InterestViewModel.swift */; };
 		49AF932F29811219009F8A58 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 49AF932E29811219009F8A58 /* RxCocoa */; };
 		49AF933129811219009F8A58 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49AF933029811219009F8A58 /* RxSwift */; };
+		49AF933329811379009F8A58 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF933229811379009F8A58 /* Repository.swift */; };
+		49AF9335298113B5009F8A58 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF9334298113B5009F8A58 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		49AF932429810974009F8A58 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		49AF932629810CB4009F8A58 /* DynamicFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicFlowLayout.swift; sourceTree = "<group>"; };
 		49AF932B298111FE009F8A58 /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
+		49AF933229811379009F8A58 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		49AF9334298113B5009F8A58 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 				49AF93122980F920009F8A58 /* Assets.xcassets */,
 				49AF93142980F920009F8A58 /* LaunchScreen.storyboard */,
 				49AF93172980F920009F8A58 /* Info.plist */,
+				49AF933229811379009F8A58 /* Repository.swift */,
+				49AF9334298113B5009F8A58 /* Service.swift */,
 			);
 			path = SiseWebSocketSample;
 			sourceTree = "<group>";
@@ -184,7 +190,9 @@
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
 				49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */,
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
+				49AF933329811379009F8A58 /* Repository.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
+				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,
