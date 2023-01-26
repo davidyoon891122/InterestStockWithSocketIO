@@ -50,7 +50,6 @@ class InterestViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.fetchIntrestStockList()
-        viewModel.inputs.fetchSise(code: "Amazon")
     }
 }
 
@@ -116,6 +115,7 @@ private extension InterestViewController {
             .subscribe(onNext: { [weak self] currentPrices in
                 guard let self = self else { return }
                 self.interestStocks = currentPrices
+                self.requestStockListSise()
             })
             .disposed(by: disposeBag)
 
@@ -124,7 +124,7 @@ private extension InterestViewController {
             .debug("sise")
             .subscribe(onNext: { [weak self] siseModel in
                 guard let self = self else { return }
-                if let row = self.interestStocks.firstIndex { $0.stockName == siseModel.code } {
+                if let row = self.interestStocks.firstIndex(where: { $0.stockName == siseModel.code }) {
                     let oldModel = self.interestStocks[row]
                     let newModel = CurrentPriceModel(
                         stockName: oldModel.stockName,
@@ -145,6 +145,12 @@ private extension InterestViewController {
     @objc
     func didTapReloadButton() {
         viewModel.inputs.fetchIntrestStockList()
+    }
+
+    func requestStockListSise() {
+        interestStocks.forEach {
+            viewModel.inputs.fetchSise(code: $0.stockName)
+        }
     }
 }
 
