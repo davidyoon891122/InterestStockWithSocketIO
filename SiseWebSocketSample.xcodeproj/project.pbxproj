@@ -114,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				49AF932B298111FE009F8A58 /* InterestViewModel.swift */,
-				4900939D298264B700548588 /* SiseModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -132,6 +131,7 @@
 		490093952982186E00548588 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4900939D298264B700548588 /* SiseModel.swift */,
 				490093962982187A00548588 /* CurrentPriceModel.swift */,
 			);
 			path = Model;

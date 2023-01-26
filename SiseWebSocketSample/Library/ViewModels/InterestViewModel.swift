@@ -10,12 +10,13 @@ import RxSwift
 
 protocol InterestViewModelInput {
     func fetchIntrestStockList()
-    func fetchSise()
+    func fetchSise(code: String)
 }
 
 protocol InterestViewModelOutput {
     var currentPrices: PublishSubject<[CurrentPriceModel]> { get }
     var currentPricesError: PublishSubject<String> { get }
+    var sise: PublishSubject<SiseModel> { get }
 }
 
 protocol InterestViewModelType {
@@ -33,6 +34,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     
     var currentPrices: PublishSubject<[CurrentPriceModel]> = .init()
     var currentPricesError: PublishSubject<String> = .init()
+    var sise: PublishSubject<SiseModel> = .init()
     
     func fetchIntrestStockList() {
         repository.inputs.requestStockInfo()
@@ -47,7 +49,37 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
             .disposed(by: disposeBag)
     }
     
-    func fetchSise() {
-        repository.inputs.requestSise()
+    func fetchSise(code: String) {
+        receiveConnectCompletion() {
+            SiseSocketManager.shared.socket.emit("code", code)
+        }
+        receiveSise()
+        if SiseSocketManager.shared.socket.status == .notConnected {
+            connectSocket()
+        }
+    }
+
+    private func connectSocket() {
+        SiseSocketManager.shared.establishConnection()
+    }
+
+    private func receiveConnectCompletion(completion: @escaping ()-> Void) {
+        SiseSocketManager.shared.socket.on("connectCompletion") { _, _ in
+            completion()
+        }
+    }
+
+    private func receiveSise() {
+        SiseSocketManager.shared.socket.on("sise") { [weak self] data, ack in
+            guard let self = self else { return }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
+                let siseModel = try JSONDecoder().decode(SiseModel.self, from: jsonData)
+
+                self.outputs.sise.onNext(siseModel)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
