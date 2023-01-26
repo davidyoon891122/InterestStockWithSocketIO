@@ -50,6 +50,10 @@ final class Service {
             return Disposables.create()
         }
     }
+    
+    func requestSise() {
+        SiseSocketManager.shared.requestSise(code: "삼성전자")
+    }
 }
 
 

@@ -10,6 +10,7 @@ import RxSwift
 
 protocol InterestViewModelInput {
     func fetchIntrestStockList()
+    func fetchSise()
 }
 
 protocol InterestViewModelOutput {
@@ -44,5 +45,9 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
                 self.currentPricesError.onNext(error.localizedDescription)
             })
             .disposed(by: disposeBag)
+    }
+    
+    func fetchSise() {
+        repository.inputs.requestSise()
     }
 }

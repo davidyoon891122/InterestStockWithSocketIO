@@ -44,7 +44,12 @@ class InterestViewController: UIViewController {
         setupViews()
         configureNavigation()
         bindViewModel()
-        
+        connectSiseServer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        receiveSise()
         viewModel.inputs.fetchIntrestStockList()
     }
 }
@@ -104,6 +109,13 @@ private extension InterestViewController {
             target: self,
             action: #selector(didTapReloadButton)
         )
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "app.connected.to.app.below.fill"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapRequestSiseButton)
+        )
     }
     
     func bindViewModel() {
@@ -118,5 +130,35 @@ private extension InterestViewController {
     @objc
     func didTapReloadButton() {
         viewModel.inputs.fetchIntrestStockList()
+    }
+    
+    func receiveSise() {
+        let socket = SiseSocketManager.shared.socket
+        
+        socket.on("connectCompletion") { [weak self] data, ack in
+            guard let self = self else { return }
+            self.viewModel.inputs.fetchSise()
+        }
+        
+        socket.on("sise") { [weak self] dataArray, ack in
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: dataArray[0], options: .prettyPrinted)
+                let siseModel = try JSONDecoder().decode(SiseModel.self, from: jsonData)
+                
+                print(siseModel)
+            } catch {
+                print(error)
+            }
+            
+        }
+    }
+    
+    func connectSiseServer() {
+        SiseSocketManager.shared.establishConnection()
+    }
+    
+    @objc
+    func didTapRequestSiseButton() {
+        viewModel.inputs.fetchSise()
     }
 }

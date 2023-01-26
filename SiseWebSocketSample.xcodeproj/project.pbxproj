@@ -13,6 +13,8 @@
 		4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900938C29820D2A00548588 /* InterestStockEntity.swift */; };
 		490093972982187A00548588 /* CurrentPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490093962982187A00548588 /* CurrentPriceModel.swift */; };
 		4900939A298250F500548588 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 49009399298250F500548588 /* SocketIO */; };
+		4900939C298251C400548588 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939B298251C400548588 /* SocketIOManager.swift */; };
+		4900939E298264B700548588 /* SiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939D298264B700548588 /* SiseModel.swift */; };
 		49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF93092980F91D009F8A58 /* AppDelegate.swift */; };
 		49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930B2980F91D009F8A58 /* SceneDelegate.swift */; };
 		49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* InterestViewController.swift */; };
@@ -35,6 +37,8 @@
 		4900938729820BF000548588 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4900938C29820D2A00548588 /* InterestStockEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockEntity.swift; sourceTree = "<group>"; };
 		490093962982187A00548588 /* CurrentPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceModel.swift; sourceTree = "<group>"; };
+		4900939B298251C400548588 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
 		49AF93062980F91D009F8A58 /* SiseWebSocketSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiseWebSocketSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF93092980F91D009F8A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF930B2980F91D009F8A58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				49AF932B298111FE009F8A58 /* InterestViewModel.swift */,
+				4900939D298264B700548588 /* SiseModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 				4900938A29820D0200548588 /* Repository */,
 				4900938B29820D0900548588 /* Tools */,
 				4900938E29820D4F00548588 /* Entity */,
+				4900939B298251C400548588 /* SocketIOManager.swift */,
 			);
 			path = SiseWebSocketSample;
 			sourceTree = "<group>";
@@ -276,7 +282,9 @@
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
 				4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
+				4900939E298264B700548588 /* SiseModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
+				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,
