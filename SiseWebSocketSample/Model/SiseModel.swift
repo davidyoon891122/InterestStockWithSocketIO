@@ -10,4 +10,7 @@ import Foundation
 struct SiseModel: Decodable {
     var code: String
     var currentPrice: String
+    var percentChange: String
+    var prevPriceRate: String
+    var isUp: Bool
 }

@@ -129,9 +129,9 @@ private extension InterestViewController {
                     let newModel = CurrentPriceModel(
                         stockName: oldModel.stockName,
                         currentPrice: siseModel.currentPrice.toFloatWithoutComma,
-                        percentChange: oldModel.percentChange,
-                        prevPriceRate: oldModel.prevPriceRate,
-                        isUp: oldModel.isUp)
+                        percentChange: Float(siseModel.percentChange)!,
+                        prevPriceRate: Float(siseModel.prevPriceRate)!,
+                        isUp: siseModel.isUp)
                     self.interestStocks[row] = newModel
                 }
 
