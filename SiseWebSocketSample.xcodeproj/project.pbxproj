@@ -12,6 +12,7 @@
 		4900938829820BF000548588 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900938729820BF000548588 /* Constants.swift */; };
 		4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900938C29820D2A00548588 /* InterestStockEntity.swift */; };
 		490093972982187A00548588 /* CurrentPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490093962982187A00548588 /* CurrentPriceModel.swift */; };
+		4900939A298250F500548588 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 49009399298250F500548588 /* SocketIO */; };
 		49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF93092980F91D009F8A58 /* AppDelegate.swift */; };
 		49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930B2980F91D009F8A58 /* SceneDelegate.swift */; };
 		49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* InterestViewController.swift */; };
@@ -56,6 +57,7 @@
 				49AF932F29811219009F8A58 /* RxCocoa in Frameworks */,
 				49AF931F2980FA06009F8A58 /* SnapKit in Frameworks */,
 				49AF933129811219009F8A58 /* RxSwift in Frameworks */,
+				4900939A298250F500548588 /* SocketIO in Frameworks */,
 				49AF932A29811005009F8A58 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +205,7 @@
 				49AF932929811005009F8A58 /* Alamofire */,
 				49AF932E29811219009F8A58 /* RxCocoa */,
 				49AF933029811219009F8A58 /* RxSwift */,
+				49009399298250F500548588 /* SocketIO */,
 			);
 			productName = SiseWebSocketSample;
 			productReference = 49AF93062980F91D009F8A58 /* SiseWebSocketSample.app */;
@@ -236,6 +239,7 @@
 				49AF931D2980FA06009F8A58 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				49AF932829811005009F8A58 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				49AF932D29811219009F8A58 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				49009398298250F500548588 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = 49AF93072980F91D009F8A58 /* Products */;
 			projectDirPath = "";
@@ -487,6 +491,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		49009398298250F500548588 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		49AF931D2980FA06009F8A58 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -514,6 +526,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		49009399298250F500548588 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49009398298250F500548588 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
 		49AF931E2980FA06009F8A58 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49AF931D2980FA06009F8A58 /* XCRemoteSwiftPackageReference "SnapKit" */;
