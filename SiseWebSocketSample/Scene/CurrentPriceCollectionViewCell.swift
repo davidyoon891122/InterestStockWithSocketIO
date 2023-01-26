@@ -40,6 +40,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "1,500"
         label.textColor = .red
+        label.textAlignment = .right
         
         return label
     }()
@@ -48,6 +49,8 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "2.43%"
         label.textColor = .red
+        label.textAlignment = .right
+        label.font = .systemFont(ofSize: 13.0, weight: .bold)
         
         return label
     }()
@@ -96,16 +99,15 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         prevLabel.snp.makeConstraints {
             $0.centerY.equalTo(rateArrowImageView)
             $0.trailing.equalTo(rateLabel.snp.leading).offset(-offset)
+            $0.width.equalTo(40.0)
         }
-        
-        priceLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         rateLabel.snp.makeConstraints {
             $0.centerY.equalTo(prevLabel)
             $0.leading.equalTo(prevLabel.snp.trailing).offset(offset)
+            $0.width.equalTo(60.0)
             $0.trailing.equalToSuperview().offset(-offset)
         }
-        rateLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         separatorView.snp.makeConstraints {
             $0.top.equalTo(priceLabel.snp.bottom).offset(offset)
@@ -116,7 +118,13 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func setupCell() {
+    func setupCell(stock: CurrentPriceModel) {
+        nameLabel.text = stock.stockName
+        priceLabel.text = "\(stock.currentPrice)"
+        prevLabel.text = "\(stock.prevPriceRate)"
+        rateLabel.text = "\(stock.percentChange)".percent
+        configureViewByUpAndDown(isUp: stock.isUp)
+        
         setupViews()
     }
     
@@ -139,5 +147,28 @@ private extension CurrentPriceCollectionViewCell {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func configureViewByUpAndDown(isUp: Bool) {
+        switch isUp {
+        case true:
+            priceLabel.textColor = UIColor(named: "UpColor")
+            prevLabel.textColor = UIColor(named: "UpColor")
+            rateLabel.textColor = UIColor(named: "UpColor")
+            rateArrowImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            rateArrowImageView.tintColor = UIColor(named: "UpColor")
+        case false:
+            priceLabel.textColor = UIColor(named: "DownColor")
+            prevLabel.textColor = UIColor(named: "DownColor")
+            rateLabel.textColor = UIColor(named: "DownColor")
+            rateArrowImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            rateArrowImageView.tintColor = UIColor(named: "DownColor")
+        }
+    }
+}
+
+extension String {
+    var percent: String {
+        self + " %"
     }
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class InterestViewController: UIViewController {
     private lazy var currentPriceCollectionView: UICollectionView = {
@@ -27,12 +28,24 @@ class InterestViewController: UIViewController {
         
         return collectionView
     }()
+    
+    private let viewModel: InterestViewModelType = InterestViewModel()
+    private let disposeBag = DisposeBag()
+    
+    private var interestStocks: [CurrentPriceModel] = [] {
+        didSet {
+            self.currentPriceCollectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPurple
         setupViews()
         configureNavigation()
+        bindViewModel()
+        
+        viewModel.inputs.fetchIntrestStockList()
     }
 }
 
@@ -41,7 +54,7 @@ extension InterestViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 50
+        return interestStocks.count
     }
     
     func collectionView(
@@ -53,7 +66,8 @@ extension InterestViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? CurrentPriceCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.setupCell()
+        let stock = interestStocks[indexPath.item]
+        cell.setupCell(stock: stock)
         
         return cell
     }
@@ -83,5 +97,15 @@ private extension InterestViewController {
     func configureNavigation() {
         navigationItem.title = "Items of Interest"
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func bindViewModel() {
+        viewModel.outputs.currentPrices
+            .subscribe(onNext: { [weak self] currentPrices in
+                guard let self = self else { return }
+                self.interestStocks = currentPrices
+            })
+            .disposed(by: disposeBag)
+        
     }
 }

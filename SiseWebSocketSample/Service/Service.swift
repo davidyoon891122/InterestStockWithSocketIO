@@ -13,7 +13,7 @@ import Alamofire
 final class Service {
     func requestService<T: Decodable> (
         url: URL,
-        type: T,
+        type: T.Type,
         method: HTTPMethod,
         param: [String: String],
         header: HTTPHeaders?
@@ -36,8 +36,13 @@ final class Service {
                 
                 switch statusCode {
                 case 200...300:
-                    guard let jsonData = try? JSONDecoder().decode(T.self, from: data) else { return }
-                    emitter.onNext(jsonData)
+                    do {
+                        let jsonData = try JSONDecoder().decode(T.self, from: data)
+                        emitter.onNext(jsonData)
+                    } catch let error {
+                        print(error)
+                        emitter.onError(error)
+                    }
                 default:
                     emitter.onError(NetworkError.responseError)
                 }
