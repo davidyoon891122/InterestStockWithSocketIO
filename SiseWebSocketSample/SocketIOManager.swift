@@ -21,7 +21,7 @@ final class SiseSocketManager: NSObject, SocketIOManager {
     
     private var manager = SocketManager(
         socketURL: URLInfo.currentPriceSise.url,
-        config: [.log(true), .compress]
+        config: [.log(false), .compress]
     )
     
     var socket: SocketIOClient

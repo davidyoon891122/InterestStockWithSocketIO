@@ -16,6 +16,7 @@ protocol InterestViewModelInput {
 protocol InterestViewModelOutput {
     var currentPrices: PublishSubject<[CurrentPriceModel]> { get }
     var currentPricesError: PublishSubject<String> { get }
+    var sise: PublishSubject<SiseModel> { get }
 }
 
 protocol InterestViewModelType {
@@ -33,6 +34,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     
     var currentPrices: PublishSubject<[CurrentPriceModel]> = .init()
     var currentPricesError: PublishSubject<String> = .init()
+    var sise: PublishSubject<SiseModel> = .init()
     
     func fetchIntrestStockList() {
         repository.inputs.requestStockInfo()
@@ -68,12 +70,13 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     }
 
     private func receiveSise() {
-        SiseSocketManager.shared.socket.on("sise") { data, ack in
+        SiseSocketManager.shared.socket.on("sise") { [weak self] data, ack in
+            guard let self = self else { return }
             do {
                 let jsonData = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
                 let siseModel = try JSONDecoder().decode(SiseModel.self, from: jsonData)
 
-                print(siseModel)
+                self.outputs.sise.onNext(siseModel)
             } catch {
                 print(error)
             }

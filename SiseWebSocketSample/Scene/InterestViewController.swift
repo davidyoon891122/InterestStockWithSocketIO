@@ -118,10 +118,39 @@ private extension InterestViewController {
                 self.interestStocks = currentPrices
             })
             .disposed(by: disposeBag)
+
+
+        viewModel.outputs.sise
+            .debug("sise")
+            .subscribe(onNext: { [weak self] siseModel in
+                guard let self = self else { return }
+                if let row = self.interestStocks.firstIndex { $0.stockName == siseModel.code } {
+                    let oldModel = self.interestStocks[row]
+                    let newModel = CurrentPriceModel(
+                        stockName: oldModel.stockName,
+                        currentPrice: siseModel.currentPrice.toFloatWithoutComma,
+                        percentChange: oldModel.percentChange,
+                        prevPriceRate: oldModel.prevPriceRate,
+                        isUp: oldModel.isUp)
+                    self.interestStocks[row] = newModel
+                }
+
+
+            }, onError: { error in
+
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc
     func didTapReloadButton() {
         viewModel.inputs.fetchIntrestStockList()
+    }
+}
+
+
+extension String {
+    var toFloatWithoutComma: Float {
+        return Float(self.components(separatedBy: ",").joined()) ?? 0.0
     }
 }
