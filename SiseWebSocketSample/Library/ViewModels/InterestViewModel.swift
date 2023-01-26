@@ -10,7 +10,7 @@ import RxSwift
 
 protocol InterestViewModelInput {
     func fetchIntrestStockList()
-    func fetchSise()
+    func fetchSise(code: String)
 }
 
 protocol InterestViewModelOutput {
@@ -47,7 +47,36 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
             .disposed(by: disposeBag)
     }
     
-    func fetchSise() {
-        repository.inputs.requestSise()
+    func fetchSise(code: String) {
+        receiveConnectCompletion() {
+            SiseSocketManager.shared.socket.emit("code", code)
+        }
+        receiveSise()
+        if SiseSocketManager.shared.socket.status == .notConnected {
+            connectSocket()
+        }
+    }
+
+    private func connectSocket() {
+        SiseSocketManager.shared.establishConnection()
+    }
+
+    private func receiveConnectCompletion(completion: @escaping ()-> Void) {
+        SiseSocketManager.shared.socket.on("connectCompletion") { _, _ in
+            completion()
+        }
+    }
+
+    private func receiveSise() {
+        SiseSocketManager.shared.socket.on("sise") { data, ack in
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
+                let siseModel = try JSONDecoder().decode(SiseModel.self, from: jsonData)
+
+                print(siseModel)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
