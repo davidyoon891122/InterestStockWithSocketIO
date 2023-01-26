@@ -97,6 +97,13 @@ private extension InterestViewController {
     func configureNavigation() {
         navigationItem.title = "Items of Interest"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "arrow.clockwise"),
+            style: .plain,
+            target: self,
+            action: #selector(didTapReloadButton)
+        )
     }
     
     func bindViewModel() {
@@ -106,6 +113,10 @@ private extension InterestViewController {
                 self.interestStocks = currentPrices
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    @objc
+    func didTapReloadButton() {
+        viewModel.inputs.fetchIntrestStockList()
     }
 }

@@ -105,7 +105,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         rateLabel.snp.makeConstraints {
             $0.centerY.equalTo(prevLabel)
             $0.leading.equalTo(prevLabel.snp.trailing).offset(offset)
-            $0.width.equalTo(60.0)
+            $0.width.greaterThanOrEqualTo(60.0)
             $0.trailing.equalToSuperview().offset(-offset)
         }
         
