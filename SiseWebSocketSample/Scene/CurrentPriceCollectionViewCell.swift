@@ -23,7 +23,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         label.text = "63,300"
         label.textColor = .red
         label.textAlignment = .center
-        
+
         return label
     }()
     
@@ -41,6 +41,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         label.text = "1,500"
         label.textColor = .red
         label.textAlignment = .right
+        label.font = .systemFont(ofSize: 13.0, weight: .bold)
         
         return label
     }()
@@ -99,7 +100,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         prevLabel.snp.makeConstraints {
             $0.centerY.equalTo(rateArrowImageView)
             $0.trailing.equalTo(rateLabel.snp.leading).offset(-offset)
-            $0.width.equalTo(40.0)
+            $0.width.equalTo(50.0)
         }
         
         rateLabel.snp.makeConstraints {
