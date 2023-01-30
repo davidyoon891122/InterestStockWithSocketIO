@@ -15,6 +15,7 @@
 		4900939A298250F500548588 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 49009399298250F500548588 /* SocketIO */; };
 		4900939C298251C400548588 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939B298251C400548588 /* SocketIOManager.swift */; };
 		4900939E298264B700548588 /* SiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939D298264B700548588 /* SiseModel.swift */; };
+		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF93092980F91D009F8A58 /* AppDelegate.swift */; };
 		49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930B2980F91D009F8A58 /* SceneDelegate.swift */; };
 		49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* InterestViewController.swift */; };
@@ -39,6 +40,7 @@
 		490093962982187A00548588 /* CurrentPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceModel.swift; sourceTree = "<group>"; };
 		4900939B298251C400548588 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
+		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49AF93062980F91D009F8A58 /* SiseWebSocketSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiseWebSocketSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF93092980F91D009F8A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF930B2980F91D009F8A58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				49AF93202980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift */,
 				49AF932629810CB4009F8A58 /* DynamicFlowLayout.swift */,
 				49AF932429810974009F8A58 /* SeparatorView.swift */,
+				49959F4229878DEF00FC087F /* UpdateViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
+				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
 				4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
