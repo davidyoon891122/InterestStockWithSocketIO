@@ -50,9 +50,10 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     }
     
     func fetchSise(code: String) {
-        receiveConnectCompletion() {
+        SiseSocketManager.shared.requestComplete {
             SiseSocketManager.shared.socket.emit("code", code)
         }
+
         receiveSise()
         if SiseSocketManager.shared.socket.status == .notConnected {
             connectSocket()
@@ -61,12 +62,6 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
 
     private func connectSocket() {
         SiseSocketManager.shared.establishConnection()
-    }
-
-    private func receiveConnectCompletion(completion: @escaping ()-> Void) {
-        SiseSocketManager.shared.socket.on("connectCompletion") { _, _ in
-            completion()
-        }
     }
 
     private func receiveSise() {

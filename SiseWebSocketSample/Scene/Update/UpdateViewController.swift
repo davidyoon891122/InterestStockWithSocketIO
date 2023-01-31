@@ -55,6 +55,8 @@ final class UpdateViewController: UIViewController {
     private var timer: Timer?
     private var currentPercent: CGFloat = 0.0
     
+    private var viewModel: UpdateViewModelType = UpdateViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -66,6 +68,7 @@ final class UpdateViewController: UIViewController {
         print("progress Width: \(progressViewWidth)")
         activateProgress()
         
+        viewModel.inputs.fetchDownloadMaster()
     }
 }
 

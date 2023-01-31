@@ -12,6 +12,7 @@ protocol SocketIOManager: NSObject {
     var socket: SocketIOClient { get }
     func establishConnection()
     func closeConnection()
+    func requestComplete(completion: @escaping () -> Void)
 }
 
 
@@ -47,4 +48,11 @@ final class SiseSocketManager: NSObject, SocketIOManager {
             print("Connection has failed")
         }
     }
+    
+    func requestComplete(completion: @escaping () -> Void) {
+        socket.on("connectCompletion") { _, _ in
+            completion()
+        }
+    }
 }
+
