@@ -10,7 +10,6 @@ import RxSwift
 
 protocol StockRepositoryInput {
     func requestStockInfo() -> Observable<[CurrentPriceModel]>
-    func requestSise()
 }
 
 protocol StockRepositoryOutput {
@@ -57,9 +56,5 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
             .disposed(by: self.disposeBag)
             return Disposables.create()
         }
-    }
-    
-    func requestSise() {
-        service.requestSise()
     }
 }

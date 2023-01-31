@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol UpdateViewModelInput {
     func fetchDownloadMaster()
@@ -24,8 +25,19 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     var inputs: UpdateViewModelInput { self }
     var outputs: UpdateViewModelOutput { self }
     
+    private let repository = UpdateRepository()
+    private let disposeBag = DisposeBag()
+    
     
     func fetchDownloadMaster() {
-        
+        repository.fetchDownloadMaster()
+            .debug("fetchDownloadMaster")
+            .subscribe(onNext: { url in
+                MasterParser.parseMaster(path: url)
+                print("master: \(MasterParser.overseaStocks)")
+            }, onError: { error in
+                
+            })
+            .disposed(by: disposeBag)
     }
 }

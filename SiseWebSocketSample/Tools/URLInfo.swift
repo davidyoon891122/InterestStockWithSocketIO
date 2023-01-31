@@ -10,6 +10,7 @@ import Foundation
 enum URLInfo {
     case interestStock
     case currentPriceSise
+    case master
     
     
     var url: URL {
@@ -21,6 +22,9 @@ enum URLInfo {
         case .currentPriceSise:
             let baseURL = Constants.baseURL
             return URL(string: "http://\(baseURL)")!
+        case .master:
+            let baseURL = Constants.baseURL
+            return URL(string: "http://\(baseURL)/master")!
         }
     }
 }

@@ -31,6 +31,10 @@
 		49AF933129811219009F8A58 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49AF933029811219009F8A58 /* RxSwift */; };
 		49AF9335298113B5009F8A58 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF9334298113B5009F8A58 /* Service.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
+		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
+		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
+		49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEC2988EE5E00E456DF /* StockModel.swift */; };
+		49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEE2988F58D00E456DF /* MasterModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,10 @@
 		49AF932B298111FE009F8A58 /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		49AF9334298113B5009F8A58 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
+		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
+		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
+		49CDEBEC2988EE5E00E456DF /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
+		49CDEBEE2988F58D00E456DF /* MasterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				490093832981FD8600548588 /* StockRepository.swift */,
+				49CDEBE82988E4E100E456DF /* UpdateRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -110,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				490093922982143600548588 /* ViewModels */,
+				49CDEBEA2988ED7A00E456DF /* MasterParser.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -138,6 +148,8 @@
 			children = (
 				4900939D298264B700548588 /* SiseModel.swift */,
 				490093962982187A00548588 /* CurrentPriceModel.swift */,
+				49CDEBEC2988EE5E00E456DF /* StockModel.swift */,
+				49CDEBEE2988F58D00E456DF /* MasterModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -307,16 +319,20 @@
 				4900938829820BF000548588 /* Constants.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */,
+				49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */,
 				49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */,
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
+				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
+				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,
 				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
 				4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
 				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,
+				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,

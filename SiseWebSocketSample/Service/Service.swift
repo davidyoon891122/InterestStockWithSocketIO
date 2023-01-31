@@ -51,8 +51,28 @@ final class Service {
         }
     }
     
-    func requestSise() {
-        SiseSocketManager.shared.requestSise(code: "삼성전자")
+    func requestDownload(url: URL) -> Observable<URL?> {
+        return Observable.create { emitter in
+            let destination: DownloadRequest.Destination = { _, _ in
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+                let fileURL = documentsURL.appendingPathComponent("master.json")
+                
+                return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+            }
+                    
+            AF.download(
+                url,
+                to: destination
+            )
+            .response { response in
+                if let fileURL = response.fileURL {
+                    debugPrint(fileURL)
+                }
+                emitter.onNext(response.fileURL)
+            }
+            
+            return Disposables.create()
+        }
     }
 }
 
