@@ -15,6 +15,7 @@ protocol UpdateViewModelInput {
 
 protocol UpdateViewModelOutput {
     var updateFinishedPublishSubject: PublishSubject<Bool> { get }
+    var updateProgressBarPublishSubject: PublishSubject<Double> { get }
 }
 
 protocol UpdateViewModelType {
@@ -27,6 +28,7 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     var outputs: UpdateViewModelOutput { self }
     
     var updateFinishedPublishSubject: PublishSubject<Bool> = .init()
+    var updateProgressBarPublishSubject: PublishSubject<Double> = .init()
     
     private let repository = UpdateRepository()
     private let disposeBag = DisposeBag()
@@ -35,14 +37,17 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     func fetchDownloadMaster() {
         repository.fetchDownloadMaster()
             .debug("fetchDownloadMaster")
-            .subscribe(onNext: { url in
+            .subscribe(onNext: { url, progress in
                 DispatchQueue.global().sync { [weak self] in
-                    guard let self = self else { return }
+                    guard let self = self,
+                        let url = url
+                    else { return }
                     do {
                         try MasterParser.parseMaster(path: url)
                     } catch {
                         self.updateFinishedPublishSubject.onNext(false)
                     }
+                    
                     self.updateFinishedPublishSubject.onNext(true)
                 }
             }, onError: { error in
@@ -54,10 +59,9 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     
     func fetchDownloadFiles() {
         repository.fetchDownloadFiles()
-            .debug("fetchDownloadFiles")
-            .subscribe(onNext: { url in
-                print(url)
-                
+            .subscribe(onNext: { [weak self] url, progress in
+                guard let self = self else { return }
+                self.updateProgressBarPublishSubject.onNext(progress)
             })
             .disposed(by: disposeBag)
     }

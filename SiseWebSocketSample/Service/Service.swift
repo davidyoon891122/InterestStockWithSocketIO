@@ -51,7 +51,7 @@ final class Service {
         }
     }
     
-    func requestDownload(fileName: String, url: URL) -> Observable<URL?> {
+    func requestDownload(fileName: String, url: URL) -> Observable<(URL?,Double)> {
         return Observable.create { emitter in
             let destination: DownloadRequest.Destination = { _, _ in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -66,14 +66,13 @@ final class Service {
             )
             .downloadProgress { progress in
                 let donwloadedPercent = progress.fractionCompleted * 100
-                print("Download Percent: \(donwloadedPercent)")
+                emitter.onNext((nil, donwloadedPercent))
             }
             .response { response in
                 if let fileURL = response.fileURL {
                     debugPrint(fileURL)
                 }
-                print("Download finished")
-                emitter.onNext(response.fileURL)
+                emitter.onNext((response.fileURL, 100.0))
             }
             
             return Disposables.create()

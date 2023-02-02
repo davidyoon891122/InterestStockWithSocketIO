@@ -79,8 +79,6 @@ final class UpdateViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         progressViewWidth = UIScreen.main.bounds.width - 32.0
-        print("progress Width: \(progressViewWidth)")
-        activateProgress()
         viewModel.inputs.fetchDownloadFiles()
     }
 }
@@ -110,16 +108,6 @@ private extension UpdateViewController {
         }
     }
     
-    func activateProgress() {
-        timer = Timer.scheduledTimer(
-            timeInterval: 1,
-            target: self,
-            selector: #selector(increaseProgress),
-            userInfo: nil,
-            repeats: true
-        )
-    }
-    
     func bindViewModel() {
         viewModel.outputs.updateFinishedPublishSubject
             .subscribe(onNext: { [weak self] result in
@@ -133,28 +121,18 @@ private extension UpdateViewController {
             })
             .disposed(by: disposeBag)
         
-    }
-    
-    @objc
-    func increaseProgress() {
-        currentPercent = currentPercent + progressViewWidth / 10.0
+        viewModel.outputs.updateProgressBarPublishSubject
+            .delay(.microseconds(20000), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] progress in
+                guard let self = self else { return }
+                UIView.animate(withDuration: 1.0, animations: {
+                    self.percentLabel.text = String(format: "%.2f %%", progress)
+                    self.progressInnerView.snp.updateConstraints{
+                        $0.width.equalTo(self.progressViewWidth * (progress / 100))
+                    }
+                })
+            })
+            .disposed(by: disposeBag)
         
-        var percentText = String(format: "%.2f %%", ((self.currentPercent * 100) / self.progressViewWidth - 8 ))
-        
-        if currentPercent >= (progressViewWidth - 8) {
-            timer?.invalidate()
-            currentPercent = progressViewWidth - 8
-            percentText = "100.0 %"
-        }
-        
-        
-        UIView.animate(withDuration: 1.0, animations: {
-            
-            self.progressInnerView.snp.updateConstraints{
-                $0.width.equalTo(self.currentPercent)
-            }
-            
-            self.percentLabel.text = percentText
-        }, completion: nil)
     }
 }
