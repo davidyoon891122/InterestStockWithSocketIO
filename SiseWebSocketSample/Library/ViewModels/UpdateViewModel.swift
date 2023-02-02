@@ -13,7 +13,7 @@ protocol UpdateViewModelInput {
 }
 
 protocol UpdateViewModelOutput {
-    
+    var updateFinishedPublishSubject: PublishSubject<Bool> { get }
 }
 
 protocol UpdateViewModelType {
@@ -25,6 +25,8 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     var inputs: UpdateViewModelInput { self }
     var outputs: UpdateViewModelOutput { self }
     
+    var updateFinishedPublishSubject: PublishSubject<Bool> = .init()
+    
     private let repository = UpdateRepository()
     private let disposeBag = DisposeBag()
     
@@ -33,8 +35,11 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
         repository.fetchDownloadMaster()
             .debug("fetchDownloadMaster")
             .subscribe(onNext: { url in
-                MasterParser.parseMaster(path: url)
-                print("master: \(MasterParser.overseaStocks)")
+                DispatchQueue.global().sync { [weak self] in
+                    guard let self = self else { return }
+                    MasterParser.parseMaster(path: url)
+                    self.updateFinishedPublishSubject.onNext(true)
+                }
             }, onError: { error in
                 
             })

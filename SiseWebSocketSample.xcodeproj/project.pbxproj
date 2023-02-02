@@ -16,6 +16,8 @@
 		4900939C298251C400548588 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939B298251C400548588 /* SocketIOManager.swift */; };
 		4900939E298264B700548588 /* SiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939D298264B700548588 /* SiseModel.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
+		49A58508298B45510070D8CC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58507298B45510070D8CC /* RootViewController.swift */; };
+		49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58509298B46320070D8CC /* RootViewModel.swift */; };
 		49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF93092980F91D009F8A58 /* AppDelegate.swift */; };
 		49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930B2980F91D009F8A58 /* SceneDelegate.swift */; };
 		49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* InterestViewController.swift */; };
@@ -46,6 +48,8 @@
 		4900939B298251C400548588 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		49A58507298B45510070D8CC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		49A58509298B46320070D8CC /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		49AF93062980F91D009F8A58 /* SiseWebSocketSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiseWebSocketSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF93092980F91D009F8A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF930B2980F91D009F8A58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			children = (
 				49AF932B298111FE009F8A58 /* InterestViewModel.swift */,
 				49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */,
+				49A58509298B46320070D8CC /* RootViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -202,6 +207,7 @@
 				49CDEBE32988C27D00E456DF /* CustomViews */,
 				49CDEBE42988C29C00E456DF /* Interest */,
 				49CDEBE52988C2B700E456DF /* Update */,
+				49A58507298B45510070D8CC /* RootViewController.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			files = (
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
+				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */,
 				49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */,
@@ -329,6 +336,7 @@
 				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
 				4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
+				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
 				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,

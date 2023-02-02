@@ -16,6 +16,7 @@ final class MasterParser {
             let stocks = try JSONDecoder().decode(MasterModel.self, from: dataFromPath)
             
             overseaStocks = stocks.stocks
+            print("Did finish parse master file")
         } catch let error {
             print(error)
         }

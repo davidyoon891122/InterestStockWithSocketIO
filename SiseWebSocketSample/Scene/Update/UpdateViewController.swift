@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class UpdateViewController: UIViewController {
     private lazy var percentLabel: UILabel = {
@@ -56,10 +57,23 @@ final class UpdateViewController: UIViewController {
     private var currentPercent: CGFloat = 0.0
     
     private var viewModel: UpdateViewModelType = UpdateViewModel()
+    private var disposeBag = DisposeBag()
+    
+    private var rootViewModel: RootViewModelType
+    
+    init(rootViewModel: RootViewModelType) {
+        self.rootViewModel = rootViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +81,6 @@ final class UpdateViewController: UIViewController {
         progressViewWidth = UIScreen.main.bounds.width - 32.0
         print("progress Width: \(progressViewWidth)")
         activateProgress()
-        
         viewModel.inputs.fetchDownloadMaster()
     }
 }
@@ -105,6 +118,21 @@ private extension UpdateViewController {
             userInfo: nil,
             repeats: true
         )
+    }
+    
+    func bindViewModel() {
+        viewModel.outputs.updateFinishedPublishSubject
+            .subscribe(onNext: { [weak self] result in
+                guard let self = self else { return }
+                if result {
+                    self.dismiss(animated: false)
+                    self.rootViewModel.inputs.presentInterestViewController()
+                }
+            }, onError: { error in
+                
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     @objc
