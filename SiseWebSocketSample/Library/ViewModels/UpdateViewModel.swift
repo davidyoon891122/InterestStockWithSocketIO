@@ -10,6 +10,7 @@ import RxSwift
 
 protocol UpdateViewModelInput {
     func fetchDownloadMaster()
+    func fetchDownloadFiles()
 }
 
 protocol UpdateViewModelOutput {
@@ -37,10 +38,25 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
             .subscribe(onNext: { url in
                 DispatchQueue.global().sync { [weak self] in
                     guard let self = self else { return }
-                    MasterParser.parseMaster(path: url)
+                    do {
+                        try MasterParser.parseMaster(path: url)
+                    } catch {
+                        self.updateFinishedPublishSubject.onNext(false)
+                    }
                     self.updateFinishedPublishSubject.onNext(true)
                 }
             }, onError: { error in
+                
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    
+    func fetchDownloadFiles() {
+        repository.fetchDownloadFiles()
+            .debug("fetchDownloadFiles")
+            .subscribe(onNext: { url in
+                print(url)
                 
             })
             .disposed(by: disposeBag)

@@ -51,11 +51,11 @@ final class Service {
         }
     }
     
-    func requestDownload(url: URL) -> Observable<URL?> {
+    func requestDownload(fileName: String, url: URL) -> Observable<URL?> {
         return Observable.create { emitter in
             let destination: DownloadRequest.Destination = { _, _ in
                 let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-                let fileURL = documentsURL.appendingPathComponent("master.json")
+                let fileURL = documentsURL.appendingPathComponent(fileName)
                 
                 return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
             }
@@ -64,10 +64,15 @@ final class Service {
                 url,
                 to: destination
             )
+            .downloadProgress { progress in
+                let donwloadedPercent = progress.fractionCompleted * 100
+                print("Download Percent: \(donwloadedPercent)")
+            }
             .response { response in
                 if let fileURL = response.fileURL {
                     debugPrint(fileURL)
                 }
+                print("Download finished")
                 emitter.onNext(response.fileURL)
             }
             

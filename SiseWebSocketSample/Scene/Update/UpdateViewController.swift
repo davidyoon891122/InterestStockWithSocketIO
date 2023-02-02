@@ -81,7 +81,7 @@ final class UpdateViewController: UIViewController {
         progressViewWidth = UIScreen.main.bounds.width - 32.0
         print("progress Width: \(progressViewWidth)")
         activateProgress()
-        viewModel.inputs.fetchDownloadMaster()
+        viewModel.inputs.fetchDownloadFiles()
     }
 }
 

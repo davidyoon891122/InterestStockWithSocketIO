@@ -34,8 +34,26 @@ final class UpdateRepository: UpdateRepositoryType, UpdateRepositoryInput, Updat
     func fetchDownloadMaster() -> Observable<URL> {
         return Observable.create { [weak self] emitter in
             guard let self = self else { return Disposables.create() }
-            self.service.requestDownload(url: URLInfo.master.url)
+            self.service.requestDownload(fileName: "master.json", url: URLInfo.master.url)
                 .debug("requestDownload")
+                .subscribe(onNext: { fileUrl in
+                    guard let url = fileUrl else { return }
+                    emitter.onNext(url)
+                    
+                }, onError: { error in
+                    emitter.onError(error)
+                })
+                .disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+    }
+    
+    func fetchDownloadFiles() -> Observable<URL> {
+        return Observable.create { [weak self] emitter in
+            guard let self = self else { return Disposables.create() }
+            self.service.requestDownload(fileName: "bigfile.zip" ,url: URLInfo.bigsize.url)
+                .debug("fetchDownloadFiles")
                 .subscribe(onNext: { fileUrl in
                     guard let url = fileUrl else { return }
                     emitter.onNext(url)
