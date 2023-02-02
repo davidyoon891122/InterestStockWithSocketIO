@@ -15,7 +15,7 @@ protocol UpdateViewModelInput {
 
 protocol UpdateViewModelOutput {
     var updateFinishedPublishSubject: PublishSubject<Bool> { get }
-    var updateProgressBarPublishSubject: PublishSubject<Double> { get }
+    var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> { get }
 }
 
 protocol UpdateViewModelType {
@@ -28,7 +28,7 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     var outputs: UpdateViewModelOutput { self }
     
     var updateFinishedPublishSubject: PublishSubject<Bool> = .init()
-    var updateProgressBarPublishSubject: PublishSubject<Double> = .init()
+    var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> = .init()
     
     private let repository = UpdateRepository()
     private let disposeBag = DisposeBag()
@@ -39,16 +39,18 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
             .debug("fetchDownloadMaster")
             .subscribe(onNext: { url, progress in
                 DispatchQueue.global().sync { [weak self] in
-                    guard let self = self,
-                        let url = url
-                    else { return }
+                    guard let self = self else { return }
                     do {
-                        try MasterParser.parseMaster(path: url)
+                        if let url = url {
+                            try MasterParser.parseMaster(path: url)
+                        }
                     } catch {
                         self.updateFinishedPublishSubject.onNext(false)
                     }
-                    
-                    self.updateFinishedPublishSubject.onNext(true)
+                    if url != nil {
+                        self.updateFinishedPublishSubject.onNext(true)
+                    }
+                    self.updateProgressBarPublishSubject.onNext((false,progress))
                 }
             }, onError: { error in
                 
@@ -61,7 +63,10 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
         repository.fetchDownloadFiles()
             .subscribe(onNext: { [weak self] url, progress in
                 guard let self = self else { return }
-                self.updateProgressBarPublishSubject.onNext(progress)
+                if url != nil {
+                    self.updateFinishedPublishSubject.onNext(true)
+                }
+                self.updateProgressBarPublishSubject.onNext((false, progress))
             })
             .disposed(by: disposeBag)
     }

@@ -79,7 +79,7 @@ final class UpdateViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         progressViewWidth = UIScreen.main.bounds.width - 32.0
-        viewModel.inputs.fetchDownloadFiles()
+        viewModel.inputs.fetchDownloadMaster()
     }
 }
 
@@ -110,6 +110,7 @@ private extension UpdateViewController {
     
     func bindViewModel() {
         viewModel.outputs.updateFinishedPublishSubject
+            .delay(.seconds(1), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] result in
                 guard let self = self else { return }
                 if result {
@@ -122,8 +123,7 @@ private extension UpdateViewController {
             .disposed(by: disposeBag)
         
         viewModel.outputs.updateProgressBarPublishSubject
-            .delay(.microseconds(20000), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] progress in
+            .subscribe(onNext: { [weak self] isFinish, progress in
                 guard let self = self else { return }
                 UIView.animate(withDuration: 1.0, animations: {
                     self.percentLabel.text = String(format: "%.2f %%", progress)
