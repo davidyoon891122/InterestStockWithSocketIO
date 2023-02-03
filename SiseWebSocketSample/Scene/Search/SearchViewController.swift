@@ -31,17 +31,26 @@ final class SearchViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
     
+    private var stocks: [StockModel] = [] {
+        didSet {
+            self.searchTableView.reloadData()
+        }
+    }
+    
+    private let viewModel: SearchViewModelType = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupViews()
+        bindViewModel()
         bindUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.inputs.requestStocks()
     }
-    
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -49,7 +58,7 @@ extension SearchViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 10
+        return stocks.count
     }
     
     func tableView(
@@ -58,7 +67,9 @@ extension SearchViewController: UITableViewDataSource {
     ) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.identifier, for: indexPath) as? StockTableViewCell else { return UITableViewCell() }
         
-        cell.setupCell(code: "AMZN", title: "Amazon", isSelected: false)
+        let stockModel = stocks[indexPath.item]
+        
+        cell.setupCell(code: stockModel.code, title: stockModel.name, isSelected: false)
         return cell
     }
     
@@ -99,6 +110,15 @@ private extension SearchViewController {
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.dismiss(animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindViewModel() {
+        viewModel.outputs.stockModels
+            .subscribe(onNext: { [weak self] stockModels in
+                guard let self = self else { return }
+                self.stocks = stockModels
             })
             .disposed(by: disposeBag)
     }

@@ -54,6 +54,7 @@ final class StockTableViewCell: UITableViewCell {
         let offset: CGFloat = 16.0
         codeLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(offset)
+            $0.width.greaterThanOrEqualTo(50.0)
             $0.centerY.equalTo(nameLabel)
         }
         
@@ -86,6 +87,8 @@ final class StockTableViewCell: UITableViewCell {
         title: String,
         isSelected: Bool
     ) {
+        nameLabel.text = title
+        codeLabel.text = code
         setupViews()
     }
 }
