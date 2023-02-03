@@ -17,6 +17,8 @@
 		4900939E298264B700548588 /* SiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939D298264B700548588 /* SiseModel.swift */; };
 		490E6FDE298C83380035470A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FDD298C83380035470A /* SearchViewController.swift */; };
 		490E6FE2298C84500035470A /* PresentTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE1298C84500035470A /* PresentTopView.swift */; };
+		490E6FE4298C96320035470A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE3298C96320035470A /* SearchViewModel.swift */; };
+		490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE5298C9F040035470A /* StockTableViewCell.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49A58508298B45510070D8CC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58507298B45510070D8CC /* RootViewController.swift */; };
 		49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58509298B46320070D8CC /* RootViewModel.swift */; };
@@ -51,6 +53,8 @@
 		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
 		490E6FDD298C83380035470A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		490E6FE1298C84500035470A /* PresentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTopView.swift; sourceTree = "<group>"; };
+		490E6FE3298C96320035470A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		490E6FE5298C9F040035470A /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49A58507298B45510070D8CC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		49A58509298B46320070D8CC /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				49AF932B298111FE009F8A58 /* InterestViewModel.swift */,
 				49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */,
 				49A58509298B46320070D8CC /* RootViewModel.swift */,
+				490E6FE3298C96320035470A /* SearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				490E6FDD298C83380035470A /* SearchViewController.swift */,
+				490E6FE5298C9F040035470A /* StockTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -361,9 +367,11 @@
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
+				490E6FE4298C96320035470A /* SearchViewModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
 				490E6FDE298C83380035470A /* SearchViewController.swift in Sources */,
 				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,
+				490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */,
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
