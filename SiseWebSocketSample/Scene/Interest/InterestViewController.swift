@@ -168,6 +168,7 @@ private extension InterestViewController {
     
     @objc
     func didTapReloadButton() {
+        viewModel.inputs.requestDisconnect()
         viewModel.inputs.openSearchViewController()
     }
 

@@ -13,6 +13,7 @@ protocol InterestViewModelInput {
     func fetchIntrestStockList()
     func fetchSise(code: String)
     func openSearchViewController()
+    func requestDisconnect()
 }
 
 protocol InterestViewModelOutput {
@@ -70,6 +71,10 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
         searchViewController.modalPresentationStyle = .fullScreen
         
         outputs.searchViewController.onNext(searchViewController)
+    }
+    
+    func requestDisconnect() {
+        SiseSocketManager.shared.closeConnection()
     }
 
     private func connectSocket() {

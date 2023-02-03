@@ -7,13 +7,15 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class StockTableViewCell: UITableViewCell {
     static let identifier = "StockTableViewCell"
     private lazy var codeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
-        label.textColor = .label
+        label.textColor = .gray
         
         return label
     }()
@@ -28,8 +30,11 @@ final class StockTableViewCell: UITableViewCell {
     private lazy var addImageButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "star"), for: .normal)
-        button.setImage(UIImage(systemName: "star.fill"), for: .highlighted)
+        button.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        button.tintColor = .label
         
+        button.isUserInteractionEnabled = true
+        button.isSelected = false
         return button
     }()
     
@@ -53,7 +58,7 @@ final class StockTableViewCell: UITableViewCell {
         
         let offset: CGFloat = 16.0
         codeLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(offset)
+            $0.leading.equalToSuperview()
             $0.width.greaterThanOrEqualTo(50.0)
             $0.centerY.equalTo(nameLabel)
         }
@@ -67,20 +72,20 @@ final class StockTableViewCell: UITableViewCell {
         
         addImageButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(offset / 2)
-            $0.trailing.equalToSuperview().offset(-offset)
+            $0.trailing.equalToSuperview()
         }
         
         separatorView.snp.makeConstraints {
-            $0.top.equalTo(addImageButton.snp.bottom).offset(offset)
-            $0.leading.equalToSuperview().offset(offset / 2)
-            $0.trailing.equalToSuperview().offset(-offset)
+            $0.top.equalTo(addImageButton.snp.bottom).offset(offset / 2)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
         
-        
-        
         return view
     }()
+    
+    private var disposeBag = DisposeBag()
     
     func setupCell(
         code: String,
@@ -89,7 +94,13 @@ final class StockTableViewCell: UITableViewCell {
     ) {
         nameLabel.text = title
         codeLabel.text = code
+        addImageButton.isSelected = isSelected
         setupViews()
+        bindUI()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
     }
 }
 
@@ -99,11 +110,21 @@ private extension StockTableViewCell {
             containerView
         ]
             .forEach {
-                addSubview($0)
+                contentView.addSubview($0)
             }
         
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func bindUI() {
+        addImageButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.addImageButton.isSelected = !self.addImageButton.isSelected
+            })
+            .disposed(by: disposeBag)
     }
 }

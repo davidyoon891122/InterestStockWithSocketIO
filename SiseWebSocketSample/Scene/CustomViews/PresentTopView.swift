@@ -13,14 +13,14 @@ import RxCocoa
 final class PresentTopView: UIView {
     private lazy var closeButton: UIButton = {
         let button = UIButton()
-        
+        button.tintColor = .label
         return button
     }()
     
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        
+        label.font = .systemFont(ofSize: 18.0, weight: .bold)
         return label
     }()
     

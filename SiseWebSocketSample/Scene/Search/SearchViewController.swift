@@ -90,6 +90,7 @@ private extension SearchViewController {
                 view.addSubview($0)
             }
         
+        let offset: CGFloat = 16.0
         presentTopView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview()
@@ -98,8 +99,8 @@ private extension SearchViewController {
         
         searchTableView.snp.makeConstraints {
             $0.top.equalTo(presentTopView.snp.bottom)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
+            $0.leading.equalToSuperview().offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
             $0.bottom.equalToSuperview()
         }
     }
