@@ -15,6 +15,8 @@
 		4900939A298250F500548588 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 49009399298250F500548588 /* SocketIO */; };
 		4900939C298251C400548588 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939B298251C400548588 /* SocketIOManager.swift */; };
 		4900939E298264B700548588 /* SiseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939D298264B700548588 /* SiseModel.swift */; };
+		490E6FDE298C83380035470A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FDD298C83380035470A /* SearchViewController.swift */; };
+		490E6FE2298C84500035470A /* PresentTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE1298C84500035470A /* PresentTopView.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49A58508298B45510070D8CC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58507298B45510070D8CC /* RootViewController.swift */; };
 		49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58509298B46320070D8CC /* RootViewModel.swift */; };
@@ -47,6 +49,8 @@
 		490093962982187A00548588 /* CurrentPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceModel.swift; sourceTree = "<group>"; };
 		4900939B298251C400548588 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
+		490E6FDD298C83380035470A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		490E6FE1298C84500035470A /* PresentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTopView.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49A58507298B45510070D8CC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		49A58509298B46320070D8CC /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -159,6 +163,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		490E6FDF298C84310035470A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				490E6FDD298C83380035470A /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		490E6FE0298C84380035470A /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				49A58507298B45510070D8CC /* RootViewController.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		49AF92FD2980F91D009F8A58 = {
 			isa = PBXGroup;
 			children = (
@@ -207,7 +227,8 @@
 				49CDEBE32988C27D00E456DF /* CustomViews */,
 				49CDEBE42988C29C00E456DF /* Interest */,
 				49CDEBE52988C2B700E456DF /* Update */,
-				49A58507298B45510070D8CC /* RootViewController.swift */,
+				490E6FE0298C84380035470A /* Root */,
+				490E6FDF298C84310035470A /* Search */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -217,6 +238,7 @@
 			children = (
 				49AF932429810974009F8A58 /* SeparatorView.swift */,
 				49AF932629810CB4009F8A58 /* DynamicFlowLayout.swift */,
+				490E6FE1298C84500035470A /* PresentTopView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -331,6 +353,7 @@
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
+				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,
 				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
@@ -339,6 +362,7 @@
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
+				490E6FDE298C83380035470A /* SearchViewController.swift in Sources */,
 				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,

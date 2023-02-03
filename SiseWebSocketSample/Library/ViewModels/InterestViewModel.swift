@@ -7,16 +7,19 @@
 
 import Foundation
 import RxSwift
+import UIKit
 
 protocol InterestViewModelInput {
     func fetchIntrestStockList()
     func fetchSise(code: String)
+    func openSearchViewController()
 }
 
 protocol InterestViewModelOutput {
     var currentPrices: PublishSubject<[CurrentPriceModel]> { get }
     var currentPricesError: PublishSubject<String> { get }
     var sise: PublishSubject<SiseModel> { get }
+    var searchViewController: PublishSubject<UIViewController> { get }
 }
 
 protocol InterestViewModelType {
@@ -35,6 +38,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     var currentPrices: PublishSubject<[CurrentPriceModel]> = .init()
     var currentPricesError: PublishSubject<String> = .init()
     var sise: PublishSubject<SiseModel> = .init()
+    var searchViewController: PublishSubject<UIViewController> = .init()
     
     func fetchIntrestStockList() {
         repository.inputs.requestStockInfo()
@@ -58,6 +62,14 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
         if SiseSocketManager.shared.socket.status == .notConnected {
             connectSocket()
         }
+    }
+    
+    func openSearchViewController() {
+        
+        let searchViewController = SearchViewController()
+        searchViewController.modalPresentationStyle = .fullScreen
+        
+        outputs.searchViewController.onNext(searchViewController)
     }
 
     private func connectSocket() {

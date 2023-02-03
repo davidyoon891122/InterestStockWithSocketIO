@@ -12,10 +12,16 @@ import RxSwift
 class InterestViewController: UIViewController {
     private lazy var currentPriceCollectionView: UICollectionView = {
         let layout = DynamicFlowLayout()
-        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.width, height: 50.0)
+        layout.estimatedItemSize = CGSize(
+            width: UIScreen.main.bounds.width,
+            height: 50.0
+        )
         layout.minimumLineSpacing = 0
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -114,7 +120,7 @@ private extension InterestViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "arrow.clockwise"),
+            image: UIImage(systemName: "magnifyingglass"),
             style: .plain,
             target: self,
             action: #selector(didTapReloadButton)
@@ -151,11 +157,18 @@ private extension InterestViewController {
 
             })
             .disposed(by: disposeBag)
+        
+        viewModel.outputs.searchViewController
+            .subscribe(onNext: { [weak self] searchVC in
+                guard let self = self else { return }
+                self.present(searchVC, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc
     func didTapReloadButton() {
-        viewModel.inputs.fetchIntrestStockList()
+        viewModel.inputs.openSearchViewController()
     }
 
     func requestStockListSise() {
