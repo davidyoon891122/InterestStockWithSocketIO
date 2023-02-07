@@ -10,6 +10,7 @@ import RxSwift
 
 protocol SearchViewModelInput {
     func requestStocks()
+    func requestAddStockToList(stock: InterestStockModel)
 }
 
 protocol SearchViewModelOutput {
@@ -33,5 +34,9 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
     func requestStocks() {
         stocks = MasterParser.overseaStocks
         stockModels.onNext(stocks)
+    }
+    
+    func requestAddStockToList(stock: InterestStockModel) {
+        InterestStockManager.shared.addInterestStock(stockModel: stock)
     }
 }

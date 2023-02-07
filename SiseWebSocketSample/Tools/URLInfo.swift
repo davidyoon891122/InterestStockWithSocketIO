@@ -12,6 +12,7 @@ enum URLInfo {
     case currentPriceSise
     case master
     case bigsize
+    case currentPrice
     
     
     var url: URL {
@@ -29,6 +30,9 @@ enum URLInfo {
         case .bigsize:
             let baseURL = Constants.baseURL
             return URL(string: "http://\(baseURL)/bigsize")!
+        case .currentPrice:
+            let baseURL = Constants.baseURL
+            return URL(string: "http://\(baseURL)/current-price")!
         }
     }
 }

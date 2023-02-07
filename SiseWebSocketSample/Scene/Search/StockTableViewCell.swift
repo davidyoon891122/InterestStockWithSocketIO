@@ -86,12 +86,15 @@ final class StockTableViewCell: UITableViewCell {
     }()
     
     private var disposeBag = DisposeBag()
+    private var viewModel: SearchViewModelType?
     
     func setupCell(
         code: String,
         title: String,
-        isSelected: Bool
+        isSelected: Bool,
+        viewModel: SearchViewModelType
     ) {
+        self.viewModel = viewModel
         nameLabel.text = title
         codeLabel.text = code
         addImageButton.isSelected = isSelected
@@ -122,8 +125,17 @@ private extension StockTableViewCell {
         addImageButton.rx.tap
             .asDriver()
             .drive(onNext: { [weak self] in
-                guard let self = self else { return }
+                guard let self = self,
+                      let viewModel = self.viewModel
+                else { return }
                 self.addImageButton.isSelected = !self.addImageButton.isSelected
+                
+                
+                if self.addImageButton.isSelected {
+                    let interestStock = InterestStockModel(code: self.codeLabel.text!)
+                    viewModel.inputs.requestAddStockToList(stock: interestStock)
+                    
+                }
             })
             .disposed(by: disposeBag)
     }

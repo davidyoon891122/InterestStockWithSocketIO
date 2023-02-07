@@ -10,7 +10,6 @@
 		490093842981FD8600548588 /* StockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490093832981FD8600548588 /* StockRepository.swift */; };
 		490093862982066700548588 /* URLInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490093852982066700548588 /* URLInfo.swift */; };
 		4900938829820BF000548588 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900938729820BF000548588 /* Constants.swift */; };
-		4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900938C29820D2A00548588 /* InterestStockEntity.swift */; };
 		490093972982187A00548588 /* CurrentPriceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490093962982187A00548588 /* CurrentPriceModel.swift */; };
 		4900939A298250F500548588 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 49009399298250F500548588 /* SocketIO */; };
 		4900939C298251C400548588 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4900939B298251C400548588 /* SocketIOManager.swift */; };
@@ -20,6 +19,7 @@
 		490E6FE4298C96320035470A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE3298C96320035470A /* SearchViewModel.swift */; };
 		490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE5298C9F040035470A /* StockTableViewCell.swift */; };
 		490E6FE9298CDF1F0035470A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 490E6FE8298CDF1F0035470A /* RxDataSources */; };
+		494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49A58508298B45510070D8CC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58507298B45510070D8CC /* RootViewController.swift */; };
 		49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58509298B46320070D8CC /* RootViewModel.swift */; };
@@ -42,13 +42,15 @@
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
 		49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEC2988EE5E00E456DF /* StockModel.swift */; };
 		49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEE2988F58D00E456DF /* MasterModel.swift */; };
+		49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE948429921C640081544C /* CurrentPriceEntity.swift */; };
+		49FE948729922F740081544C /* InterestListResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE948629922F740081544C /* InterestListResponseEntity.swift */; };
+		49FE94892992341B0081544C /* InterestStockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94882992341B0081544C /* InterestStockModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		490093832981FD8600548588 /* StockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepository.swift; sourceTree = "<group>"; };
 		490093852982066700548588 /* URLInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLInfo.swift; sourceTree = "<group>"; };
 		4900938729820BF000548588 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		4900938C29820D2A00548588 /* InterestStockEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockEntity.swift; sourceTree = "<group>"; };
 		490093962982187A00548588 /* CurrentPriceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceModel.swift; sourceTree = "<group>"; };
 		4900939B298251C400548588 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		4900939D298264B700548588 /* SiseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiseModel.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		490E6FE1298C84500035470A /* PresentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTopView.swift; sourceTree = "<group>"; };
 		490E6FE3298C96320035470A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		490E6FE5298C9F040035470A /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockManager.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49A58507298B45510070D8CC /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		49A58509298B46320070D8CC /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
@@ -76,6 +79,9 @@
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
 		49CDEBEC2988EE5E00E456DF /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
 		49CDEBEE2988F58D00E456DF /* MasterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterModel.swift; sourceTree = "<group>"; };
+		49FE948429921C640081544C /* CurrentPriceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceEntity.swift; sourceTree = "<group>"; };
+		49FE948629922F740081544C /* InterestListResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestListResponseEntity.swift; sourceTree = "<group>"; };
+		49FE94882992341B0081544C /* InterestStockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +130,8 @@
 		4900938E29820D4F00548588 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				4900938C29820D2A00548588 /* InterestStockEntity.swift */,
+				49FE948429921C640081544C /* CurrentPriceEntity.swift */,
+				49FE948629922F740081544C /* InterestListResponseEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 				490093962982187A00548588 /* CurrentPriceModel.swift */,
 				49CDEBEC2988EE5E00E456DF /* StockModel.swift */,
 				49CDEBEE2988F58D00E456DF /* MasterModel.swift */,
+				49FE94882992341B0081544C /* InterestStockModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				4900939B298251C400548588 /* SocketIOManager.swift */,
+				494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -361,7 +370,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49FE948729922F740081544C /* InterestListResponseEntity.swift in Sources */,
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
+				49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
 				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
@@ -369,13 +380,14 @@
 				49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */,
 				49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */,
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
+				49FE94892992341B0081544C /* InterestStockModel.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
+				494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */,
 				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,
 				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
-				4900938D29820D2A00548588 /* InterestStockEntity.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,

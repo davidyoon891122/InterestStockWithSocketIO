@@ -69,11 +69,9 @@ extension SearchViewController: UITableViewDataSource {
         
         let stockModel = stocks[indexPath.item]
         
-        cell.setupCell(code: stockModel.code, title: stockModel.name, isSelected: false)
+        cell.setupCell(code: stockModel.code, title: stockModel.name, isSelected: false, viewModel: viewModel)
         return cell
     }
-    
-    
 }
 
 extension SearchViewController: UITableViewDelegate {

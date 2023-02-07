@@ -9,7 +9,8 @@ import Foundation
 import RxSwift
 
 protocol StockRepositoryInput {
-    func requestStockInfo() -> Observable<[CurrentPriceModel]>
+    func requestStockInfo(stocks: String) -> Observable<[CurrentPriceModel]>
+    func requestInterestList(userID: String) -> Observable<[InterestStockModel]>
 }
 
 protocol StockRepositoryOutput {
@@ -28,25 +29,27 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
     private let service = Service()
     private let disposeBag = DisposeBag()
     
-    func requestStockInfo() -> Observable<[CurrentPriceModel]>{
+    func requestStockInfo(stocks: String) -> Observable<[CurrentPriceModel]>{
         return Observable.create { [weak self] emitter in
             guard let self = self else { return Disposables.create() }
             self.service.requestService(
-                url: URLInfo.interestStock.url,
-                type: [InterestStockEntity].self,
+                url: URLInfo.currentPrice.url,
+                type: CurrentPriceResponseEntity.self,
                 method: .get,
-                param: [:],
+                param: [
+                    "codes": stocks
+                ],
                 header: [:]
             )
-            .debug("requestStockInfo")
-            .subscribe(onNext: { result in
-                let models = result.map {
+            .debug("StockRepository requestStockInfo")
+            .subscribe(onNext: { response in
+                let models = response.result.map {
                     CurrentPriceModel(
-                        stockName: $0.stockName,
-                        currentPrice: $0.currentPrice,
-                        percentChange: $0.percentChange,
-                        prevPriceRate: $0.prevPriceRate,
-                        isUp: $0.isUp
+                        stockName: $0.displayName,
+                        currentPrice: $0.regularMarketPrice,
+                        percentChange: $0.regularMarketChangePercent,
+                        prevPriceRate: $0.regularMarketChange,
+                        isUp: $0.regularMarketChangePercent > 0 ? true : false
                     )
                 }
                 emitter.onNext(models)
@@ -56,5 +59,29 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
             .disposed(by: self.disposeBag)
             return Disposables.create()
         }
+    }
+    
+    func requestInterestList(userID: String) -> Observable<[InterestStockModel]> {
+        return Observable.create { [weak self] emitter in
+            guard let self = self else { return Disposables.create() }
+            self.service.requestService(
+                url: URLInfo.interestStock.url,
+                type: InterestListResponseEntity.self,
+                method: .get,
+                param: [
+                    "userId": userID
+                ],
+                header: [:]
+            )
+            .subscribe(onNext: { result in
+                emitter.onNext(result.stocks.map { InterestStockModel(code: $0.code) })
+            }, onError: { error in
+                emitter.onError(error)
+            })
+            .disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
+        
     }
 }

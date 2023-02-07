@@ -14,6 +14,7 @@ protocol InterestViewModelInput {
     func fetchSise(code: String)
     func openSearchViewController()
     func requestDisconnect()
+    func fetchCurrentPrice(stocks: [InterestStockModel])
 }
 
 protocol InterestViewModelOutput {
@@ -21,6 +22,7 @@ protocol InterestViewModelOutput {
     var currentPricesError: PublishSubject<String> { get }
     var sise: PublishSubject<SiseModel> { get }
     var searchViewController: PublishSubject<UIViewController> { get }
+    var interestList: PublishSubject<[StockModel]> { get }
 }
 
 protocol InterestViewModelType {
@@ -40,10 +42,31 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     var currentPricesError: PublishSubject<String> = .init()
     var sise: PublishSubject<SiseModel> = .init()
     var searchViewController: PublishSubject<UIViewController> = .init()
+    var interestList: PublishSubject<[StockModel]> = .init()
     
     func fetchIntrestStockList() {
-        repository.inputs.requestStockInfo()
-            .debug("fetchIntrestStockList")
+        repository.inputs.requestInterestList(userID: "davidyoon")
+            .debug("requestInterestList")
+            .subscribe(onNext: { [weak self] result in
+                guard let self = self else { return }
+                InterestStockManager.shared.setInteresetStocks(stocks: result)
+                self.fetchCurrentPrice(stocks: result)
+            }, onError: { error in
+                debugPrint(error)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchCurrentPrice(stocks: [InterestStockModel]) {
+        
+        var requestString = ""
+        stocks.forEach {
+            requestString += $0.code + "|"
+        }
+        debugPrint(requestString)
+        
+        repository.inputs.requestStockInfo(stocks: requestString)
+            .debug("fetchCurrentPrice requestStockInfo")
             .subscribe(onNext: { [weak self] models in
                 guard let self = self else { return }
                 self.outputs.currentPrices.onNext(models)
