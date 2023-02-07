@@ -14,6 +14,8 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Samsung"
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.numberOfLines = 2
         
         return label
     }()
@@ -79,7 +81,7 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         nameLabel.snp.makeConstraints {
             $0.top.equalToSuperview().offset(offset)
             $0.leading.equalToSuperview().offset(offset)
-            $0.width.greaterThanOrEqualTo(100.0)
+            $0.width.lessThanOrEqualTo(130.0)
         }
         
         nameLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
