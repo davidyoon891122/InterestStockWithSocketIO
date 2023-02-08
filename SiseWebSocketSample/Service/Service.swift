@@ -16,14 +16,16 @@ final class Service {
         type: T.Type,
         method: HTTPMethod,
         param: [String: String],
+        encoder: ParameterEncoder = URLEncodedFormParameterEncoder.default,
         header: HTTPHeaders?
     ) -> Observable<T> {
         return Observable.create { emitter in
-            
+
             AF.request(
                 url,
                 method: method,
                 parameters: param,
+                encoder: encoder,
                 headers: header
             )
             .responseData { result in

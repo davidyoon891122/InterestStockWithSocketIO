@@ -21,4 +21,8 @@ class InterestStockManager {
         self.interestStocks = stocks
     }
     
+    func getInterestStocks() -> [InterestStockModel] {
+        return self.interestStocks
+    }
+    
 }

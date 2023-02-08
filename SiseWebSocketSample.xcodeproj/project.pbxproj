@@ -42,6 +42,9 @@
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
 		49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEC2988EE5E00E456DF /* StockModel.swift */; };
 		49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEE2988F58D00E456DF /* MasterModel.swift */; };
+		49EB40F02993520C00BC108A /* InterestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40EF2993520C00BC108A /* InterestRepository.swift */; };
+		49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40F1299353B700BC108A /* CommonResponseModel.swift */; };
+		49EB40F4299354D900BC108A /* InterestAddResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40F3299354D900BC108A /* InterestAddResponseModel.swift */; };
 		49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE948429921C640081544C /* CurrentPriceEntity.swift */; };
 		49FE948729922F740081544C /* InterestListResponseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE948629922F740081544C /* InterestListResponseEntity.swift */; };
 		49FE94892992341B0081544C /* InterestStockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94882992341B0081544C /* InterestStockModel.swift */; };
@@ -79,6 +82,9 @@
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
 		49CDEBEC2988EE5E00E456DF /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
 		49CDEBEE2988F58D00E456DF /* MasterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterModel.swift; sourceTree = "<group>"; };
+		49EB40EF2993520C00BC108A /* InterestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestRepository.swift; sourceTree = "<group>"; };
+		49EB40F1299353B700BC108A /* CommonResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponseModel.swift; sourceTree = "<group>"; };
+		49EB40F3299354D900BC108A /* InterestAddResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddResponseModel.swift; sourceTree = "<group>"; };
 		49FE948429921C640081544C /* CurrentPriceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceEntity.swift; sourceTree = "<group>"; };
 		49FE948629922F740081544C /* InterestListResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestListResponseEntity.swift; sourceTree = "<group>"; };
 		49FE94882992341B0081544C /* InterestStockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockModel.swift; sourceTree = "<group>"; };
@@ -114,6 +120,7 @@
 			children = (
 				490093832981FD8600548588 /* StockRepository.swift */,
 				49CDEBE82988E4E100E456DF /* UpdateRepository.swift */,
+				49EB40EF2993520C00BC108A /* InterestRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -174,6 +181,8 @@
 				49CDEBEC2988EE5E00E456DF /* StockModel.swift */,
 				49CDEBEE2988F58D00E456DF /* MasterModel.swift */,
 				49FE94882992341B0081544C /* InterestStockModel.swift */,
+				49EB40F1299353B700BC108A /* CommonResponseModel.swift */,
+				49EB40F3299354D900BC108A /* InterestAddResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -391,6 +400,7 @@
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
+				49EB40F4299354D900BC108A /* InterestAddResponseModel.swift in Sources */,
 				490E6FE4298C96320035470A /* SearchViewModel.swift in Sources */,
 				49AF932C298111FE009F8A58 /* InterestViewModel.swift in Sources */,
 				490E6FDE298C83380035470A /* SearchViewController.swift in Sources */,
@@ -399,7 +409,9 @@
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
+				49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,
+				49EB40F02993520C00BC108A /* InterestRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,7 +53,7 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
                     self.updateProgressBarPublishSubject.onNext((false,progress))
                 }
             }, onError: { error in
-                
+                print(error)
             })
             .disposed(by: disposeBag)
     }

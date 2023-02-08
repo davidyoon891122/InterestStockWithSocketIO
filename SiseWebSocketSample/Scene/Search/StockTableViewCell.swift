@@ -91,13 +91,17 @@ final class StockTableViewCell: UITableViewCell {
     func setupCell(
         code: String,
         title: String,
-        isSelected: Bool,
+        isSelected: Bool?,
         viewModel: SearchViewModelType
     ) {
         self.viewModel = viewModel
         nameLabel.text = title
         codeLabel.text = code
-        addImageButton.isSelected = isSelected
+        if let isSelected = isSelected {
+            addImageButton.isSelected = isSelected
+        } else {
+            addImageButton.isSelected = false
+        }
         setupViews()
         bindUI()
     }
@@ -134,7 +138,6 @@ private extension StockTableViewCell {
                 if self.addImageButton.isSelected {
                     let interestStock = InterestStockModel(code: self.codeLabel.text!)
                     viewModel.inputs.requestAddStockToList(stock: interestStock)
-                    
                 }
             })
             .disposed(by: disposeBag)

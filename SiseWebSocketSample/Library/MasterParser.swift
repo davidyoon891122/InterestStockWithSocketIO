@@ -8,14 +8,16 @@
 import Foundation
 
 final class MasterParser {
-    static var overseaStocks: [StockModel] = []
+    static var overseaStocks: [String :StockModel] = [:]
     
     static func parseMaster(path: URL) throws {
         do {
             let dataFromPath: Data = try Data(contentsOf: path)
-            let stocks = try JSONDecoder().decode(MasterModel.self, from: dataFromPath)
-            print(stocks)
-            overseaStocks = stocks.stocks
+            let masterModel = try JSONDecoder().decode(MasterModel.self, from: dataFromPath)
+            masterModel.stocks.forEach {
+                overseaStocks[$0.code] = $0
+            }
+            
             print("Did finish parse master file")
         } catch let error {
             throw error

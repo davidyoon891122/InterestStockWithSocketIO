@@ -29,14 +29,34 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
     
     private var stocks: [StockModel] = []
     
+    private let repository = InterestRepository()
+    
     var stockModels: PublishSubject<[StockModel]> = .init()
     
     func requestStocks() {
-        stocks = MasterParser.overseaStocks
-        stockModels.onNext(stocks)
+        let interestStocks = InterestStockManager.shared.getInterestStocks()
+        var stocks = MasterParser.overseaStocks
+    
+        interestStocks.forEach { interestStock in
+            if stocks.contains(where: { $0.key == interestStock.code }) {
+                stocks[interestStock.code]?.isInterest = true
+            }
+        }
+        
+        let test = stocks.map {
+            $0.value
+        }
+        
+        print(test)
+        
+        stockModels.onNext(stocks.map {
+            $0.value
+        })
     }
     
     func requestAddStockToList(stock: InterestStockModel) {
         InterestStockManager.shared.addInterestStock(stockModel: stock)
+        repository.inputs.fetchAddingInterestCode(userId: "davidyoon", code: stock.code)
+        
     }
 }

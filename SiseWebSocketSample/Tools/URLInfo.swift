@@ -13,13 +13,14 @@ enum URLInfo {
     case master
     case bigsize
     case currentPrice
+    case addInterestStock
     
     
     var url: URL {
         switch self {
         case .interestStock:
             let baseURL = Constants.baseURL
-            return URL(string: "http://\(baseURL)/interest-list")!
+            return URL(string: "http://\(baseURL)/interest/interest-list")!
             
         case .currentPriceSise:
             let baseURL = Constants.baseURL
@@ -29,10 +30,13 @@ enum URLInfo {
             return URL(string: "http://\(baseURL)/master")!
         case .bigsize:
             let baseURL = Constants.baseURL
-            return URL(string: "http://\(baseURL)/bigsize")!
+            return URL(string: "http://\(baseURL)/master/bigsize")!
         case .currentPrice:
             let baseURL = Constants.baseURL
-            return URL(string: "http://\(baseURL)/current-price")!
+            return URL(string: "http://\(baseURL)/stock/current-price")!
+        case .addInterestStock:
+            let baseURL = Constants.baseURL
+            return URL(string: "http://\(baseURL)/interest/add")!
         }
     }
 }
