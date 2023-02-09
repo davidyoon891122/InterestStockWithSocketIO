@@ -16,6 +16,7 @@ protocol UpdateViewModelInput {
 protocol UpdateViewModelOutput {
     var updateFinishedPublishSubject: PublishSubject<Bool> { get }
     var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> { get }
+    var updateFailPublishSubject: PublishSubject<Void> { get }
 }
 
 protocol UpdateViewModelType {
@@ -29,6 +30,7 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     
     var updateFinishedPublishSubject: PublishSubject<Bool> = .init()
     var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> = .init()
+    var updateFailPublishSubject: PublishSubject<Void> = .init()
     
     private let repository = UpdateRepository()
     private let disposeBag = DisposeBag()
@@ -54,6 +56,7 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
                 }
             }, onError: { error in
                 print(error)
+                self.updateFailPublishSubject.onNext(())
             })
             .disposed(by: disposeBag)
     }
@@ -61,12 +64,16 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     
     func fetchDownloadFiles() {
         repository.fetchDownloadFiles()
+            .debug("UpdateViewModel fetchDownloadFiles")
             .subscribe(onNext: { [weak self] url, progress in
                 guard let self = self else { return }
                 if url != nil {
                     self.updateFinishedPublishSubject.onNext(true)
                 }
                 self.updateProgressBarPublishSubject.onNext((false, progress))
+            }, onError: { error in
+                print(error)
+                self.updateFailPublishSubject.onNext(())
             })
             .disposed(by: disposeBag)
     }

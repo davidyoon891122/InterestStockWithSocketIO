@@ -134,5 +134,14 @@ private extension UpdateViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.outputs.updateFailPublishSubject
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                let popupVC = PopupViewController()
+                popupVC.modalPresentationStyle = .overFullScreen
+                self.present(popupVC, animated: false)
+            })
+            .disposed(by: disposeBag)
+        
     }
 }

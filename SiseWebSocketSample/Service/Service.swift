@@ -70,11 +70,21 @@ final class Service {
                 let donwloadedPercent = progress.fractionCompleted * 100
                 emitter.onNext((nil, donwloadedPercent))
             }
-            .response { response in
-                if let fileURL = response.fileURL {
-                    debugPrint(fileURL)
+            .response { result in
+                guard let statusCode = result.response?.statusCode else {
+                    emitter.onError(NetworkError.responseError)
+                    return
                 }
-                emitter.onNext((response.fileURL, 100.0))
+                
+                switch statusCode {
+                case 200...300:
+                    if let fileURL = result.fileURL {
+                        debugPrint(fileURL)
+                    }
+                    emitter.onNext((result.fileURL, 100.0))
+                default:
+                    emitter.onError(NetworkError.responseError)
+                }
             }
             
             return Disposables.create()
