@@ -86,7 +86,6 @@ final class PopupContentView: UIView {
         view.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
         view.layer.shadowRadius = 1.0
         view.layer.shadowOpacity = 0.3
-        // TODO: Render problem, should be use shadowPath to precalculate
         
         view.layer.borderWidth = 1.0
         view.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.3).cgColor
@@ -156,6 +155,14 @@ final class PopupContentView: UIView {
         
                              
         setupViews()
+    }
+    
+    func setShadowPath() {
+        containerView.layoutIfNeeded()
+        containerView.layer.shadowPath = UIBezierPath(
+            roundedRect: containerView.bounds,
+            cornerRadius: containerView.layer.cornerRadius
+        ).cgPath
     }
     
     required init?(coder: NSCoder) {

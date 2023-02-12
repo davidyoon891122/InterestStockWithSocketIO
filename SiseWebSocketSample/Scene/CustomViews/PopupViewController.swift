@@ -70,6 +70,8 @@ private extension PopupViewController {
         popupContentView.snp.makeConstraints {
             $0.center.equalToSuperview()
         }
+        
+        popupContentView.setShadowPath()
     }
     
     func bindUI() {
