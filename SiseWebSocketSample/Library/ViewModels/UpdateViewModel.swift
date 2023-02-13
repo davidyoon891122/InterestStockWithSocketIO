@@ -16,7 +16,7 @@ protocol UpdateViewModelInput {
 protocol UpdateViewModelOutput {
     var updateFinishedPublishSubject: PublishSubject<Bool> { get }
     var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> { get }
-    var updateFailPublishSubject: PublishSubject<Void> { get }
+    var updateFailPublishSubject: PublishSubject<Int> { get }
 }
 
 protocol UpdateViewModelType {
@@ -30,11 +30,12 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
     
     var updateFinishedPublishSubject: PublishSubject<Bool> = .init()
     var updateProgressBarPublishSubject: PublishSubject<(Bool, Double)> = .init()
-    var updateFailPublishSubject: PublishSubject<Void> = .init()
+    var updateFailPublishSubject: PublishSubject<Int> = .init()
     
     private let repository = UpdateRepository()
     private let disposeBag = DisposeBag()
     
+    private var tryCount = 0
     
     func fetchDownloadMaster() {
         repository.fetchDownloadMaster()
@@ -54,9 +55,11 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
                     }
                     self.updateProgressBarPublishSubject.onNext((false,progress))
                 }
-            }, onError: { error in
-                print(error)
-                self.updateFailPublishSubject.onNext(())
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                debugPrint(error.localizedDescription)
+                self.tryCount += 1
+                self.updateFailPublishSubject.onNext(self.tryCount)
             })
             .disposed(by: disposeBag)
     }
@@ -71,9 +74,11 @@ final class UpdateViewModel: UpdateViewModelType, UpdateViewModelInput, UpdateVi
                     self.updateFinishedPublishSubject.onNext(true)
                 }
                 self.updateProgressBarPublishSubject.onNext((false, progress))
-            }, onError: { error in
-                print(error)
-                self.updateFailPublishSubject.onNext(())
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                debugPrint(error.localizedDescription)
+                self.tryCount += 1
+                self.updateFailPublishSubject.onNext(self.tryCount)
             })
             .disposed(by: disposeBag)
     }

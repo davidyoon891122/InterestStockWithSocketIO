@@ -135,9 +135,22 @@ private extension UpdateViewController {
             .disposed(by: disposeBag)
         
         viewModel.outputs.updateFailPublishSubject
-            .subscribe(onNext: { [weak self] in
+            .subscribe(onNext: { [weak self] tryCount in
                 guard let self = self else { return }
-                let popupVC = PopupViewController()
+                
+                let popupVC = PopupViewController(rightButtonTitle: "Try again(\(tryCount))",
+                    leftAction: {
+                        print("LeftButton has tapped")
+                        UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            exit(0)
+                        })
+                    
+                }, rightAction: { [weak self] in
+                    guard let self = self else { return }
+                    print("Request fetchMaster again!")
+                    self.viewModel.inputs.fetchDownloadMaster()
+                })
                 popupVC.modalPresentationStyle = .overFullScreen
                 self.present(popupVC, animated: false)
             })
