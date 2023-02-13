@@ -47,8 +47,8 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
                     CurrentPriceModel(
                         stockName: $0.displayName,
                         currentPrice: $0.regularMarketPrice,
-                        percentChange: $0.regularMarketChangePercent,
-                        prevPriceRate: $0.regularMarketChange,
+                        percentChange: round($0.regularMarketChangePercent * 100) / 100.0 ,
+                        prevPriceRate: round($0.regularMarketChange * 10000) / 10000.0,
                         isUp: $0.regularMarketChangePercent > 0 ? true : false
                     )
                 }
