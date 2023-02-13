@@ -144,12 +144,15 @@ final class PopupContentView: UIView {
     init(
         title: String,
         content: String,
-        leftButtonTitle: String = "Cancel",
-        rightButtonTitle: String = "Confirm"
+        leftButtonTitle: String? = "Cancel",
+        rightButtonTitle: String? = "Confirm"
     ) {
         super.init(frame: .zero)
         titleLabel.text = title
         contentLabel.text = content
+        if ((leftButtonTitle?.isEmpty) != nil) {
+            leftButton.isHidden = true
+        }
         leftButton.setTitle(leftButtonTitle, for: .normal)
         rightButton.setTitle(rightButtonTitle, for: .normal)
         

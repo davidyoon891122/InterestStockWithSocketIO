@@ -164,6 +164,44 @@ private extension InterestViewController {
                 self.present(searchVC, animated: true)
             })
             .disposed(by: disposeBag)
+        
+        
+        viewModel.outputs.errorCodePublishSubject
+            .subscribe(onNext: { [weak self] error in
+                guard let self = self else { return }
+                let popupViewController = PopupViewController(
+                    title: "Error",
+                    content: error.localizedDescription,
+                    leftButtonTitle: nil,
+                    rightButtonTitle: "Confirm",
+                    leftAction: {
+                        self.dismiss(animated: true)
+                    }, rightAction: {
+                        self.dismiss(animated: true)
+                    })
+                popupViewController.modalPresentationStyle = .overFullScreen
+                self.present(popupViewController, animated: true)
+                
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.currentPricesError
+            .subscribe(onNext: { [weak self] errorString in
+                guard let self = self else { return }
+                let popupViewController = PopupViewController(
+                    title: "Error",
+                    content: errorString,
+                    leftButtonTitle: nil,
+                    rightButtonTitle: "Confirm",
+                    leftAction: {
+                        self.dismiss(animated: true)
+                    }, rightAction: {
+                        self.dismiss(animated: true)
+                    })
+                popupViewController.modalPresentationStyle = .overFullScreen
+                self.present(popupViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
     
     @objc

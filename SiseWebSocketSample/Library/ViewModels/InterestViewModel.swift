@@ -23,6 +23,7 @@ protocol InterestViewModelOutput {
     var sise: PublishSubject<SiseModel> { get }
     var searchViewController: PublishSubject<UIViewController> { get }
     var interestList: PublishSubject<[StockModel]> { get }
+    var errorCodePublishSubject: PublishSubject<Error> { get }
 }
 
 protocol InterestViewModelType {
@@ -43,6 +44,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     var sise: PublishSubject<SiseModel> = .init()
     var searchViewController: PublishSubject<UIViewController> = .init()
     var interestList: PublishSubject<[StockModel]> = .init()
+    var errorCodePublishSubject: PublishSubject<Error> = .init()
     
     func fetchIntrestStockList() {
         repository.inputs.requestInterestList(userID: "davidyoon")
@@ -51,8 +53,9 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
                 guard let self = self else { return }
                 InterestStockManager.shared.setInteresetStocks(stocks: result)
                 self.fetchCurrentPrice(stocks: result)
-            }, onError: { error in
-                debugPrint(error)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+                self.errorCodePublishSubject.onNext(error)
             })
             .disposed(by: disposeBag)
     }

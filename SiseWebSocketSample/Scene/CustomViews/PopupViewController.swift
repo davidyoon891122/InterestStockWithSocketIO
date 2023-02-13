@@ -27,9 +27,9 @@ final class PopupViewController: UIViewController {
         rightAction: @escaping () -> ()
     ) {
         popupContentView = PopupContentView(
-            title: "Update Failed",
-            content: "Download master files has failed, Please check your network status!🤨",
-            leftButtonTitle: "Exit",
+            title: title ?? "Update Failed",
+            content: content ?? "Download master files has failed, Please check your network status!🤨",
+            leftButtonTitle: leftButtonTitle ?? "Exit",
             rightButtonTitle: rightButtonTitle ?? "Try again"
         )
         self.leftAction = leftAction
