@@ -68,6 +68,12 @@ class InterestViewController: UIViewController {
         super.viewWillAppear(animated)
         viewModel.inputs.fetchIntrestStockList()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear!")
+        viewModel.inputs.requestDisconnect()
+    }
 }
 
 extension InterestViewController: UICollectionViewDataSource {

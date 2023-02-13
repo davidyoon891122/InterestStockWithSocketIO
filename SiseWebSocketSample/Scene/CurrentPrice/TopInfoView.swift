@@ -1,14 +1,14 @@
 //
-//  CurrentPriceViewController.swift
+//  TopInfoView.swift
 //  SiseWebSocketSample
 //
-//  Created by jiwon Yoon on 2023/02/13.
+//  Created by jiwon Yoon on 2023/02/14.
 //
 
 import UIKit
 import SnapKit
 
-final class CurrentPriceViewController: UIViewController {
+final class TopInfoView: UIView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "APPLE"
@@ -52,37 +52,8 @@ final class CurrentPriceViewController: UIViewController {
         return label
     }()
     
-    private var code: CurrentPriceModel
-    
-    init(code: CurrentPriceModel) {
-        self.code = code
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        nameLabel.text = code.stockName
-        codeLabel.text = code.symbol
-        currentPriceLabel.text = "\(code.currentPrice)"
-        regularMarketChangeLabel.text = "\(code.prevPriceRate)"
-        regularMargketChangePercentLabel.text = "\(code.percentChange)"
-        setPriceLabelColor()
-        
-        configureNavigation()
-        setupViews()
-    }
-}
-
-private extension CurrentPriceViewController {
-    func configureNavigation() {
-        navigationItem.title = "\(code.stockName)"
-    }
-    
-    func setupViews() {
+    private lazy var containerView: UIView = {
+        let view = UIView()
         view.backgroundColor = .systemBackground
         [
             nameLabel,
@@ -121,10 +92,22 @@ private extension CurrentPriceViewController {
             $0.centerY.equalTo(regularMarketChangeLabel)
             $0.leading.equalTo(regularMarketChangeLabel.snp.trailing).offset(offset)
         }
+        
+        
+        return view
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
     }
     
-    func setPriceLabelColor() {
-        if code.isUp {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setPriceLabelColor(isUp: Bool) {
+        if isUp {
             currentPriceLabel.textColor = .red
             regularMarketChangeLabel.textColor = .red
             regularMargketChangePercentLabel.textColor = .red
@@ -132,6 +115,41 @@ private extension CurrentPriceViewController {
             currentPriceLabel.textColor = .blue
             regularMarketChangeLabel.textColor = .blue
             regularMargketChangePercentLabel.textColor = .blue
+        }
+    }
+    
+    func setName(value: String) {
+        self.nameLabel.text = value
+    }
+    
+    func setCode(value: String) {
+        self.codeLabel.text = value
+    }
+    
+    func setCurrentPrice(value: String) {
+        self.currentPriceLabel.text = value
+    }
+    
+    func setMargetChange(value: String) {
+        self.regularMarketChangeLabel.text = value
+    }
+    
+    func setMargetChangePercent(value: String) {
+        self.regularMargketChangePercentLabel.text = value
+    }
+}
+
+private extension TopInfoView {
+    func setupViews() {
+        [
+            containerView
+        ]
+            .forEach {
+                addSubview($0)
+            }
+        
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
