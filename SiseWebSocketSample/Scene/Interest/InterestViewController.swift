@@ -131,7 +131,6 @@ private extension InterestViewController {
     
     func configureNavigation() {
         navigationItem.title = "Items of Interest"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "magnifyingglass"),

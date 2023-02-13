@@ -38,6 +38,7 @@ final class CurrentPriceViewController: UIViewController {
 private extension CurrentPriceViewController {
     func configureNavigation() {
         navigationItem.title = "\(code.stockName)"
+        navigationController?.navigationItem.backButtonTitle = ""
     }
     
     func setupViews() {
