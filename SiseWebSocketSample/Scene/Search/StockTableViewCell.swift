@@ -134,10 +134,11 @@ private extension StockTableViewCell {
                 else { return }
                 self.addImageButton.isSelected = !self.addImageButton.isSelected
                 
-                
+                let interestStock = InterestStockModel(code: self.codeLabel.text!)
                 if self.addImageButton.isSelected {
-                    let interestStock = InterestStockModel(code: self.codeLabel.text!)
                     viewModel.inputs.requestAddStockToList(stock: interestStock)
+                } else {
+                    viewModel.inputs.requestDeleteStockFromList(stock: interestStock)
                 }
             })
             .disposed(by: disposeBag)

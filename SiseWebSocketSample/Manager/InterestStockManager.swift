@@ -25,4 +25,10 @@ class InterestStockManager {
         return self.interestStocks
     }
     
+    func removeInterestStock(stockModel: InterestStockModel) {
+        interestStocks.removeAll(where: {
+            $0.code == stockModel.code
+        })
+    }
+    
 }

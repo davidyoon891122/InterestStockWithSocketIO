@@ -14,6 +14,7 @@ enum URLInfo {
     case bigsize
     case currentPrice
     case addInterestStock
+    case deleteInterestStock
     
     
     var url: URL {
@@ -37,6 +38,9 @@ enum URLInfo {
         case .addInterestStock:
             let baseURL = Constants.baseURL
             return URL(string: "http://\(baseURL)/interest/add")!
+        case .deleteInterestStock:
+            let baseURL = Constants.baseURL
+            return URL(string: "http://\(baseURL)/interest/delete")!
         }
     }
 }

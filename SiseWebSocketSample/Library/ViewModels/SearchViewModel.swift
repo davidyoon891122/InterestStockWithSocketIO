@@ -11,6 +11,7 @@ import RxSwift
 protocol SearchViewModelInput {
     func requestStocks()
     func requestAddStockToList(stock: InterestStockModel)
+    func requestDeleteStockFromList(stock: InterestStockModel)
 }
 
 protocol SearchViewModelOutput {
@@ -51,6 +52,10 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
     func requestAddStockToList(stock: InterestStockModel) {
         InterestStockManager.shared.addInterestStock(stockModel: stock)
         repository.inputs.fetchAddingInterestCode(userId: "davidyoon", code: stock.code)
-        
+    }
+    
+    func requestDeleteStockFromList(stock: InterestStockModel) {
+        InterestStockManager.shared.removeInterestStock(stockModel: stock)
+        repository.inputs.fetchDeletingInterestCode(userId: "davidyoon", code: stock.code)
     }
 }

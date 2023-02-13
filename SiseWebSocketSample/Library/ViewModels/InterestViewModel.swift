@@ -52,6 +52,10 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
             .subscribe(onNext: { [weak self] result in
                 guard let self = self else { return }
                 InterestStockManager.shared.setInteresetStocks(stocks: result)
+                if result.isEmpty {
+                    self.outputs.currentPrices.onNext([])
+                    return
+                }
                 self.fetchCurrentPrice(stocks: result)
             }, onError: { [weak self] error in
                 guard let self = self else { return }
