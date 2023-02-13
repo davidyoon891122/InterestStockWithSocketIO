@@ -17,4 +17,5 @@ struct CurrentPriceEntity: Decodable {
     let regularMarketChangePercent: Float
     let displayName: String?
     let longName: String
+    let symbol: String
 }

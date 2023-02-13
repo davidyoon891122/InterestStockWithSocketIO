@@ -49,7 +49,8 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
                         currentPrice: $0.regularMarketPrice,
                         percentChange: round($0.regularMarketChangePercent * 100) / 100.0 ,
                         prevPriceRate: round($0.regularMarketChange * 10000) / 10000.0,
-                        isUp: $0.regularMarketChangePercent > 0 ? true : false
+                        isUp: $0.regularMarketChangePercent > 0 ? true : false,
+                        symbol: $0.symbol
                     )
                 }
                 emitter.onNext(models)

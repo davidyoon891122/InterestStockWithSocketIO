@@ -95,7 +95,15 @@ extension InterestViewController: UICollectionViewDataSource {
 }
 
 extension InterestViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let code = interestStocks[indexPath.item]
+        print("Selected Code: \(code)")
+        let currentPriceVC = CurrentPriceViewController(code: code)
+        navigationController?.pushViewController(currentPriceVC, animated: true)
+    }
 }
 
 
@@ -148,7 +156,9 @@ private extension InterestViewController {
                         currentPrice: siseModel.currentPrice.toFloatWithoutComma,
                         percentChange: Float(siseModel.percentChange)!,
                         prevPriceRate: Float(siseModel.prevPriceRate)!,
-                        isUp: siseModel.isUp)
+                        isUp: siseModel.isUp,
+                        symbol: oldModel.symbol
+                    )
                     self.interestStocks[row] = newModel
                 }
 

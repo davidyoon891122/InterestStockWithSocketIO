@@ -13,4 +13,5 @@ struct CurrentPriceModel {
     var percentChange: Float
     var prevPriceRate: Float
     var isUp: Bool
+    var symbol: String
 }
