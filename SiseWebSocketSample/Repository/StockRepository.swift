@@ -45,7 +45,7 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
             .subscribe(onNext: { response in
                 let models = response.result.map {
                     CurrentPriceModel(
-                        stockName: $0.displayName,
+                        stockName: $0.displayName ?? $0.longName,
                         currentPrice: $0.regularMarketPrice,
                         percentChange: round($0.regularMarketChangePercent * 100) / 100.0 ,
                         prevPriceRate: round($0.regularMarketChange * 10000) / 10000.0,

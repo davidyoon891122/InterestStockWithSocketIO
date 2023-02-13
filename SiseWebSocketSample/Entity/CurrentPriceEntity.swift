@@ -15,5 +15,6 @@ struct CurrentPriceEntity: Decodable {
     let regularMarketPrice: Float
     let regularMarketChange: Float
     let regularMarketChangePercent: Float
-    let displayName: String
+    let displayName: String?
+    let longName: String
 }
