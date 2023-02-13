@@ -43,12 +43,6 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
             }
         }
         
-        let test = stocks.map {
-            $0.value
-        }
-        
-        print(test)
-        
         stockModels.onNext(stocks.map {
             $0.value
         })

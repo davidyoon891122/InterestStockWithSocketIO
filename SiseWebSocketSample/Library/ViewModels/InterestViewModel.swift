@@ -81,16 +81,15 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
         SiseSocketManager.shared.requestComplete {
             SiseSocketManager.shared.socket.emit("code", code)
         }
-
         receiveSise()
-        if SiseSocketManager.shared.socket.status == .notConnected {
+        if SiseSocketManager.shared.socket.status == .notConnected
+            || SiseSocketManager.shared.socket.status == .disconnected {
             connectSocket()
         }
     }
     
     func openSearchViewController() {
-        
-        let searchViewController = SearchViewController()
+        let searchViewController = SearchViewController(viewModel: self)
         searchViewController.modalPresentationStyle = .fullScreen
         
         outputs.searchViewController.onNext(searchViewController)

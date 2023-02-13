@@ -39,6 +39,17 @@ final class SearchViewController: UIViewController {
     
     private let viewModel: SearchViewModelType = SearchViewModel()
     
+    private var interestViewModel: InterestViewModelType
+    
+    init(viewModel: InterestViewModelType) {
+        interestViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -108,7 +119,9 @@ private extension SearchViewController {
             .asDriver()
             .drive(onNext: { [weak self] in
                 guard let self = self else { return }
-                self.dismiss(animated: true)
+                self.dismiss(animated: true) {
+                    self.interestViewModel.inputs.fetchIntrestStockList()
+                }
             })
             .disposed(by: disposeBag)
     }
