@@ -38,6 +38,7 @@ final class SiseSocketManager: NSObject, SocketIOManager {
     }
     
     func closeConnection() {
+        self.socket.removeAllHandlers()
         self.socket.disconnect()
     }
     
