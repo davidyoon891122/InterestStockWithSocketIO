@@ -159,8 +159,8 @@ private extension InterestViewController {
                     let newModel = CurrentPriceModel(
                         stockName: oldModel.stockName,
                         currentPrice: siseModel.currentPrice.toFloatWithoutComma,
-                        percentChange: Float(siseModel.percentChange)!,
-                        prevPriceRate: Float(siseModel.prevPriceRate)!,
+                        percentChange: Double(siseModel.percentChange)!,
+                        prevPriceRate: Double(siseModel.prevPriceRate)!,
                         isUp: siseModel.isUp,
                         symbol: oldModel.symbol
                     )
@@ -226,6 +226,7 @@ private extension InterestViewController {
     }
 
     func requestStockListSise() {
+        print("interestStocks : \(interestStocks.count)")
         interestStocks.forEach {
             viewModel.inputs.fetchSise(code: $0.stockName)
         }
@@ -234,7 +235,7 @@ private extension InterestViewController {
 
 
 extension String {
-    var toFloatWithoutComma: Float {
-        return Float(self.components(separatedBy: ",").joined()) ?? 0.0
+    var toFloatWithoutComma: Double {
+        return Double(self.components(separatedBy: ",").joined()) ?? 0.0
     }
 }

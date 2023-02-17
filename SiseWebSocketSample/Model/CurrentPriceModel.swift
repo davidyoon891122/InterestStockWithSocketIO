@@ -9,9 +9,9 @@ import Foundation
 
 struct CurrentPriceModel {
     var stockName: String
-    var currentPrice: Float
-    var percentChange: Float
-    var prevPriceRate: Float
+    var currentPrice: Double
+    var percentChange: Double
+    var prevPriceRate: Double
     var isUp: Bool
     var symbol: String
 }

@@ -20,6 +20,7 @@
 		490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE5298C9F040035470A /* StockTableViewCell.swift */; };
 		490E6FE9298CDF1F0035470A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 490E6FE8298CDF1F0035470A /* RxDataSources */; };
 		494162E4299AFBDA0086B608 /* TopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E3299AFBDA0086B608 /* TopInfoView.swift */; };
+		494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */; };
 		494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */; };
 		495DD8E7299A0D7F00FD185E /* CurrentPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */; };
 		495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */; };
@@ -67,6 +68,7 @@
 		490E6FE3298C96320035470A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		490E6FE5298C9F040035470A /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
 		494162E3299AFBDA0086B608 /* TopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoView.swift; sourceTree = "<group>"; };
+		494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightFlowLayout.swift; sourceTree = "<group>"; };
 		494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockManager.swift; sourceTree = "<group>"; };
 		495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewController.swift; sourceTree = "<group>"; };
 		495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewModel.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				490093922982143600548588 /* ViewModels */,
 				49CDEBEA2988ED7A00E456DF /* MasterParser.swift */,
+				494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
 				49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
+				494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */,
 				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */,

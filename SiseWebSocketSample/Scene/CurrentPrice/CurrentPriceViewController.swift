@@ -10,12 +10,13 @@ import SnapKit
 import RxSwift
 
 final class CurrentPriceViewController: UIViewController {
+    private lazy var topInfoView = TopInfoView()
+    
     private var code: CurrentPriceModel
     
     private let viewModel: CurrentPriceViewModelType = CurrentPriceViewModel()
     
     private let disposeBag = DisposeBag()
-    private lazy var topInfoView = TopInfoView()
     
     init(code: CurrentPriceModel) {
         self.code = code
