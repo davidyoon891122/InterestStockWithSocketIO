@@ -170,6 +170,7 @@ final class TopInfoView: UIView {
         view.backgroundColor = .systemBackground
         [
             nameView,
+            buttonView,
             currentPriceLabel,
             changeView
         ]
@@ -182,6 +183,11 @@ final class TopInfoView: UIView {
         nameView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(offset)
+        }
+        
+        buttonView.snp.makeConstraints {
+            $0.centerY.equalTo(nameView)
+            $0.trailing.equalToSuperview().offset(-offset)
         }
         
         currentPriceLabel.snp.makeConstraints {
@@ -198,6 +204,94 @@ final class TopInfoView: UIView {
         
         return view
     }()
+    
+    private lazy var loanButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 8.0)
+        var containter = AttributeContainer()
+        containter.font = .systemFont(ofSize: 10.0)
+        
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.preferredSymbolConfigurationForImage = imageConfig
+        buttonConfig.attributedTitle = AttributedString("Loan", attributes: containter)
+        buttonConfig.baseBackgroundColor = .black
+        buttonConfig.contentInsets = .init(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0)
+        buttonConfig.image = UIImage(systemName: "arrowtriangle.right")
+        buttonConfig.imagePadding = 4.0
+        buttonConfig.imagePlacement = .trailing
+        
+        let button = UIButton(configuration: buttonConfig)
+
+        button.setTitleColor(.gray, for: .normal)
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.cornerRadius = 4.0
+        button.tintColor = .gray
+        
+        return button
+    }()
+    
+    private lazy var currencyChangeButton: UIButton = {
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 8.0)
+        var container = AttributeContainer()
+        container.font = .systemFont(ofSize: 10.0)
+        
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.preferredSymbolConfigurationForImage = imageConfig
+        buttonConfig.title = "KRW"
+        buttonConfig.attributedTitle = AttributedString("KRW", attributes: container)
+        
+        buttonConfig.image = UIImage(systemName: "arrow.up.and.down")
+        buttonConfig.imagePadding = 4.0
+        buttonConfig.imagePlacement = .leading
+        buttonConfig.contentInsets = .init(top: 4.0, leading: 4.0, bottom: 4.0, trailing: 4.0)
+        
+        let button = UIButton(configuration: buttonConfig)
+
+        button.setTitleColor(.gray, for: .normal)
+        button.tintColor = .gray
+        
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.cornerRadius = 4.0
+        
+        return button
+    }()
+    
+    private lazy var interestButton: UIButton = {
+        let button = UIButton()
+       
+        
+        return button
+    }()
+    
+    private lazy var buttonView: UIView = {
+        let view = UIView()
+        [
+            loanButton,
+            currencyChangeButton
+        ]
+            .forEach {
+                view.addSubview($0)
+            }
+        
+        let offset: CGFloat = 8.0
+        loanButton.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(offset)
+            $0.leading.equalToSuperview()
+            $0.height.equalTo(14.0)
+            $0.bottom.equalToSuperview().offset(-offset)
+        }
+        
+        currencyChangeButton.snp.makeConstraints {
+            $0.centerY.equalTo(loanButton)
+            $0.height.equalTo(14.0)
+            $0.leading.equalTo(loanButton.snp.trailing).offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
+        }
+        
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
