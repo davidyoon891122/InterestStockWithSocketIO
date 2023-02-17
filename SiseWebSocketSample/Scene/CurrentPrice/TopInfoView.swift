@@ -12,8 +12,8 @@ final class TopInfoView: UIView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "APPLE"
-        label.font = .systemFont(ofSize: 20.0, weight: .bold)
-        label.textColor = .label
+        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.textColor = .gray
         
         return label
     }()
@@ -21,11 +21,81 @@ final class TopInfoView: UIView {
     private lazy var codeLabel: UILabel = {
         let label = UILabel()
         label.text = "APPL"
-        label.font = .systemFont(ofSize: 20.0, weight: .medium)
+        label.font = .systemFont(ofSize: 12.0, weight: .bold)
         label.textColor = .gray
         
         return label
     }()
+    
+    private lazy var currencyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "USD"
+        label.font = .systemFont(ofSize: 12.0, weight: .bold)
+        label.textColor = .gray
+        
+        return label
+    }()
+    
+    private lazy var firstHSeparatorView = SeparatorView(
+        size: 1.0,
+        bgColor: .lightGray.withAlphaComponent(0.5),
+        direction: .vertical
+    )
+    
+    private lazy var secondHSeparatorView = SeparatorView(
+        size: 1.0,
+        bgColor: .lightGray.withAlphaComponent(0.5),
+        direction: .vertical
+    )
+    
+    
+    private lazy var nameView: UIView = {
+        let view = UIView()
+        [
+            nameLabel,
+            firstHSeparatorView,
+            codeLabel,
+            secondHSeparatorView,
+            currencyLabel
+        ]
+            .forEach {
+                view.addSubview($0)
+            }
+        let offset: CGFloat = 8.0
+        
+        nameLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(offset)
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-offset)
+        }
+        
+        firstHSeparatorView.snp.makeConstraints {
+            $0.leading.equalTo(nameLabel.snp.trailing).offset(offset)
+            $0.top.equalToSuperview().offset(offset)
+            $0.bottom.equalToSuperview().offset(-offset)
+        }
+        
+        codeLabel.snp.makeConstraints {
+            $0.leading.equalTo(firstHSeparatorView.snp.trailing).offset(offset)
+            $0.centerY.equalTo(firstHSeparatorView)
+        }
+        
+        secondHSeparatorView.snp.makeConstraints {
+            $0.leading.equalTo(codeLabel.snp.trailing).offset(offset)
+            $0.centerY.equalTo(codeLabel)
+            $0.top.equalToSuperview().offset(offset)
+            $0.bottom.equalToSuperview().offset(-offset)
+        }
+        
+        currencyLabel.snp.makeConstraints {
+            $0.leading.equalTo(secondHSeparatorView.snp.trailing).offset(offset)
+            $0.centerY.equalTo(secondHSeparatorView)
+            $0.trailing.equalToSuperview().offset(-offset)
+        }
+        
+        return view
+    }()
+    
     
     private lazy var currentPriceLabel: UILabel = {
         let label = UILabel()
@@ -36,10 +106,19 @@ final class TopInfoView: UIView {
         return label
     }()
     
+    private lazy var regularMarketChangeArrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        
+        imageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+        imageView.tintColor = .red
+        
+        return imageView
+    }()
+    
     private lazy var regularMarketChangeLabel: UILabel = {
         let label = UILabel()
         label.text = "0.3700"
-        label.font = .systemFont(ofSize: 14.0)
+        label.font = .systemFont(ofSize: 12.0, weight: .bold)
         
         return label
     }()
@@ -47,18 +126,15 @@ final class TopInfoView: UIView {
     private lazy var regularMargketChangePercentLabel: UILabel = {
         let label = UILabel()
         label.text = "0.25%"
-        label.font = .systemFont(ofSize: 14.0)
+        label.font = .systemFont(ofSize: 12.0, weight: .bold)
         
         return label
     }()
     
-    private lazy var containerView: UIView = {
+    private lazy var changeView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBackground
         [
-            nameLabel,
-            codeLabel,
-            currentPriceLabel,
+            regularMarketChangeArrowImageView,
             regularMarketChangeLabel,
             regularMargketChangePercentLabel
         ]
@@ -66,31 +142,57 @@ final class TopInfoView: UIView {
                 view.addSubview($0)
             }
         
-        let offset: CGFloat = 16.0
-        
-        nameLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalToSuperview().offset(offset)
-        }
-        
-        codeLabel.snp.makeConstraints {
-            $0.centerY.equalTo(nameLabel)
-            $0.leading.equalTo(nameLabel.snp.trailing).offset(offset)
-        }
-        
-        currentPriceLabel.snp.makeConstraints {
-            $0.top.equalTo(nameLabel.snp.bottom).offset(offset)
-            $0.leading.equalTo(nameLabel)
+        let offset: CGFloat = 8.0
+        regularMarketChangeArrowImageView.snp.makeConstraints {
+            $0.width.height.equalTo(12.0)
+            $0.top.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.leading.equalToSuperview()
         }
         
         regularMarketChangeLabel.snp.makeConstraints {
-            $0.top.equalTo(currentPriceLabel.snp.bottom).offset(offset)
-            $0.leading.equalTo(currentPriceLabel)
+            $0.centerY.equalTo(regularMarketChangeArrowImageView)
+            $0.leading.equalTo(regularMarketChangeArrowImageView.snp.trailing).offset(offset)
         }
         
         regularMargketChangePercentLabel.snp.makeConstraints {
             $0.centerY.equalTo(regularMarketChangeLabel)
             $0.leading.equalTo(regularMarketChangeLabel.snp.trailing).offset(offset)
+            $0.trailing.equalToSuperview()
+        }
+        
+        return view
+    }()
+    
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        [
+            nameView,
+            currentPriceLabel,
+            changeView
+        ]
+            .forEach {
+                view.addSubview($0)
+            }
+        
+        let offset: CGFloat = 16.0
+        
+        nameView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().offset(offset)
+        }
+        
+        currentPriceLabel.snp.makeConstraints {
+            $0.top.equalTo(nameView.snp.bottom)
+            $0.leading.equalTo(nameView)
+        }
+        
+        changeView.snp.makeConstraints {
+            $0.top.equalTo(currentPriceLabel.snp.bottom)
+            $0.leading.equalToSuperview().offset(offset)
+            $0.bottom.equalToSuperview().offset(-offset)
         }
         
         
@@ -111,10 +213,14 @@ final class TopInfoView: UIView {
             currentPriceLabel.textColor = .red
             regularMarketChangeLabel.textColor = .red
             regularMargketChangePercentLabel.textColor = .red
+            regularMarketChangeArrowImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
+            regularMarketChangeArrowImageView.tintColor = UIColor(named: "UpColor")
         } else {
             currentPriceLabel.textColor = .blue
             regularMarketChangeLabel.textColor = .blue
             regularMargketChangePercentLabel.textColor = .blue
+            regularMarketChangeArrowImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+            regularMarketChangeArrowImageView.tintColor = UIColor(named: "DownColor")
         }
     }
     
