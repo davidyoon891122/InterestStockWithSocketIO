@@ -84,7 +84,7 @@ extension MenuCollectionView: UICollectionViewDelegateFlowLayout {
         label.font = .systemFont(ofSize: 16.0, weight: .bold)
         label.sizeToFit()
         
-        return CGSize(width: label.frame.width + 16.0, height: 50.0)
+        return CGSize(width: label.frame.width + 16.0, height: collectionView.frame.height)
     }
 }
 
