@@ -61,7 +61,6 @@ class InterestViewController: UIViewController {
         setupViews()
         configureNavigation()
         bindViewModel()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
