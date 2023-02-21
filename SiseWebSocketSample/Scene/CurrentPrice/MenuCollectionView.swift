@@ -12,6 +12,8 @@ final class MenuCollectionView: UIView {
     private lazy var menuCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -29,7 +31,13 @@ final class MenuCollectionView: UIView {
         return collectionView
     }()
     
-    private let menus = ["Information", "Asking Price", "Chart", "Conclusion", "News"]
+    private lazy var separatorView = SeparatorView(
+        size: 2.0,
+        bgColor: .lightGray.withAlphaComponent(0.5),
+        direction: .horizontal
+    )
+    
+    private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,14 +91,24 @@ extension MenuCollectionView: UICollectionViewDelegateFlowLayout {
 private extension MenuCollectionView {
     func setupViews() {
         [
-            menuCollectionView
+            menuCollectionView,
+            separatorView
         ]
             .forEach {
                 addSubview($0)
             }
         
         menuCollectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.top.equalTo(menuCollectionView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
