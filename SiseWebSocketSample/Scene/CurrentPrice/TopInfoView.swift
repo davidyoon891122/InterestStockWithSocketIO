@@ -196,7 +196,7 @@ final class TopInfoView: UIView {
         }
         
         changeView.snp.makeConstraints {
-            $0.top.equalTo(currentPriceLabel.snp.bottom)
+            $0.top.equalTo(currentPriceLabel.snp.bottom).offset(offset/2)
             $0.leading.equalToSuperview().offset(offset)
             $0.bottom.equalToSuperview().offset(-offset)
         }
