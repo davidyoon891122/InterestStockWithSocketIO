@@ -12,9 +12,19 @@ struct CurrentPriceResponseEntity: Decodable {
 }
 
 struct CurrentPriceEntity: Decodable {
-    let regularMarketPrice: Float
-    let regularMarketChange: Float
-    let regularMarketChangePercent: Float
+    let regularMarketPrice: Double
+    let regularMarketChange: Double
+    let regularMarketChangePercent: Double
     let displayName: String?
     let longName: String
+    let symbol: String
+    let currency: String
+    let exchange: String
+    let fiftyTwoWeekRange: CurrentPriceFiftyTwoWeekRange
+    
+}
+        
+struct CurrentPriceFiftyTwoWeekRange: Decodable {
+    let low: Double
+    let high: Double
 }

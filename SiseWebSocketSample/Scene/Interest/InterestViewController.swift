@@ -61,12 +61,17 @@ class InterestViewController: UIViewController {
         setupViews()
         configureNavigation()
         bindViewModel()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.fetchIntrestStockList()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("viewWillDisappear!")
+        viewModel.inputs.requestDisconnect()
     }
 }
 
@@ -95,7 +100,15 @@ extension InterestViewController: UICollectionViewDataSource {
 }
 
 extension InterestViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        let code = interestStocks[indexPath.item]
+        print("Selected Code: \(code)")
+        let currentPriceVC = CurrentPriceViewController(code: code)
+        navigationController?.pushViewController(currentPriceVC, animated: true)
+    }
 }
 
 
@@ -117,7 +130,6 @@ private extension InterestViewController {
     
     func configureNavigation() {
         navigationItem.title = "Items of Interest"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "magnifyingglass"),
@@ -146,9 +158,11 @@ private extension InterestViewController {
                     let newModel = CurrentPriceModel(
                         stockName: oldModel.stockName,
                         currentPrice: siseModel.currentPrice.toFloatWithoutComma,
-                        percentChange: Float(siseModel.percentChange)!,
-                        prevPriceRate: Float(siseModel.prevPriceRate)!,
-                        isUp: siseModel.isUp)
+                        percentChange: Double(siseModel.percentChange)!,
+                        prevPriceRate: Double(siseModel.prevPriceRate)!,
+                        isUp: siseModel.isUp,
+                        symbol: oldModel.symbol
+                    )
                     self.interestStocks[row] = newModel
                 }
 
@@ -211,6 +225,7 @@ private extension InterestViewController {
     }
 
     func requestStockListSise() {
+        print("interestStocks : \(interestStocks.count)")
         interestStocks.forEach {
             viewModel.inputs.fetchSise(code: $0.stockName)
         }
@@ -219,7 +234,7 @@ private extension InterestViewController {
 
 
 extension String {
-    var toFloatWithoutComma: Float {
-        return Float(self.components(separatedBy: ",").joined()) ?? 0.0
+    var toFloatWithoutComma: Double {
+        return Double(self.components(separatedBy: ",").joined()) ?? 0.0
     }
 }

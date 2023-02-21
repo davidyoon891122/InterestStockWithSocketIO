@@ -19,7 +19,11 @@
 		490E6FE4298C96320035470A /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE3298C96320035470A /* SearchViewModel.swift */; };
 		490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490E6FE5298C9F040035470A /* StockTableViewCell.swift */; };
 		490E6FE9298CDF1F0035470A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 490E6FE8298CDF1F0035470A /* RxDataSources */; };
+		494162E4299AFBDA0086B608 /* TopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E3299AFBDA0086B608 /* TopInfoView.swift */; };
+		494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */; };
 		494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */; };
+		495DD8E7299A0D7F00FD185E /* CurrentPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */; };
+		495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49A371C229949F0E00B28B73 /* PopupContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A371C129949F0E00B28B73 /* PopupContentView.swift */; };
 		49A371C42994A94E00B28B73 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A371C32994A94E00B28B73 /* PopupViewController.swift */; };
@@ -44,6 +48,8 @@
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
 		49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEC2988EE5E00E456DF /* StockModel.swift */; };
 		49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEE2988F58D00E456DF /* MasterModel.swift */; };
+		49DE3FF429A480650007EF2C /* MenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE3FF329A480650007EF2C /* MenuCollectionView.swift */; };
+		49DE3FF629A482840007EF2C /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE3FF529A482840007EF2C /* MenuCollectionViewCell.swift */; };
 		49EB40F02993520C00BC108A /* InterestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40EF2993520C00BC108A /* InterestRepository.swift */; };
 		49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40F1299353B700BC108A /* CommonResponseModel.swift */; };
 		49EB40F4299354D900BC108A /* InterestAddResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40F3299354D900BC108A /* InterestAddResponseModel.swift */; };
@@ -63,7 +69,11 @@
 		490E6FE1298C84500035470A /* PresentTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentTopView.swift; sourceTree = "<group>"; };
 		490E6FE3298C96320035470A /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		490E6FE5298C9F040035470A /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockTableViewCell.swift; sourceTree = "<group>"; };
+		494162E3299AFBDA0086B608 /* TopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoView.swift; sourceTree = "<group>"; };
+		494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightFlowLayout.swift; sourceTree = "<group>"; };
 		494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockManager.swift; sourceTree = "<group>"; };
+		495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewController.swift; sourceTree = "<group>"; };
+		495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewModel.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49A371C129949F0E00B28B73 /* PopupContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupContentView.swift; sourceTree = "<group>"; };
 		49A371C32994A94E00B28B73 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +96,8 @@
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
 		49CDEBEC2988EE5E00E456DF /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
 		49CDEBEE2988F58D00E456DF /* MasterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterModel.swift; sourceTree = "<group>"; };
+		49DE3FF329A480650007EF2C /* MenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionView.swift; sourceTree = "<group>"; };
+		49DE3FF529A482840007EF2C /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		49EB40EF2993520C00BC108A /* InterestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestRepository.swift; sourceTree = "<group>"; };
 		49EB40F1299353B700BC108A /* CommonResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonResponseModel.swift; sourceTree = "<group>"; };
 		49EB40F3299354D900BC108A /* InterestAddResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAddResponseModel.swift; sourceTree = "<group>"; };
@@ -152,6 +164,7 @@
 			children = (
 				490093922982143600548588 /* ViewModels */,
 				49CDEBEA2988ED7A00E456DF /* MasterParser.swift */,
+				494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -163,6 +176,7 @@
 				49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */,
 				49A58509298B46320070D8CC /* RootViewModel.swift */,
 				490E6FE3298C96320035470A /* SearchViewModel.swift */,
+				495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -217,6 +231,17 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		494162E5299AFC190086B608 /* CurrentPrice */ = {
+			isa = PBXGroup;
+			children = (
+				495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */,
+				494162E3299AFBDA0086B608 /* TopInfoView.swift */,
+				49DE3FF329A480650007EF2C /* MenuCollectionView.swift */,
+				49DE3FF529A482840007EF2C /* MenuCollectionViewCell.swift */,
+			);
+			path = CurrentPrice;
+			sourceTree = "<group>";
+		};
 		49AF92FD2980F91D009F8A58 = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +292,7 @@
 				49CDEBE52988C2B700E456DF /* Update */,
 				490E6FE0298C84380035470A /* Root */,
 				490E6FDF298C84310035470A /* Search */,
+				494162E5299AFC190086B608 /* CurrentPrice */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -389,6 +415,7 @@
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
 				49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
+				494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */,
 				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */,
@@ -397,12 +424,17 @@
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
 				49FE94892992341B0081544C /* InterestStockModel.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
+				495DD8E7299A0D7F00FD185E /* CurrentPriceViewController.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
+				49DE3FF429A480650007EF2C /* MenuCollectionView.swift in Sources */,
+				49DE3FF629A482840007EF2C /* MenuCollectionViewCell.swift in Sources */,
 				494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */,
 				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
+				495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,
 				49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */,
+				494162E4299AFBDA0086B608 /* TopInfoView.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
 				49A371C42994A94E00B28B73 /* PopupViewController.swift in Sources */,
