@@ -11,6 +11,7 @@ import RxSwift
 
 final class CurrentPriceViewController: UIViewController {
     private lazy var topInfoView = TopInfoView()
+    private lazy var menuCollectionView = MenuCollectionView()
     
     private var code: CurrentPriceModel
     
@@ -45,7 +46,8 @@ private extension CurrentPriceViewController {
     func setupViews() {
         view.backgroundColor = .systemBackground
         [
-            topInfoView
+            topInfoView,
+            menuCollectionView
         ]
             .forEach {
                 view.addSubview($0)
@@ -55,6 +57,13 @@ private extension CurrentPriceViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
+        }
+        
+        menuCollectionView.snp.makeConstraints {
+            $0.top.equalTo(topInfoView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(50.0)
         }
     }
     
