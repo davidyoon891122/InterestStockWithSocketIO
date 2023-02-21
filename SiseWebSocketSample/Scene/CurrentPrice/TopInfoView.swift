@@ -14,6 +14,7 @@ final class TopInfoView: UIView {
         label.text = "APPLE"
         label.font = .systemFont(ofSize: 12.0, weight: .bold)
         label.textColor = .gray
+        label.numberOfLines = 2
         
         return label
     }()
@@ -67,6 +68,7 @@ final class TopInfoView: UIView {
             $0.top.equalToSuperview().offset(offset)
             $0.leading.equalToSuperview()
             $0.bottom.equalToSuperview().offset(-offset)
+            $0.width.lessThanOrEqualTo(100.0)
         }
         
         firstHSeparatorView.snp.makeConstraints {
@@ -198,7 +200,7 @@ final class TopInfoView: UIView {
         changeView.snp.makeConstraints {
             $0.top.equalTo(currentPriceLabel.snp.bottom).offset(offset/2)
             $0.leading.equalToSuperview().offset(offset)
-            $0.bottom.equalToSuperview().offset(-offset)
+            $0.bottom.equalToSuperview().offset(-offset/2)
         }
         
         
