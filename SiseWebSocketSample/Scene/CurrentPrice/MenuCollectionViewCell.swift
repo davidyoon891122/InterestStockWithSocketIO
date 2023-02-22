@@ -15,23 +15,39 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Menu"
         label.textColor = .gray
-        label.font = .systemFont(ofSize: 16.0, weight: .bold)
+        label.font = .systemFont(ofSize: 15.0, weight: .bold)
         label.textAlignment = .center
         
         return label
     }()
     
+    private lazy var selectUnderBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .label
+        
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         [
-            titleLabel
+            titleLabel,
+            selectUnderBar
         ]
             .forEach {
                 view.addSubview($0)
             }
-        
+        let offset: CGFloat = 16.0
         titleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        selectUnderBar.snp.makeConstraints {
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.height.equalTo(2.0)
+            $0.bottom.equalToSuperview()
         }
         
         return view
@@ -40,6 +56,16 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     func setupCell(title: String) {
         titleLabel.text = title
         setupViews()
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                selectUnderBar.isHidden = false
+            } else {
+                selectUnderBar.isHidden = true
+            }
+        }
     }
 }
 
