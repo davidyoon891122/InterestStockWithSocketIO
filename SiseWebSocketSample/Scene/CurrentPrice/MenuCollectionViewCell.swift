@@ -25,7 +25,7 @@ final class MenuCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = .label
         
-        view.isHidden = true
+        view.alpha = 0
         return view
     }()
     
@@ -60,11 +60,14 @@ final class MenuCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                selectUnderBar.isHidden = false
-            } else {
-                selectUnderBar.isHidden = true
-            }
+            UIView.animate(
+                withDuration: 0.3,
+                delay: 0,
+                options: .curveEaseInOut,
+                animations: {
+                    self.selectUnderBar.alpha = self.isSelected ? 1 : 0
+                }, completion: nil
+            )
         }
     }
 }

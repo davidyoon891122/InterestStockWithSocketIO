@@ -42,6 +42,9 @@ final class MenuCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+        
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        menuCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
     
     required init?(coder: NSCoder) {
