@@ -26,6 +26,12 @@ final class ContentCollectionView: UIView {
             ContentCollectionViewCell.self,
             forCellWithReuseIdentifier: ContentCollectionViewCell.identifier
         )
+        
+        collectionView.register(
+            NewsCollectionViewCell.self,
+            forCellWithReuseIdentifier: NewsCollectionViewCell.identifier
+        )
+        
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         
@@ -70,14 +76,25 @@ extension ContentCollectionView: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ContentCollectionViewCell.identifier,
-            for: indexPath
-        ) as? ContentCollectionViewCell else { return UICollectionViewCell() }
         
-        let color = colors[indexPath.item]
-        cell.setupCell(color: color)
-        return cell
+        if indexPath.item == 4 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: NewsCollectionViewCell.identifier,
+                for: indexPath
+            ) as? NewsCollectionViewCell else { return UICollectionViewCell() }
+            
+            cell.setupCell()
+            return cell
+        } else  {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ContentCollectionViewCell.identifier,
+                for: indexPath
+            ) as? ContentCollectionViewCell else { return UICollectionViewCell() }
+            
+            let color = colors[indexPath.item]
+            cell.setupCell(color: color)
+            return cell
+        }
     }
 }
 
