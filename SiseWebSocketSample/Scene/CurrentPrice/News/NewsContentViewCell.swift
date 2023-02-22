@@ -1,5 +1,5 @@
 //
-//  NewCollectionViewCell.swift
+//  NewsContentViewCell.swift
 //  SiseWebSocketSample
 //
 //  Created by jiwon Yoon on 2023/02/22.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class NewsCollectionViewCell: UICollectionViewCell {
+final class NewsContentViewCell: UICollectionViewCell {
     static let identifier = "NewsCollectionViewCell"
     
     private lazy var collectionView: UICollectionView = {
@@ -53,7 +53,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension NewsCollectionViewCell: UICollectionViewDataSource {
+extension NewsContentViewCell: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -72,7 +72,7 @@ extension NewsCollectionViewCell: UICollectionViewDataSource {
     }
 }
 
-private extension NewsCollectionViewCell {
+private extension NewsContentViewCell {
     func setupViews() {
         contentView.addSubview(containerView)
         containerView.snp.makeConstraints {

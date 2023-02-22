@@ -29,8 +29,13 @@ final class ContentCollectionView: UIView {
         )
         
         collectionView.register(
-            NewsCollectionViewCell.self,
-            forCellWithReuseIdentifier: NewsCollectionViewCell.identifier
+            InformationContentViewCell.self,
+            forCellWithReuseIdentifier: InformationContentViewCell.identifier
+        )
+        
+        collectionView.register(
+            NewsContentViewCell.self,
+            forCellWithReuseIdentifier: NewsContentViewCell.identifier
         )
         
         collectionView.showsHorizontalScrollIndicator = false
@@ -85,11 +90,20 @@ extension ContentCollectionView: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         
-        if indexPath.item == 4 {
+        if indexPath.item == 0 {
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: NewsCollectionViewCell.identifier,
+                withReuseIdentifier: InformationContentViewCell.identifier,
                 for: indexPath
-            ) as? NewsCollectionViewCell else { return UICollectionViewCell() }
+            ) as? InformationContentViewCell else { return UICollectionViewCell() }
+            
+            cell.setupCell()
+            return cell
+            
+        } else if indexPath.item == 4 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: NewsContentViewCell.identifier,
+                for: indexPath
+            ) as? NewsContentViewCell else { return UICollectionViewCell() }
             
             cell.setupCell()
             return cell

@@ -33,4 +33,8 @@ final class DynamicFlowLayout: UICollectionViewFlowLayout {
 
         return layoutAttributes
     }
+    
+    override func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes, withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool {
+        return true
+    }
 }
