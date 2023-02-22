@@ -105,10 +105,10 @@ private extension MenuCollectionView {
             $0.top.equalToSuperview()
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
         
         separatorView.snp.makeConstraints {
-            $0.top.equalTo(menuCollectionView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
