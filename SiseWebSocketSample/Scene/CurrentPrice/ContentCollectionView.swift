@@ -117,7 +117,6 @@ extension ContentCollectionView: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.bounds.origin.x / scrollView.frame.width)
-        print("scrollView index:\(index)")
         
         let indexPath = IndexPath(item: index, section: 0)
         currentPriceViewModel.inputs.selectMenuByContentIndex(indexPath: indexPath)

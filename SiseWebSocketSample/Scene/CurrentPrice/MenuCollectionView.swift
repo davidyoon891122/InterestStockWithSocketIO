@@ -49,8 +49,7 @@ final class MenuCollectionView: UIView {
         setupViews()
         bindViewModel()
         
-        let selectedIndexPath = IndexPath(item: 0, section: 0)
-        menuCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        configureDefaultSelectMenu()
     }
     
     required init?(coder: NSCoder) {
@@ -100,7 +99,10 @@ extension MenuCollectionView: UICollectionViewDelegateFlowLayout {
         label.font = .systemFont(ofSize: 16.0, weight: .bold)
         label.sizeToFit()
         
-        return CGSize(width: label.frame.width + 16.0, height: collectionView.frame.height)
+        return CGSize(
+            width: label.frame.width + 16.0,
+            height: collectionView.frame.height
+        )
     }
 }
 
@@ -132,8 +134,19 @@ private extension MenuCollectionView {
         currentPriceViewModel.outputs.menuCellIndexPathPublishSubject
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
-                self.menuCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                self.menuCollectionView.selectItem(
+                    at: indexPath, animated: true,
+                    scrollPosition: .centeredHorizontally
+                )
             })
             .disposed(by: disposeBag)
+    }
+    
+    func configureDefaultSelectMenu() {
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+        menuCollectionView.selectItem(
+            at: selectedIndexPath, animated: true,
+            scrollPosition: .centeredHorizontally
+        )
     }
 }
