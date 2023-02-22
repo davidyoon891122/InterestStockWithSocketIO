@@ -78,9 +78,9 @@ private extension MenuCollectionViewCell {
         
         let offset: CGFloat = 8.0
         containerView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(offset)
+            $0.top.equalToSuperview()
             $0.leading.equalToSuperview().offset(offset)
-            $0.bottom.equalToSuperview().offset(-offset)
+            $0.bottom.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-offset)
         }
     }
