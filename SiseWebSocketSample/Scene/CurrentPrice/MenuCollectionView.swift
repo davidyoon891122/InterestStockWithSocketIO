@@ -77,6 +77,13 @@ extension MenuCollectionView: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        currentPriceViewModel.inputs.moveContentCollectionViewCell(indexPath: indexPath)
+    }
 }
 
 extension MenuCollectionView: UICollectionViewDelegateFlowLayout {

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class ContentCollectionView: UIView {
     private lazy var contentCollectionView: UICollectionView = {
@@ -54,6 +55,8 @@ final class ContentCollectionView: UIView {
     
     private let colors: [UIColor] = [.red, .orange, .yellow, .green, .blue]
     
+    private var disposeBag = DisposeBag()
+    
     
     
     init(menus: [String], currentPriceViewModel: CurrentPriceViewModelType) {
@@ -61,6 +64,7 @@ final class ContentCollectionView: UIView {
         self.currentPriceViewModel = currentPriceViewModel
         super.init(frame: .zero)
         setupViews()
+        bindViewModel()
     }
     
     required init?(coder: NSCoder) {
@@ -119,7 +123,15 @@ private extension ContentCollectionView {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+    }
+    
+    func bindViewModel() {
+        currentPriceViewModel.outputs.contentCellIndexPathPublishSubject
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.contentCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
