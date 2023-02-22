@@ -12,12 +12,15 @@ import RxSwift
 final class CurrentPriceViewController: UIViewController {
     private lazy var topInfoView = TopInfoView()
     private lazy var menuCollectionView = MenuCollectionView()
+    private lazy var contentCollectionView = ContentCollectionView(menus: menus)
     
     private var code: CurrentPriceModel
     
     private let viewModel: CurrentPriceViewModelType = CurrentPriceViewModel()
     
     private let disposeBag = DisposeBag()
+    
+    private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
     
     init(code: CurrentPriceModel) {
         self.code = code
@@ -47,7 +50,8 @@ private extension CurrentPriceViewController {
         view.backgroundColor = .systemBackground
         [
             topInfoView,
-            menuCollectionView
+            menuCollectionView,
+            contentCollectionView
         ]
             .forEach {
                 view.addSubview($0)
@@ -64,6 +68,13 @@ private extension CurrentPriceViewController {
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.height.equalTo(50.0)
+        }
+        
+        contentCollectionView.snp.makeConstraints {
+            $0.top.equalTo(menuCollectionView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
     

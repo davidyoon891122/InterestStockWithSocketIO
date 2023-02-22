@@ -1,0 +1,105 @@
+//
+//  ContentCollectionView.swift
+//  SiseWebSocketSample
+//
+//  Created by jiwon Yoon on 2023/02/22.
+//
+
+import UIKit
+import SnapKit
+
+final class ContentCollectionView: UIView {
+    private lazy var contentCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = . horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        collectionView.register(
+            ContentCollectionViewCell.self,
+            forCellWithReuseIdentifier: ContentCollectionViewCell.identifier
+        )
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        
+        return collectionView
+    }()
+    
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.addSubview(contentCollectionView)
+        view.backgroundColor = .systemBackground
+        contentCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        return view
+    }()
+    
+    private let menus: [String]
+    
+    private let colors: [UIColor] = [.red, .orange, .yellow, .green, .blue]
+    
+    init(menus: [String]) {
+        self.menus = menus
+        super.init(frame: .zero)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension ContentCollectionView: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return menus.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ContentCollectionViewCell.identifier,
+            for: indexPath
+        ) as? ContentCollectionViewCell else { return UICollectionViewCell() }
+        
+        let color = colors[indexPath.item]
+        cell.setupCell(color: color)
+        return cell
+    }
+}
+
+extension ContentCollectionView: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+}
+
+private extension ContentCollectionView {
+    func setupViews() {
+        addSubview(containerView)
+        
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+    }
+}
+
+
