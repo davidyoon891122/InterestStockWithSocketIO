@@ -11,8 +11,11 @@ import RxSwift
 
 final class CurrentPriceViewController: UIViewController {
     private lazy var topInfoView = TopInfoView()
-    private lazy var menuCollectionView = MenuCollectionView()
-    private lazy var contentCollectionView = ContentCollectionView(menus: menus)
+    private lazy var menuCollectionView = MenuCollectionView(currentPriceViewModel: viewModel)
+    private lazy var contentCollectionView = ContentCollectionView(
+        menus: menus,
+        currentPriceViewModel: viewModel
+    )
     
     private var code: CurrentPriceModel
     

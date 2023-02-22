@@ -39,8 +39,11 @@ final class MenuCollectionView: UIView {
     
     private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let currentPriceViewModel: CurrentPriceViewModelType
+
+    init(currentPriceViewModel: CurrentPriceViewModelType) {
+        self.currentPriceViewModel = currentPriceViewModel
+        super.init(frame: .zero)
         setupViews()
         
         let selectedIndexPath = IndexPath(item: 0, section: 0)

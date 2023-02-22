@@ -50,11 +50,15 @@ final class ContentCollectionView: UIView {
     }()
     
     private let menus: [String]
+    private let currentPriceViewModel: CurrentPriceViewModelType
     
     private let colors: [UIColor] = [.red, .orange, .yellow, .green, .blue]
     
-    init(menus: [String]) {
+    
+    
+    init(menus: [String], currentPriceViewModel: CurrentPriceViewModelType) {
         self.menus = menus
+        self.currentPriceViewModel = currentPriceViewModel
         super.init(frame: .zero)
         setupViews()
     }
