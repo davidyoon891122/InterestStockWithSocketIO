@@ -114,6 +114,15 @@ extension ContentCollectionView: UICollectionViewDelegateFlowLayout {
     ) -> CGSize {
         CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.bounds.origin.x / scrollView.frame.width)
+        print("scrollView index:\(index)")
+        
+        let indexPath = IndexPath(item: index, section: 0)
+        currentPriceViewModel.inputs.selectMenuByContentIndex(indexPath: indexPath)
+        
+    }
 }
 
 private extension ContentCollectionView {
@@ -129,7 +138,11 @@ private extension ContentCollectionView {
         currentPriceViewModel.outputs.contentCellIndexPathPublishSubject
             .subscribe(onNext: { [weak self] indexPath in
                 guard let self = self else { return }
-                self.contentCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                self.contentCollectionView.scrollToItem(
+                    at: indexPath,
+                    at: .centeredHorizontally,
+                    animated: false
+                )
             })
             .disposed(by: disposeBag)
     }

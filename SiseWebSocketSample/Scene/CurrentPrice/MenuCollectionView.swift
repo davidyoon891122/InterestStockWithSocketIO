@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class MenuCollectionView: UIView {
     private lazy var menuCollectionView: UICollectionView = {
@@ -40,11 +41,13 @@ final class MenuCollectionView: UIView {
     private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
     
     private let currentPriceViewModel: CurrentPriceViewModelType
+    private var disposeBag = DisposeBag()
 
     init(currentPriceViewModel: CurrentPriceViewModelType) {
         self.currentPriceViewModel = currentPriceViewModel
         super.init(frame: .zero)
         setupViews()
+        bindViewModel()
         
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         menuCollectionView.selectItem(at: selectedIndexPath, animated: true, scrollPosition: .centeredHorizontally)
@@ -123,5 +126,14 @@ private extension MenuCollectionView {
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    func bindViewModel() {
+        currentPriceViewModel.outputs.menuCellIndexPathPublishSubject
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self = self else { return }
+                self.menuCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            })
+            .disposed(by: disposeBag)
     }
 }

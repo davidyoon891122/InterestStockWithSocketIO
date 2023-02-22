@@ -11,11 +11,13 @@ import RxSwift
 protocol CurrentPriceViewModelInput {
     func fetchCurrentPrice(code: String)
     func moveContentCollectionViewCell(indexPath: IndexPath)
+    func selectMenuByContentIndex(indexPath: IndexPath)
 }
 
 protocol CurrentPriceViewModelOutput {
     var currentPricePublishSubject: PublishSubject<[CurrentPriceModel]> { get }
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
+    var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
 }
 
 protocol CurrentPriceViewModelType {
@@ -34,6 +36,7 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     
     var currentPricePublishSubject: PublishSubject<[CurrentPriceModel]> = .init()
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
+    var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     
     func fetchCurrentPrice(code: String) {
         stockRepository.inputs.requestStockInfo(stocks: code)
@@ -46,6 +49,10 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     
     func moveContentCollectionViewCell(indexPath: IndexPath) {
         contentCellIndexPathPublishSubject.onNext(indexPath)
+    }
+    
+    func selectMenuByContentIndex(indexPath: IndexPath) {
+        menuCellIndexPathPublishSubject.onNext(indexPath)
     }
     
 }
