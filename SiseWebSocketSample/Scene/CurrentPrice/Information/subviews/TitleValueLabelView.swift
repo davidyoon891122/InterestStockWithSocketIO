@@ -12,6 +12,8 @@ final class TitleValueLabelView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.numberOfLines = 2
         
         return label
     }()
@@ -26,6 +28,7 @@ final class TitleValueLabelView: UIView {
         let label = UILabel()
         label.textColor = .label
         label.textAlignment = .right
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
         
         return label
     }()
@@ -48,6 +51,8 @@ final class TitleValueLabelView: UIView {
             $0.bottom.equalToSuperview().offset(-offset)
             $0.width.lessThanOrEqualTo(130.0)
         }
+        
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         valueLabel.snp.makeConstraints {
             $0.leading.equalTo(titleLabel.snp.trailing).offset(offset)

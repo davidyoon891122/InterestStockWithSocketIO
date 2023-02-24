@@ -58,7 +58,7 @@ extension InformationContentViewCell: UICollectionViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return 4
+            return 0
         }
     }
     

@@ -14,18 +14,18 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     private lazy var providerLabelView = TitleValueLabelView(title: "Provider")
     private lazy var sectorLabelView = TitleValueLabelView(title: "Sector")
     
-    
-    private lazy var shortTermView: UIView = {
-        let view = UIView()
-        
-        return view
-    }()
+    private lazy var shortTermView = TermView(title: "Short Term Outlook")
+    private lazy var intermediateTermView = TermView(title: "Intermediate Term Outlook")
+    private lazy var longTermView = TermView(title: "Long Term Outlook")
     
     private lazy var containerView: UIView = {
         let view = UIView()
         [
             providerLabelView,
-            sectorLabelView
+            sectorLabelView,
+            shortTermView,
+            intermediateTermView,
+            longTermView
         ]
             .forEach {
                 view.addSubview($0)
@@ -39,6 +39,24 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
         
         sectorLabelView.snp.makeConstraints {
             $0.top.equalTo(providerLabelView.snp.bottom)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        shortTermView.snp.makeConstraints {
+            $0.top.equalTo(sectorLabelView.snp.bottom).offset(8.0)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        intermediateTermView.snp.makeConstraints {
+            $0.top.equalTo(shortTermView.snp.bottom).offset(8.0)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        longTermView.snp.makeConstraints {
+            $0.top.equalTo(intermediateTermView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
