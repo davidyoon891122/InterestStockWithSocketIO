@@ -33,8 +33,11 @@ final class InformationContentViewCell: UICollectionViewCell {
         return collectionView
     }()
     
+    private let viewModel: InformationContentViewCellViewModelType = InformationContentViewCellViewModel()
+    
     func setupCell() {
         setupViews()
+        viewModel.inputs.requestStockInsights(code: "AAPL")
     }
 }
 
@@ -50,7 +53,10 @@ extension InformationContentViewCell: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.identifier, for: indexPath) as? InformationCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: InformationCollectionViewCell.identifier,
+            for: indexPath
+        ) as? InformationCollectionViewCell else { return UICollectionViewCell() }
         
         cell.setupCell()
         return cell
