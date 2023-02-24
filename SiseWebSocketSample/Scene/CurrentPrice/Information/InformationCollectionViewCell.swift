@@ -54,6 +54,8 @@ final class InformationCollectionViewCell: UICollectionViewCell {
             $0.width.lessThanOrEqualTo(130.0)
         }
         
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        
         contentLabel.snp.makeConstraints {
             $0.top.centerY.equalTo(titleLabel)
             $0.trailing.equalToSuperview().offset(-offset)

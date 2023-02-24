@@ -26,6 +26,11 @@ final class InformationContentViewCell: UICollectionViewCell {
         collectionView.dataSource = self
         
         collectionView.register(
+            InformationTechnicalViewCell.self,
+            forCellWithReuseIdentifier: InformationTechnicalViewCell.identifier
+        )
+        
+        collectionView.register(
             InformationCollectionViewCell.self,
             forCellWithReuseIdentifier: InformationCollectionViewCell.identifier
         )
@@ -42,24 +47,44 @@ final class InformationContentViewCell: UICollectionViewCell {
 }
 
 extension InformationContentViewCell: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 7
+        if section == 0 {
+            return 1
+        } else {
+            return 4
+        }
     }
     
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: InformationCollectionViewCell.identifier,
-            for: indexPath
-        ) as? InformationCollectionViewCell else { return UICollectionViewCell() }
-        
-        cell.setupCell()
-        return cell
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: InformationTechnicalViewCell.identifier,
+                for: indexPath
+            ) as? InformationTechnicalViewCell else { return UICollectionViewCell() }
+            
+            cell.setupCell()
+            return cell
+        } else if indexPath.section == 1 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: InformationCollectionViewCell.identifier,
+                for: indexPath
+            ) as? InformationCollectionViewCell else { return UICollectionViewCell() }
+            
+            cell.setupCell()
+            return cell
+        } else {
+            return UICollectionViewCell()
+        }
     }
     
     
