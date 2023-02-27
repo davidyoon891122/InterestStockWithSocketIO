@@ -51,7 +51,6 @@ final class TitleValueLabelView: UIView {
             $0.bottom.equalToSuperview().offset(-offset)
             $0.width.lessThanOrEqualTo(130.0)
         }
-        
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         valueLabel.snp.makeConstraints {

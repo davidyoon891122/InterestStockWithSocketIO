@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class InformationTechnicalViewCell: UICollectionViewCell {
     static let identifier = "InformationTechnicalViewCell"
@@ -59,17 +61,22 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             $0.top.equalTo(intermediateTermView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().priority(.high)
         }
         
         return view
     }()
     
-    func setupCell() {
-        
+    private var disposeBag = DisposeBag()
+    
+    private var viewModel: InformationContentViewCellViewModelType?
+    
+    func setupCell(viewModel: InformationContentViewCellViewModelType) {
+        self.viewModel = viewModel
         providerLabelView.setValueLabel(value: "Trading Central")
         sectorLabelView.setValueLabel(value: "Technology")
         setupViews()
+        bindUI()
     }
     
     override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
@@ -82,6 +89,11 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
         
         return layoutAttributes
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
 }
 
 private extension InformationTechnicalViewCell {
@@ -90,5 +102,44 @@ private extension InformationTechnicalViewCell {
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func bindUI() {
+        shortTermView.buttonTap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self,
+                      let viewModel = self.viewModel
+                else { return }
+                self.shortTermView.isDisplay = !self.shortTermView.isDisplay
+                self.shortTermView.updateLayout()
+                viewModel.inputs.reloadCollectionViewLayout()
+            })
+            .disposed(by: disposeBag)
+        
+        intermediateTermView.buttonTap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self,
+                      let viewModel = self.viewModel
+                else { return }
+                self.intermediateTermView.isDisplay = !self.intermediateTermView.isDisplay
+                self.intermediateTermView.updateLayout()
+                viewModel.inputs.reloadCollectionViewLayout()
+            })
+            .disposed(by: disposeBag)
+        
+        longTermView.buttonTap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self,
+                      let viewModel = self.viewModel
+                else { return }
+                self.longTermView.isDisplay = !self.longTermView.isDisplay
+                self.longTermView.updateLayout()
+                viewModel.inputs.reloadCollectionViewLayout()
+            })
+            .disposed(by: disposeBag)
+        
     }
 }

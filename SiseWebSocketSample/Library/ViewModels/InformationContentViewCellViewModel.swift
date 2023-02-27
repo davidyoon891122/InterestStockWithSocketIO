@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol InformationContentViewCellViewModelInput {
     func requestStockInsights(code: String)
+    func reloadCollectionViewLayout()
 }
 
 protocol InformationContentViewCellViewModelOutput {
-    
+    var reloadPublishSubject: PublishSubject<Void> { get }
 }
 
 protocol InformationContentViewCellViewModelType {
@@ -25,11 +27,15 @@ final class InformationContentViewCellViewModel: InformationContentViewCellViewM
     var inputs: InformationContentViewCellViewModelInput { self }
     var outputs: InformationContentViewCellViewModelOutput { self }
     
+    var reloadPublishSubject: PublishSubject<Void> = .init()
+    
     private let stockRepository = StockRepository()
     
     func requestStockInsights(code: String) {
         stockRepository.inputs.requestStockInsights(code: code)
     }
     
-    
+    func reloadCollectionViewLayout() {
+        reloadPublishSubject.onNext(())
+    }
 }

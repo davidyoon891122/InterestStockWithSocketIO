@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class InformationContentViewCell: UICollectionViewCell {
     static let identifier = "InformationContentViewCell"
@@ -40,9 +41,12 @@ final class InformationContentViewCell: UICollectionViewCell {
     
     private let viewModel: InformationContentViewCellViewModelType = InformationContentViewCellViewModel()
     
+    private var disposeBag = DisposeBag()
+    
     func setupCell() {
         setupViews()
         viewModel.inputs.requestStockInsights(code: "AAPL")
+        bindViewModel()
     }
 }
 
@@ -72,7 +76,7 @@ extension InformationContentViewCell: UICollectionViewDataSource {
                 for: indexPath
             ) as? InformationTechnicalViewCell else { return UICollectionViewCell() }
             
-            cell.setupCell()
+            cell.setupCell(viewModel: viewModel)
             return cell
         } else if indexPath.section == 1 {
             guard let cell = collectionView.dequeueReusableCell(
@@ -97,6 +101,16 @@ private extension InformationContentViewCell {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+    
+    func bindViewModel() {
+        viewModel.outputs.reloadPublishSubject
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.collectionView.reloadData()
+                
+            })
+            .disposed(by: disposeBag)
     }
 }
 
