@@ -20,6 +20,8 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     private lazy var intermediateTermView = TermView(title: "Intermediate Term Outlook")
     private lazy var longTermView = TermView(title: "Long Term Outlook")
     
+    private lazy var keyTechnicalsView = KeyTechnicalsView()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         [
@@ -27,7 +29,8 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             sectorLabelView,
             shortTermView,
             intermediateTermView,
-            longTermView
+            longTermView,
+            keyTechnicalsView
         ]
             .forEach {
                 view.addSubview($0)
@@ -59,6 +62,12 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
         
         longTermView.snp.makeConstraints {
             $0.top.equalTo(intermediateTermView.snp.bottom).offset(8.0)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        keyTechnicalsView.snp.makeConstraints {
+            $0.top.equalTo(longTermView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().priority(.high)

@@ -98,7 +98,7 @@ final class TermView: UIView {
             $0.top.equalTo(titleLabel.snp.bottom).offset(offset / 2)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-offset)
         }
         
         return view
@@ -123,23 +123,12 @@ final class TermView: UIView {
     }
     
     func updateLayout() {
-        
-        UIView.animate(
-            withDuration: 1.0,
-            delay: 0.2,
-            usingSpringWithDamping: 0.3,
-            initialSpringVelocity: 0.3,
-            options: .curveEaseInOut,
-            animations: {
-                if !self.isDisplay {
-                    self.hideButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
-                } else {
-                    self.hideButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-                }
-                self.setStackViewLayout()
-            },
-            completion: nil
-        )
+        if !isDisplay {
+            hideButton.setImage(UIImage(systemName: "chevron.up"), for: .normal)
+        } else {
+            hideButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        }
+        setStackViewLayout()
     }
 }
 

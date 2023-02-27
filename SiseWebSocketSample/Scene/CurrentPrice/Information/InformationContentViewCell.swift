@@ -90,8 +90,6 @@ extension InformationContentViewCell: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
     }
-    
-    
 }
 
 private extension InformationContentViewCell {
@@ -108,7 +106,6 @@ private extension InformationContentViewCell {
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
-                
             })
             .disposed(by: disposeBag)
     }
