@@ -25,6 +25,7 @@
 		4916E2AA29A88145008F9864 /* TitleValueLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916E2A929A88145008F9864 /* TitleValueLabelView.swift */; };
 		4916E2AD29A88F0D008F9864 /* TermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916E2AC29A88F0D008F9864 /* TermView.swift */; };
 		49279C0E29AC565900DC3488 /* KeyTechnicalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */; };
+		49279C1029AC614B00DC3488 /* ValuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49279C0F29AC614B00DC3488 /* ValuationView.swift */; };
 		494162E4299AFBDA0086B608 /* TopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E3299AFBDA0086B608 /* TopInfoView.swift */; };
 		494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */; };
 		494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */; };
@@ -87,6 +88,7 @@
 		4916E2A929A88145008F9864 /* TitleValueLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValueLabelView.swift; sourceTree = "<group>"; };
 		4916E2AC29A88F0D008F9864 /* TermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermView.swift; sourceTree = "<group>"; };
 		49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyTechnicalsView.swift; sourceTree = "<group>"; };
+		49279C0F29AC614B00DC3488 /* ValuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuationView.swift; sourceTree = "<group>"; };
 		494162E3299AFBDA0086B608 /* TopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoView.swift; sourceTree = "<group>"; };
 		494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightFlowLayout.swift; sourceTree = "<group>"; };
 		494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockManager.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				4916E2A929A88145008F9864 /* TitleValueLabelView.swift */,
 				4916E2AC29A88F0D008F9864 /* TermView.swift */,
 				49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */,
+				49279C0F29AC614B00DC3488 /* ValuationView.swift */,
 			);
 			path = subviews;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,
+				49279C1029AC614B00DC3488 /* ValuationView.swift in Sources */,
 				49EB40F02993520C00BC108A /* InterestRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
