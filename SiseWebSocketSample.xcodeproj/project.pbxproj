@@ -37,6 +37,7 @@
 		4953A64729A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953A64629A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift */; };
 		495DD8E7299A0D7F00FD185E /* CurrentPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */; };
 		495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */; };
+		4991C20829B01E9000AB8DB5 /* SnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991C20729B01E9000AB8DB5 /* SnapshotView.swift */; };
 		49959F4329878DEF00FC087F /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49959F4229878DEF00FC087F /* UpdateViewController.swift */; };
 		49A371C229949F0E00B28B73 /* PopupContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A371C129949F0E00B28B73 /* PopupContentView.swift */; };
 		49A371C42994A94E00B28B73 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A371C32994A94E00B28B73 /* PopupViewController.swift */; };
@@ -100,6 +101,7 @@
 		4953A64629A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
 		495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewController.swift; sourceTree = "<group>"; };
 		495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewModel.swift; sourceTree = "<group>"; };
+		4991C20729B01E9000AB8DB5 /* SnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotView.swift; sourceTree = "<group>"; };
 		49959F4229878DEF00FC087F /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
 		49A371C129949F0E00B28B73 /* PopupContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupContentView.swift; sourceTree = "<group>"; };
 		49A371C32994A94E00B28B73 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				4916E2AC29A88F0D008F9864 /* TermView.swift */,
 				49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */,
 				49279C0F29AC614B00DC3488 /* ValuationView.swift */,
+				4991C20729B01E9000AB8DB5 /* SnapshotView.swift */,
 			);
 			path = subviews;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4991C20829B01E9000AB8DB5 /* SnapshotView.swift in Sources */,
 				49FE948729922F740081544C /* InterestListResponseEntity.swift in Sources */,
 				49AF93212980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift in Sources */,
 				49FE948529921C640081544C /* CurrentPriceEntity.swift in Sources */,
