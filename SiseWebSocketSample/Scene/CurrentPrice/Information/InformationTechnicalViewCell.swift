@@ -26,7 +26,7 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     private lazy var companySnapshotView = SnapshotView(title: "Company")
     private lazy var sectorSnapshotView = SnapshotView(title: "Sector")
     
-    
+    private lazy var recommendView = RecommendationView()
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -39,7 +39,8 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             keyTechnicalsView,
             valuationView,
             companySnapshotView,
-            sectorSnapshotView
+            sectorSnapshotView,
+            recommendView
         ]
             .forEach {
                 view.addSubview($0)
@@ -95,6 +96,12 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
 
         sectorSnapshotView.snp.makeConstraints {
             $0.top.equalTo(companySnapshotView.snp.bottom).offset(8.0)
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        recommendView.snp.makeConstraints {
+            $0.top.equalTo(sectorSnapshotView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().priority(.high)

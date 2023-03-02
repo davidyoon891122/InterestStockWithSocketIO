@@ -1,5 +1,5 @@
 //
-//  SnapshotView.swift
+//  RecommendationView.swift
 //  SiseWebSocketSample
 //
 //  Created by jiwon Yoon on 2023/03/02.
@@ -8,21 +8,18 @@
 import UIKit
 import SnapKit
 
-final class SnapshotView: UIView {
+final class RecommendationView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
         label.textColor = .gray
-        
+        label.text = "Recommendation"
         return label
     }()
     
-    private lazy var innovativenessLabelView = TitleValueLabelView(title: "Innovativeness")
-    private lazy var hiringLabelView = TitleValueLabelView(title: "Hiring")
-    private lazy var sustainabilityLabelView = TitleValueLabelView(title: "Sustainability")
-    private lazy var insiderSentimentsLabelView = TitleValueLabelView(title: "InsiderSentiments")
-    private lazy var earningsReportsLabelView = TitleValueLabelView(title: "EarningsReports")
-    private lazy var dividendsLabelView = TitleValueLabelView(title: "Dividends")
+    private lazy var targetPriceLabelView = TitleValueLabelView(title: "TargetPrice")
+    private lazy var providerLabelView = TitleValueLabelView(title: "Provider")
+    private lazy var ratingLabelView = TitleValueLabelView(title: "Rating")
+    
     
     private lazy var labelVStackView: UIStackView = {
         let stackView = UIStackView()
@@ -31,12 +28,9 @@ final class SnapshotView: UIView {
         stackView.alignment = .fill
         
         [
-            innovativenessLabelView,
-            hiringLabelView,
-            sustainabilityLabelView,
-            insiderSentimentsLabelView,
-            earningsReportsLabelView,
-            dividendsLabelView
+            targetPriceLabelView,
+            providerLabelView,
+            ratingLabelView
         ]
             .forEach {
                 stackView.addArrangedSubview($0)
@@ -71,31 +65,28 @@ final class SnapshotView: UIView {
             $0.bottom.equalToSuperview().offset(-offset)
         }
         
+        
         return view
     }()
     
-    
-    init(title: String) {
-        super.init(frame: .zero)
-        titleLabel.text = title
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
-private extension SnapshotView {
+private extension RecommendationView {
     func setupViews() {
-       [
+        [
             containerView
-       ]
+        ]
             .forEach {
                 addSubview($0)
             }
-        
         
         let offset: CGFloat = 16.0
         containerView.snp.makeConstraints {
@@ -106,4 +97,3 @@ private extension SnapshotView {
         }
     }
 }
-

@@ -18,10 +18,10 @@ final class ValuationView: UIView {
     }()
     
     private lazy var colorLabelView = TitleValueLabelView(title: "Color")
-    private lazy var descriptionLabelView = TitleValueLabelView(title: "description")
-    private lazy var discountLabelView = TitleValueLabelView(title: "discount")
-    private lazy var relativeValueLabelView = TitleValueLabelView(title: "relativeValue")
-    private lazy var providerLabelView = TitleValueLabelView(title: "provider")
+    private lazy var descriptionLabelView = TitleValueLabelView(title: "Description")
+    private lazy var discountLabelView = TitleValueLabelView(title: "Discount")
+    private lazy var relativeValueLabelView = TitleValueLabelView(title: "RelativeValue")
+    private lazy var providerLabelView = TitleValueLabelView(title: "Provider")
     
     
     private lazy var labelVStackView: UIStackView = {
