@@ -43,10 +43,12 @@ final class InformationContentViewCell: UICollectionViewCell {
     
     private var disposeBag = DisposeBag()
     
-    func setupCell() {
+    private var insightResponseEntity: InsightsResponseEntity?
+    
+    func setupCell(code: String) {
         setupViews()
-        viewModel.inputs.requestStockInsights(code: "AAPL")
         bindViewModel()
+        viewModel.inputs.requestStockInsights(code: code)
     }
 }
 
@@ -76,7 +78,7 @@ extension InformationContentViewCell: UICollectionViewDataSource {
                 for: indexPath
             ) as? InformationTechnicalViewCell else { return UICollectionViewCell() }
             
-            cell.setupCell(viewModel: viewModel)
+            cell.setupCell(viewModel: viewModel, insight: insightResponseEntity)
             return cell
         } else if indexPath.section == 1 {
             guard let cell = collectionView.dequeueReusableCell(
@@ -105,6 +107,14 @@ private extension InformationContentViewCell {
         viewModel.outputs.reloadPublishSubject
             .subscribe(onNext: { [weak self] in
                 guard let self = self else { return }
+                self.collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.stockInsightsPublishSubject
+            .subscribe(onNext: { [weak self] result in
+                guard let self = self else { return }
+                self.insightResponseEntity = result
                 self.collectionView.reloadData()
             })
             .disposed(by: disposeBag)

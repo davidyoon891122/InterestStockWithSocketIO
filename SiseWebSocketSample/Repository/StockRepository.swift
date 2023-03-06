@@ -11,7 +11,7 @@ import RxSwift
 protocol StockRepositoryInput {
     func requestStockInfo(stocks: String) -> Observable<[CurrentPriceModel]>
     func requestInterestList(userID: String) -> Observable<[InterestStockModel]>
-    func requestStockInsights(code: String)
+    func requestStockInsights(code: String) -> Observable<InsightsResponseEntity>
 }
 
 protocol StockRepositoryOutput {
@@ -86,22 +86,27 @@ final class StockRepository: StockRepositoryType, StockRepositoryInput, StockRep
         }
     }
     
-    func requestStockInsights(code: String) {
-        service.requestService(
-            url: URLInfo.insights.url,
-            type: InsightsResponseEntity.self,
-            method: .get,
-            param: [
-                "code": code
-            ],
-            header: [:]
-        )
-        .subscribe(onNext: { [weak self] response in
-            guard let self = self else { return }
-            print(response)
-        }, onError: { error in
-            print(error.localizedDescription)
-        })
-        .disposed(by: disposeBag)
+    func requestStockInsights(code: String) -> Observable<InsightsResponseEntity> {
+        return Observable.create { [weak self] emitter in
+            guard let self = self else { return Disposables.create() }
+            self.service.requestService(
+                url: URLInfo.insights.url,
+                type: InsightsResponseEntity.self,
+                method: .get,
+                param: [
+                    "code": code
+                ],
+                header: [:]
+            )
+            .subscribe(onNext: { result in
+                emitter.onNext(result)
+            }, onError: { error in
+                print(error.localizedDescription)
+                emitter.onError(error)
+            })
+            .disposed(by: self.disposeBag)
+            
+            return Disposables.create()
+        }
     }
 }

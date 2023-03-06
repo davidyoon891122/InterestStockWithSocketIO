@@ -114,10 +114,14 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     
     private var viewModel: InformationContentViewCellViewModelType?
     
-    func setupCell(viewModel: InformationContentViewCellViewModelType) {
+    func setupCell(viewModel: InformationContentViewCellViewModelType, insight: InsightsResponseEntity?) {
         self.viewModel = viewModel
         providerLabelView.setValueLabel(value: "Trading Central")
         sectorLabelView.setValueLabel(value: "Technology")
+        
+        if let insight = insight {
+            setupData(insight: insight)
+        }
         setupViews()
         bindUI()
     }
@@ -183,6 +187,11 @@ private extension InformationTechnicalViewCell {
                 viewModel.inputs.reloadCollectionViewLayout()
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    func setupData(insight: InsightsResponseEntity) {
+        if let shortTerm = insight.result?.instrumentInfo.technicalEvents.shortTermOutlook {
+            shortTermView.setShortData(shortTerm: shortTerm)
+        }
     }
 }

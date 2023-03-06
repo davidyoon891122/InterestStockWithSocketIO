@@ -18,6 +18,7 @@ protocol CurrentPriceViewModelOutput {
     var currentPricePublishSubject: PublishSubject<[CurrentPriceModel]> { get }
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
+    var selectedCode: String { get }
 }
 
 protocol CurrentPriceViewModelType {
@@ -38,7 +39,10 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     
+    var selectedCode = ""
+    
     func fetchCurrentPrice(code: String) {
+        selectedCode = code
         stockRepository.inputs.requestStockInfo(stocks: code)
             .subscribe(onNext: { [weak self] result in
                 guard let self = self else { return }

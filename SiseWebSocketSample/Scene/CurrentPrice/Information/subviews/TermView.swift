@@ -33,11 +33,11 @@ final class TermView: UIView {
     private lazy var directionLabelView = TitleValueLabelView(title: "Direction")
     private lazy var scoreLabelView = TitleValueLabelView(title: "Score")
     private lazy var scoreDescriptionLabelView = TitleValueLabelView(title: "ScoreDescription")
-    private lazy var sectorDirectionLabelView = TitleValueLabelView(title: "StateDescription")
+    private lazy var sectorDirectionLabelView = TitleValueLabelView(title: "SectorDirection")
     private lazy var sectorScoreLabelView = TitleValueLabelView(title: "SectorScore")
     private lazy var sectorScoreDescriptionLabelView = TitleValueLabelView(title: "SectorScoreDescription")
-    private lazy var indexDirectionLabelView = TitleValueLabelView(title: "IndexDirectionLabelView")
-    private lazy var indexScoreLabelView = TitleValueLabelView(title: "IndexScoreLabelView")
+    private lazy var indexDirectionLabelView = TitleValueLabelView(title: "IndexDirection")
+    private lazy var indexScoreLabelView = TitleValueLabelView(title: "IndexScore")
     private lazy var indexScoreDescriptionLabelView = TitleValueLabelView(title: "IndexScoreDescription")
     
     private lazy var labelHStackView: UIStackView = {
@@ -129,6 +129,19 @@ final class TermView: UIView {
             hideButton.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         }
         setStackViewLayout()
+    }
+    
+    func setShortData(shortTerm: ShortTermOutlook) {
+        stateDescriptionLabelView.setValueLabel(value: shortTerm.stateDescription)
+        directionLabelView.setValueLabel(value: shortTerm.direction)
+        scoreLabelView.setValueLabel(value: "\(shortTerm.score)")
+        scoreDescriptionLabelView.setValueLabel(value: shortTerm.scoreDescription)
+        sectorScoreLabelView.setValueLabel(value: "\(shortTerm.sectorScore)")
+        sectorDirectionLabelView.setValueLabel(value: shortTerm.sectorDirection)
+        sectorScoreDescriptionLabelView.setValueLabel(value: shortTerm.sectorScoreDescription)
+        indexDirectionLabelView.setValueLabel(value: shortTerm.indexDirection)
+        indexScoreLabelView.setValueLabel(value: "\(shortTerm.indexScore)")
+        indexScoreDescriptionLabelView.setValueLabel(value: shortTerm.indexScoreDescription)
     }
 }
 

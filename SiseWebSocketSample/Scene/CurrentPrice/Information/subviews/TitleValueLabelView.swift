@@ -29,6 +29,7 @@ final class TitleValueLabelView: UIView {
         label.textColor = .label
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.numberOfLines = 2
         
         return label
     }()
