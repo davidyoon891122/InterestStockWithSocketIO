@@ -87,7 +87,7 @@ struct KeyTechnicals: Decodable {
 struct Valuation: Decodable {
     let color: Double
     let description: String
-    let discount: String
+    let discount: String?
     let relativeValue: String?
     let provider: String
 }
@@ -100,11 +100,11 @@ struct CompanySnapshot: Decodable {
 
 struct Company: Decodable {
     let innovativeness: Double
-    let hiring: Double
-    let sustainability: Double
-    let insiderSentiments: Double
-    let earningsReports: Double
-    let dividends: Double
+    let hiring: Double?
+    let sustainability: Double?
+    let insiderSentiments: Double?
+    let earningsReports: Double?
+    let dividends: Double?
 }
 
 struct Sector: Decodable {
