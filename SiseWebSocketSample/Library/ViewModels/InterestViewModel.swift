@@ -11,7 +11,7 @@ import UIKit
 
 protocol InterestViewModelInput {
     func fetchIntrestStockList()
-    func fetchSise(code: String)
+    func fetchSise(interestStocks: [CurrentPriceModel])
     func openSearchViewController()
     func requestDisconnect()
     func fetchCurrentPrice(stocks: [InterestStockModel])
@@ -84,9 +84,11 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
             .disposed(by: disposeBag)
     }
     
-    func fetchSise(code: String) {
+    func fetchSise(interestStocks: [CurrentPriceModel]) {
         SiseSocketManager.shared.requestComplete {
-            SiseSocketManager.shared.socket.emit("code", code)
+            interestStocks.forEach {
+                SiseSocketManager.shared.socket.emit("code", $0.symbol)
+            }
         }
         receiveSise()
         if SiseSocketManager.shared.socket.status == .notConnected

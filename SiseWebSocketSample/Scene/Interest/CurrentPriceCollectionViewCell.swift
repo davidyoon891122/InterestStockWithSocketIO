@@ -141,6 +141,13 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         
         return layoutAttributes
     }
+    
+    func updateSise(model: SiseModel) {
+        priceLabel.text = "\(model.currentPrice.toFloatWithoutComma)"
+        prevLabel.text = "\(model.prevPriceRate)"
+        rateLabel.text = "\(model.percentChange)".percent
+        configureViewByUpAndDown(isUp: model.isUp)
+    }
 }
 
 private extension CurrentPriceCollectionViewCell {

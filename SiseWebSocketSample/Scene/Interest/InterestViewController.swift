@@ -38,11 +38,7 @@ class InterestViewController: UIViewController {
     private let viewModel: InterestViewModelType = InterestViewModel()
     private let disposeBag = DisposeBag()
     
-    private var interestStocks: [CurrentPriceModel] = [] {
-        didSet {
-            self.currentPriceCollectionView.reloadData()
-        }
-    }
+    private var interestStocks: [CurrentPriceModel] = []
     
     private var rootViewModel: RootViewModelType
     
@@ -105,7 +101,6 @@ extension InterestViewController: UICollectionViewDelegateFlowLayout {
         didSelectItemAt indexPath: IndexPath
     ) {
         let code = interestStocks[indexPath.item]
-        print("Selected Code: \(code)")
         let currentPriceVC = CurrentPriceViewController(code: code)
         navigationController?.pushViewController(currentPriceVC, animated: true)
     }
@@ -144,6 +139,7 @@ private extension InterestViewController {
             .subscribe(onNext: { [weak self] currentPrices in
                 guard let self = self else { return }
                 self.interestStocks = currentPrices
+                self.currentPriceCollectionView.reloadData()
                 self.requestStockListSise()
             })
             .disposed(by: disposeBag)
@@ -153,17 +149,11 @@ private extension InterestViewController {
             .debug("sise")
             .subscribe(onNext: { [weak self] siseModel in
                 guard let self = self else { return }
-                if let row = self.interestStocks.firstIndex(where: { $0.stockName == siseModel.code }) {
-                    let oldModel = self.interestStocks[row]
-                    let newModel = CurrentPriceModel(
-                        stockName: oldModel.stockName,
-                        currentPrice: siseModel.currentPrice.toFloatWithoutComma,
-                        percentChange: Double(siseModel.percentChange)!,
-                        prevPriceRate: Double(siseModel.prevPriceRate)!,
-                        isUp: siseModel.isUp,
-                        symbol: oldModel.symbol
-                    )
-                    self.interestStocks[row] = newModel
+                if let row = self.interestStocks.firstIndex(where: { $0.symbol == siseModel.code }) {
+                    let indexPath = IndexPath(item: row, section: 0)
+                    guard let cell = self.currentPriceCollectionView.cellForItem(at: indexPath) as? CurrentPriceCollectionViewCell else { return }
+                    
+                    cell.updateSise(model: siseModel)
                 }
 
 
@@ -225,10 +215,7 @@ private extension InterestViewController {
     }
 
     func requestStockListSise() {
-        print("interestStocks : \(interestStocks.count)")
-        interestStocks.forEach {
-            viewModel.inputs.fetchSise(code: $0.stockName)
-        }
+        viewModel.inputs.fetchSise(interestStocks: interestStocks)
     }
 }
 
