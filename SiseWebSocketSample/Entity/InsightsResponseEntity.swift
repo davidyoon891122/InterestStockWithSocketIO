@@ -85,10 +85,10 @@ struct KeyTechnicals: Decodable {
 }
 
 struct Valuation: Decodable {
-    let color: Int
+    let color: Double
     let description: String
     let discount: String
-    let relativeValue: String
+    let relativeValue: String?
     let provider: String
 }
 
