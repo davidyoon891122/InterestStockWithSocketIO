@@ -82,12 +82,6 @@ final class ValuationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    private lazy var colorLabelView = TitleValueLabelView(title: "Color")
-//    private lazy var descriptionLabelView = TitleValueLabelView(title: "Description")
-//    private lazy var discountLabelView = TitleValueLabelView(title: "Discount")
-//    private lazy var relativeValueLabelView = TitleValueLabelView(title: "RelativeValue")
-//    private lazy var providerLabelView = TitleValueLabelView(title: "Provider")
-    
     func setColorValue(value: String) {
         colorLabelView.setValueLabel(value: value)
     }
