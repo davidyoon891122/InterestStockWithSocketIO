@@ -77,6 +77,18 @@ final class RecommendationView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setTargetPriceValue(value: String) {
+        targetPriceLabelView.setValueLabel(value: value)
+    }
+    
+    func setProviderLabelView(value: String) {
+        providerLabelView.setValueLabel(value: value)
+    }
+    
+    func setRatingLabelView(value: String) {
+        ratingLabelView.setValueLabel(value: value)
+    }
 }
 
 private extension RecommendationView {

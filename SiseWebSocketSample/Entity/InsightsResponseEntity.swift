@@ -16,6 +16,7 @@ struct InsightsEntity: Decodable {
     let symbol: String
     let instrumentInfo: InstrumentInfo
     let companySnapshot: CompanySnapshot
+    let recommendation: Recommendation
     let upsell: Upsell
     let upsellSearchDD: UpsellSearchDD
     let events: [Events]

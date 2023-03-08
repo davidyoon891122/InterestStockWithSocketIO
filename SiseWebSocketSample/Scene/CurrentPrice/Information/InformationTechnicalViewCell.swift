@@ -26,7 +26,7 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     private lazy var companySnapshotView = SnapshotView(title: "Company")
     private lazy var sectorSnapshotView = SnapshotView(title: "Sector")
     
-    private lazy var recommendView = RecommendationView()
+    private lazy var recommendationView = RecommendationView()
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -40,7 +40,7 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             valuationView,
             companySnapshotView,
             sectorSnapshotView,
-            recommendView
+            recommendationView
         ]
             .forEach {
                 view.addSubview($0)
@@ -100,7 +100,7 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             $0.trailing.equalToSuperview()
         }
         
-        recommendView.snp.makeConstraints {
+        recommendationView.snp.makeConstraints {
             $0.top.equalTo(sectorSnapshotView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
@@ -260,6 +260,12 @@ private extension InformationTechnicalViewCell {
             sectorSnapshotView.setInsiderSentimentsValue(value: "\(sector.insiderSentiments )")
             sectorSnapshotView.setEarningsReportsValue(value: "\(sector.earningsReports )")
             sectorSnapshotView.setDividendsValue(value: "\(sector.dividends )")
+        }
+        
+        if let recommendation = insight.result?.recommendation {
+            recommendationView.setTargetPriceValue(value: "\(recommendation.targetPrice)")
+            recommendationView.setProviderLabelView(value: recommendation.provider)
+            recommendationView.setRatingLabelView(value: recommendation.rating)
         }
     }
 }
