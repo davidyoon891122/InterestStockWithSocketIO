@@ -235,5 +235,13 @@ private extension InformationTechnicalViewCell {
             keyTechnicalsView.setResistanceValue(value: "$ \(keyTechnicals.resistance)")
             keyTechnicalsView.setStopLossValue(value: "$ \(keyTechnicals.stopLoss)")
         }
+        
+        if let valuation = insight.result?.instrumentInfo.valuation {
+            valuationView.setColorValue(value: "\(valuation.color)")
+            valuationView.setDescriptionValue(value: valuation.description)
+            valuationView.setDiscountValue(value: valuation.discount ?? "--")
+            valuationView.setRelativeValue(value: valuation.relativeValue ?? "--")
+            valuationView.setProviderValue(value: valuation.provider)
+        }
     }
 }
