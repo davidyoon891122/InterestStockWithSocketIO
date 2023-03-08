@@ -35,6 +35,7 @@
 		4953A64029A5D6DF00CF3BE2 /* NewsContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953A63F29A5D6DF00CF3BE2 /* NewsContentCollectionViewCell.swift */; };
 		4953A64429A5EBA400CF3BE2 /* InformationContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953A64329A5EBA400CF3BE2 /* InformationContentViewCell.swift */; };
 		4953A64729A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4953A64629A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift */; };
+		4958221E29B85FFE0049D29B /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4958221D29B85FFE0049D29B /* SelectedButton.swift */; };
 		495DD8E7299A0D7F00FD185E /* CurrentPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */; };
 		495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */; };
 		4991C20829B01E9000AB8DB5 /* SnapshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4991C20729B01E9000AB8DB5 /* SnapshotView.swift */; };
@@ -100,6 +101,7 @@
 		4953A63F29A5D6DF00CF3BE2 /* NewsContentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4953A64329A5EBA400CF3BE2 /* InformationContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationContentViewCell.swift; sourceTree = "<group>"; };
 		4953A64629A5EF8B00CF3BE2 /* InformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionViewCell.swift; sourceTree = "<group>"; };
+		4958221D29B85FFE0049D29B /* SelectedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
 		495DD8E6299A0D7F00FD185E /* CurrentPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewController.swift; sourceTree = "<group>"; };
 		495DD8E8299A1F1200FD185E /* CurrentPriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceViewModel.swift; sourceTree = "<group>"; };
 		4991C20729B01E9000AB8DB5 /* SnapshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				490E6FE1298C84500035470A /* PresentTopView.swift */,
 				49A371C129949F0E00B28B73 /* PopupContentView.swift */,
 				49A371C32994A94E00B28B73 /* PopupViewController.swift */,
+				4958221D29B85FFE0049D29B /* SelectedButton.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				4916E2A829A87C98008F9864 /* InformationTechnicalViewCell.swift in Sources */,
 				49A371C229949F0E00B28B73 /* PopupContentView.swift in Sources */,
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
+				4958221E29B85FFE0049D29B /* SelectedButton.swift in Sources */,
 				4916E2A629A86331008F9864 /* InsightsResponseEntity.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,

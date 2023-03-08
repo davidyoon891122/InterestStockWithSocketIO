@@ -28,6 +28,14 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
     
     private lazy var recommendationView = RecommendationView()
     
+    private lazy var moreButton: SelectedButton = {
+        let button = SelectedButton()
+        button.setTitleColor(.systemBackground, for: .normal)
+        button.setTitle("More Information", for: .normal)
+        button.layer.cornerRadius = 8.0
+        return button
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         [
@@ -40,7 +48,8 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             valuationView,
             companySnapshotView,
             sectorSnapshotView,
-            recommendationView
+            recommendationView,
+            moreButton
         ]
             .forEach {
                 view.addSubview($0)
@@ -104,6 +113,13 @@ final class InformationTechnicalViewCell: UICollectionViewCell {
             $0.top.equalTo(sectorSnapshotView.snp.bottom).offset(8.0)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
+        }
+        
+        moreButton.snp.makeConstraints {
+            $0.top.equalTo(recommendationView.snp.bottom).offset(16.0)
+            $0.leading.equalToSuperview().offset(16.0)
+            $0.trailing.equalToSuperview().offset(-16.0)
+            $0.height.equalTo(50.0)
             $0.bottom.equalToSuperview().priority(.high)
         }
         
