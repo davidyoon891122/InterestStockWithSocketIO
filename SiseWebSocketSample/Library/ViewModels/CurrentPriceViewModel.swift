@@ -12,6 +12,8 @@ protocol CurrentPriceViewModelInput {
     func fetchCurrentPrice(code: String)
     func moveContentCollectionViewCell(indexPath: IndexPath)
     func selectMenuByContentIndex(indexPath: IndexPath)
+    func requestSise(code: String)
+    func requestDisconnect()
 }
 
 protocol CurrentPriceViewModelOutput {
@@ -19,6 +21,7 @@ protocol CurrentPriceViewModelOutput {
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
     var selectedCode: String { get }
+    var sisePublishSubject: PublishSubject<SiseModel> { get }
 }
 
 protocol CurrentPriceViewModelType {
@@ -38,6 +41,7 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     var currentPricePublishSubject: PublishSubject<[CurrentPriceModel]> = .init()
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
+    var sisePublishSubject: PublishSubject<SiseModel> = .init()
     
     var selectedCode = ""
     
@@ -59,4 +63,34 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
         menuCellIndexPathPublishSubject.onNext(indexPath)
     }
     
+    func requestSise(code: String) {
+        SiseSocketManager.shared.requestComplete {
+            SiseSocketManager.shared.socket.emit("code", code)
+        }
+        
+        receiveSise()
+        
+        if SiseSocketManager.shared.socket.status == .notConnected
+            || SiseSocketManager.shared.socket.status == .disconnected {
+            SiseSocketManager.shared.establishConnection()
+        }
+    }
+    
+    func receiveSise() {
+        SiseSocketManager.shared.socket.on("sise") { [weak self] data, ack in
+            guard let self = self else { return }
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: data[0], options: .prettyPrinted)
+                let siseModel = try JSONDecoder().decode(SiseModel.self, from: jsonData)
+                
+                self.sisePublishSubject.onNext(siseModel)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    func requestDisconnect() {
+        SiseSocketManager.shared.socket.disconnect()
+    }
 }

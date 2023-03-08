@@ -41,6 +41,16 @@ final class CurrentPriceViewController: UIViewController {
         bindViewModel()
         viewModel.inputs.fetchCurrentPrice(code: code.symbol)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.inputs.requestSise(code: self.code.symbol)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.inputs.requestDisconnect()
+    }
 }
 
 private extension CurrentPriceViewController {
@@ -91,6 +101,16 @@ private extension CurrentPriceViewController {
                 self.topInfoView.setMargetChange(value: "\(currentPrice[0].prevPriceRate)")
                 self.topInfoView.setMargetChangePercent(value: "\(currentPrice[0].percentChange)")
                 self.topInfoView.setPriceLabelColor(isUp: currentPrice[0].isUp)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.sisePublishSubject
+            .subscribe(onNext: { [weak self] siseModel in
+                guard let self = self else { return }
+                self.topInfoView.setCurrentPrice(value: "\(siseModel.currentPrice)")
+                self.topInfoView.setMargetChange(value: "\(siseModel.prevPriceRate)")
+                self.topInfoView.setMargetChangePercent(value: "\(siseModel.percentChange)")
+                self.topInfoView.setPriceLabelColor(isUp: siseModel.isUp)
             })
             .disposed(by: disposeBag)
     }
