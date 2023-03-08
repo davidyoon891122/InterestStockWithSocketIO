@@ -75,6 +75,18 @@ final class KeyTechnicalsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setSupportValue(value: String) {
+        supportLabelView.setValueLabel(value: value)
+    }
+    
+    func setResistanceValue(value: String) {
+        resistanceLabelView.setValueLabel(value: value)
+    }
+    
+    func setStopLossValue(value: String) {
+        stopLossLabelView.setValueLabel(value: value)
+    }
 }
 
 private extension KeyTechnicalsView {

@@ -229,5 +229,11 @@ private extension InformationTechnicalViewCell {
             longTermView.setIndexScoreValue(value: "\(longTerm.indexScore)")
             longTermView.setIndexScoreDescription(value: longTerm.indexScoreDescription)
         }
+        
+        if let keyTechnicals = insight.result?.instrumentInfo.keyTechnicals {
+            keyTechnicalsView.setSupportValue(value: "$ \(keyTechnicals.support)")
+            keyTechnicalsView.setResistanceValue(value: "$ \(keyTechnicals.resistance)")
+            keyTechnicalsView.setStopLossValue(value: "$ \(keyTechnicals.stopLoss)")
+        }
     }
 }
