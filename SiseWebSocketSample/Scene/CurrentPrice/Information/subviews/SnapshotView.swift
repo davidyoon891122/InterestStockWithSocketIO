@@ -85,6 +85,29 @@ final class SnapshotView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setInnovativenessValue(value: String) {
+        innovativenessLabelView.setValueLabel(value: value)
+    }
+    
+    func setHiringValue(value: String) {
+        hiringLabelView.setValueLabel(value: value)
+    }
+    
+    func setSustainabilityValue(value: String) {
+        sustainabilityLabelView.setValueLabel(value: value)
+    }
+    
+    func setInsiderSentimentsValue(value: String) {
+        insiderSentimentsLabelView.setValueLabel(value: value)
+    }
+    
+    func setEarningsReportsValue(value: String) {
+        earningsReportsLabelView.setValueLabel(value: value)
+    }
+    
+    func setDividendsValue(value: String) {
+        dividendsLabelView.setValueLabel(value: value)
+    }
 }
 
 private extension SnapshotView {

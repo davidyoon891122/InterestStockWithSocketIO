@@ -243,5 +243,23 @@ private extension InformationTechnicalViewCell {
             valuationView.setRelativeValue(value: valuation.relativeValue ?? "--")
             valuationView.setProviderValue(value: valuation.provider)
         }
+        
+        if let company = insight.result?.companySnapshot.company {
+            companySnapshotView.setInnovativenessValue(value: "\(company.innovativeness)")
+            companySnapshotView.setHiringValue(value: "\(company.hiring ?? 0)")
+            companySnapshotView.setSustainabilityValue(value: "\(company.sustainability ?? 0)")
+            companySnapshotView.setInsiderSentimentsValue(value: "\(company.insiderSentiments ?? 0)")
+            companySnapshotView.setEarningsReportsValue(value: "\(company.earningsReports ?? 0)")
+            companySnapshotView.setDividendsValue(value: "\(company.dividends ?? 0)")
+        }
+        
+        if let sector = insight.result?.companySnapshot.sector {
+            sectorSnapshotView.setInnovativenessValue(value: "\(sector.innovativeness)")
+            sectorSnapshotView.setHiringValue(value: "\(sector.hiring )")
+            sectorSnapshotView.setSustainabilityValue(value: "\(sector.sustainability )")
+            sectorSnapshotView.setInsiderSentimentsValue(value: "\(sector.insiderSentiments )")
+            sectorSnapshotView.setEarningsReportsValue(value: "\(sector.earningsReports )")
+            sectorSnapshotView.setDividendsValue(value: "\(sector.dividends )")
+        }
     }
 }
