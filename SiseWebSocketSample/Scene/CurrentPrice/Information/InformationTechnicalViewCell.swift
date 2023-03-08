@@ -191,7 +191,43 @@ private extension InformationTechnicalViewCell {
     
     func setupData(insight: InsightsResponseEntity) {
         if let shortTerm = insight.result?.instrumentInfo.technicalEvents.shortTermOutlook {
-            shortTermView.setShortData(shortTerm: shortTerm)
+            shortTermView.setStateDescriptionValue(value: shortTerm.stateDescription)
+            shortTermView.setDirectionValue(value: shortTerm.direction)
+            shortTermView.setScoreValue(value: "\(shortTerm.score)")
+            shortTermView.setScoreDescription(value: shortTerm.scoreDescription)
+            shortTermView.setSectorScoreValue(value: "\(shortTerm.sectorScore)")
+            shortTermView.setSectorDirectionValue(value: shortTerm.sectorDirection)
+            shortTermView.setSectorScoreDescriptionValue(value: shortTerm.sectorScoreDescription)
+            shortTermView.setIndexDirectValue(value: shortTerm.indexDirection)
+            shortTermView.setIndexScoreValue(value: "\(shortTerm.indexScore)")
+            shortTermView.setIndexScoreDescription(value: shortTerm.indexScoreDescription)
+            
+        }
+        
+        if let intermediateTerm = insight.result?.instrumentInfo.technicalEvents.intermediateTermOutlook {
+            intermediateTermView.setStateDescriptionValue(value: intermediateTerm.stateDescription)
+            intermediateTermView.setDirectionValue(value: intermediateTerm.direction)
+            intermediateTermView.setScoreValue(value: "\(intermediateTerm.score)")
+            intermediateTermView.setScoreDescription(value: intermediateTerm.scoreDescription)
+            intermediateTermView.setSectorScoreValue(value: "\(intermediateTerm.sectorScore)")
+            intermediateTermView.setSectorDirectionValue(value: intermediateTerm.sectorDirection)
+            intermediateTermView.setSectorScoreDescriptionValue(value: intermediateTerm.sectorScoreDescription)
+            intermediateTermView.setIndexDirectValue(value: intermediateTerm.indexDirection)
+            intermediateTermView.setIndexScoreValue(value: "\(intermediateTerm.indexScore)")
+            intermediateTermView.setIndexScoreDescription(value: intermediateTerm.indexScoreDescription)
+        }
+        
+        if let longTerm = insight.result?.instrumentInfo.technicalEvents.longTermOutlook {
+            longTermView.setStateDescriptionValue(value: longTerm.stateDescription)
+            longTermView.setDirectionValue(value: longTerm.direction)
+            longTermView.setScoreValue(value: "\(longTerm.score)")
+            longTermView.setScoreDescription(value: longTerm.scoreDescription)
+            longTermView.setSectorScoreValue(value: "\(longTerm.sectorScore)")
+            longTermView.setSectorDirectionValue(value: longTerm.sectorDirection)
+            longTermView.setSectorScoreDescriptionValue(value: longTerm.sectorScoreDescription)
+            longTermView.setIndexDirectValue(value: longTerm.indexDirection)
+            longTermView.setIndexScoreValue(value: "\(longTerm.indexScore)")
+            longTermView.setIndexScoreDescription(value: longTerm.indexScoreDescription)
         }
     }
 }

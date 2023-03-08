@@ -131,18 +131,48 @@ final class TermView: UIView {
         setStackViewLayout()
     }
     
-    func setShortData(shortTerm: ShortTermOutlook) {
-        stateDescriptionLabelView.setValueLabel(value: shortTerm.stateDescription)
-        directionLabelView.setValueLabel(value: shortTerm.direction)
-        scoreLabelView.setValueLabel(value: "\(shortTerm.score)")
-        scoreDescriptionLabelView.setValueLabel(value: shortTerm.scoreDescription)
-        sectorScoreLabelView.setValueLabel(value: "\(shortTerm.sectorScore)")
-        sectorDirectionLabelView.setValueLabel(value: shortTerm.sectorDirection)
-        sectorScoreDescriptionLabelView.setValueLabel(value: shortTerm.sectorScoreDescription)
-        indexDirectionLabelView.setValueLabel(value: shortTerm.indexDirection)
-        indexScoreLabelView.setValueLabel(value: "\(shortTerm.indexScore)")
-        indexScoreDescriptionLabelView.setValueLabel(value: shortTerm.indexScoreDescription)
+    func setStateDescriptionValue(value: String) {
+        stateDescriptionLabelView.setValueLabel(value: value)
     }
+    
+    func setDirectionValue(value: String) {
+        directionLabelView.setValueLabel(value: value)
+    }
+    
+    func setScoreValue(value: String) {
+        scoreLabelView.setValueLabel(value: value)
+    }
+    
+    func setScoreDescription(value: String) {
+        scoreDescriptionLabelView.setValueLabel(value: value)
+    }
+    
+    func setSectorScoreValue(value: String) {
+        sectorScoreLabelView.setValueLabel(value: value)
+    }
+    
+    func setSectorDirectionValue(value: String) {
+        sectorDirectionLabelView.setValueLabel(value: value)
+    }
+    
+    func setSectorScoreDescriptionValue(value: String) {
+        sectorScoreDescriptionLabelView.setValueLabel(value: value)
+    }
+    
+    func setIndexDirectValue(value: String) {
+        indexDirectionLabelView.setValueLabel(value: value)
+    }
+    
+    func setIndexScoreValue(value: String) {
+        indexScoreLabelView.setValueLabel(value: value)
+    }
+    
+    func setIndexScoreDescription(value: String) {
+        indexScoreDescriptionLabelView.setValueLabel(value: value)
+    }
+    
+    
+    
 }
 
 private extension TermView {
