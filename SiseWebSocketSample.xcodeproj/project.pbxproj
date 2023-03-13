@@ -64,6 +64,7 @@
 		49AF933129811219009F8A58 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49AF933029811219009F8A58 /* RxSwift */; };
 		49AF9335298113B5009F8A58 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF9334298113B5009F8A58 /* Service.swift */; };
 		49C8A96129BECAF900ADFE55 /* UpsellsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96029BECAF900ADFE55 /* UpsellsData.swift */; };
+		49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96229BEEB8700ADFE55 /* DraggableView.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
 		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
@@ -133,6 +134,7 @@
 		49AF932B298111FE009F8A58 /* InterestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewModel.swift; sourceTree = "<group>"; };
 		49AF9334298113B5009F8A58 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		49C8A96029BECAF900ADFE55 /* UpsellsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpsellsData.swift; sourceTree = "<group>"; };
+		49C8A96229BEEB8700ADFE55 /* DraggableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 				49A371C129949F0E00B28B73 /* PopupContentView.swift */,
 				49A371C32994A94E00B28B73 /* PopupViewController.swift */,
 				4958221D29B85FFE0049D29B /* SelectedButton.swift */,
+				49C8A96229BEEB8700ADFE55 /* DraggableView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */,
 				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
 				495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */,
+				49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				496EA57B29B9600400F5581D /* UpsellSummaryCell.swift in Sources */,
 				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,

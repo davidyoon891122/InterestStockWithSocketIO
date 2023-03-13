@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 final class MoreInfoViewController: UIViewController {
+    private let draggableView = DraggableView()
+    
     private lazy var mainCollectionView: UICollectionView = {
         let layout = DynamicFlowLayout()
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -73,14 +75,21 @@ extension MoreInfoViewController: UICollectionViewDataSource {
 private extension MoreInfoViewController {
     func setupViews() {
         [
+            draggableView,
             mainCollectionView
         ]
             .forEach {
                 view.addSubview($0)
             }
         
-        mainCollectionView.snp.makeConstraints {
+        draggableView.snp.makeConstraints {
             $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.trailing.equalToSuperview()
+        }
+        
+        mainCollectionView.snp.makeConstraints {
+            $0.top.equalTo(draggableView.snp.bottom)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
