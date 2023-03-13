@@ -11,7 +11,8 @@ import SnapKit
 final class UpsellSummaryView: UIView {
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
-
+        
+        imageView.layer.cornerRadius = 10.0
         return imageView
     }()
     
@@ -57,6 +58,7 @@ final class UpsellSummaryView: UIView {
         iconImageView.snp.makeConstraints {
             $0.top.equalToSuperview().offset(offset)
             $0.leading.equalToSuperview().offset(offset)
+            $0.width.height.equalTo(20.0)
         }
         
         titleLabel.snp.makeConstraints {
@@ -80,8 +82,11 @@ final class UpsellSummaryView: UIView {
     
     private var upsellData: [UpsellData] = []
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(title: String, iconName: String) {
+        super.init(frame: .zero)
+        titleLabel.text = title
+        iconImageView.image = UIImage(systemName: iconName)
+        iconImageView.tintColor = .red
         setupViews()
         configureDatasource()
     }

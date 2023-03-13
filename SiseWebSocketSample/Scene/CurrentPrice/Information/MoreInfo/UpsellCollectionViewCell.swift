@@ -11,7 +11,7 @@ import SnapKit
 final class UpsellCollectionViewCell: UICollectionViewCell {
     static let identifier = "UpsellCollectionViewCell"
     
-    private let bullishSummaryView = UpsellSummaryView()
+    private let bullishSummaryView = UpsellSummaryView(title: "Bullish", iconName: "arrow.up.right.square")
     
     private lazy var containerView: UIView = {
         let view = UIView()
