@@ -45,10 +45,13 @@ final class InformationContentViewCell: UICollectionViewCell {
     
     private var insightResponseEntity: InsightsResponseEntity?
     
-    func setupCell(code: String) {
+    private var currentPriceViewModel: CurrentPriceViewModelType?
+    
+    func setupCell(currentViewModel: CurrentPriceViewModelType) {
+        self.currentPriceViewModel = currentViewModel
         setupViews()
         bindViewModel()
-        viewModel.inputs.requestStockInsights(code: code)
+        viewModel.inputs.requestStockInsights(code: currentViewModel.outputs.selectedCode)
     }
 }
 
@@ -116,6 +119,16 @@ private extension InformationContentViewCell {
                 guard let self = self else { return }
                 self.insightResponseEntity = result
                 self.collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.outputs.moreInforViewControllerPublishSubjecte
+            .subscribe(onNext: { [weak self] moreInfoVC in
+                guard let self = self,
+                      let currentVM = self.currentPriceViewModel
+                else { return }
+                currentVM.inputs.presentViewController(viewController: moreInfoVC)
             })
             .disposed(by: disposeBag)
     }

@@ -96,7 +96,7 @@ extension ContentCollectionView: UICollectionViewDataSource {
                 for: indexPath
             ) as? InformationContentViewCell else { return UICollectionViewCell() }
             
-            cell.setupCell(code: currentPriceViewModel.outputs.selectedCode)
+            cell.setupCell(currentViewModel: currentPriceViewModel)
             return cell
             
         } else if indexPath.item == 4 {

@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import UIKit
 
 protocol CurrentPriceViewModelInput {
     func fetchCurrentPrice(code: String)
@@ -14,6 +15,7 @@ protocol CurrentPriceViewModelInput {
     func selectMenuByContentIndex(indexPath: IndexPath)
     func requestSise(code: String)
     func requestDisconnect()
+    func presentViewController(viewController: UIViewController)
 }
 
 protocol CurrentPriceViewModelOutput {
@@ -22,6 +24,7 @@ protocol CurrentPriceViewModelOutput {
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> { get }
     var selectedCode: String { get }
     var sisePublishSubject: PublishSubject<SiseModel> { get }
+    var presentViewControllerPublishSubject: PublishSubject<UIViewController> { get }
 }
 
 protocol CurrentPriceViewModelType {
@@ -42,6 +45,7 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     var contentCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     var menuCellIndexPathPublishSubject: PublishSubject<IndexPath> = .init()
     var sisePublishSubject: PublishSubject<SiseModel> = .init()
+    var presentViewControllerPublishSubject: PublishSubject<UIViewController> = .init()
     
     var selectedCode = ""
     
@@ -92,5 +96,9 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     
     func requestDisconnect() {
         SiseSocketManager.shared.socket.disconnect()
+    }
+    
+    func presentViewController(viewController: UIViewController) {
+        presentViewControllerPublishSubject.onNext(viewController)
     }
 }

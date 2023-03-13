@@ -13,13 +13,14 @@ final class MasterParser {
     static func parseMaster(path: URL) throws {
         do {
             let dataFromPath: Data = try Data(contentsOf: path)
-            let masterModel = try JSONDecoder().decode(MasterModel.self, from: dataFromPath)
-            masterModel.stocks.forEach {
-                overseaStocks[$0.code] = $0
+            let masterModel = try JSONDecoder().decode([StockModel].self, from: dataFromPath)
+            masterModel.forEach {
+                overseaStocks[$0.symbol] = $0
             }
             
             print("Did finish parse master file")
         } catch let error {
+            print(error)
             throw error
         }
         

@@ -8,7 +8,7 @@
 import Foundation
 
 struct StockModel: Decodable {
-    let code: String
+    let symbol: String
     let name: String
     var isInterest: Bool? = false
 }

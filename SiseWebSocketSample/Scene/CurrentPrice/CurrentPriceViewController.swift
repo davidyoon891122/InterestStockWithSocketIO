@@ -113,5 +113,12 @@ private extension CurrentPriceViewController {
                 self.topInfoView.setPriceLabelColor(isUp: siseModel.isUp)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.outputs.presentViewControllerPublishSubject
+            .subscribe(onNext: { [weak self] viewController in
+                guard let self = self else { return }
+                self.present(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
     }
 }

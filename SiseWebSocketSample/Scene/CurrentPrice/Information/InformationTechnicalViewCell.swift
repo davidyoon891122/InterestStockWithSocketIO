@@ -203,6 +203,16 @@ private extension InformationTechnicalViewCell {
                 viewModel.inputs.reloadCollectionViewLayout()
             })
             .disposed(by: disposeBag)
+        
+        moreButton.rx.tap
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                guard let self = self,
+                      let viewModel = self.viewModel
+                else { return }
+                viewModel.inputs.presentMoreInfoViewController()
+            })
+            .disposed(by: disposeBag)
     }
     
     func setupData(insight: InsightsResponseEntity) {

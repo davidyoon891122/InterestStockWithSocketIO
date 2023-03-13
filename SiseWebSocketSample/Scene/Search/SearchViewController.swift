@@ -80,7 +80,7 @@ extension SearchViewController: UITableViewDataSource {
         
         let stockModel = stocks[indexPath.item]
         
-        cell.setupCell(code: stockModel.code, title: stockModel.name, isSelected: stockModel.isInterest, viewModel: viewModel)
+        cell.setupCell(code: stockModel.symbol, title: stockModel.name, isSelected: stockModel.isInterest, viewModel: viewModel)
         return cell
     }
 }
