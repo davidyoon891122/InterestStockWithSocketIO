@@ -97,9 +97,8 @@ final class UpsellSummaryView: UIView {
     
     private var insights: InsightsResponseEntity? = nil
     
-    func setUpsellData(insights: InsightsResponseEntity) {
-        guard let bullishSummary = insights.result?.upsell.msBullishSummary else { return }
-        self.upsellData = bullishSummary.map {
+    func setUpsellData(insights: [String]) {
+        self.upsellData = insights.map {
             UpsellData(content: $0)
         }
         
