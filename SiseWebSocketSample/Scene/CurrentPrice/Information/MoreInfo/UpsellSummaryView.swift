@@ -18,6 +18,8 @@ final class UpsellSummaryView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
+        label.font = .preferredFont(forTextStyle: .title2)
+        label.adjustsFontForContentSizeCategory = true
         
         return label
     }()
