@@ -36,7 +36,7 @@ final class UpsellCollectionViewCell: UICollectionViewCell {
             $0.top.equalTo(bullishSummaryView.snp.bottom).offset(offset)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.bottom.equalToSuperview().priority(.high)
         }
         
         return view

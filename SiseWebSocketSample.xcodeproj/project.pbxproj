@@ -65,6 +65,10 @@
 		49AF9335298113B5009F8A58 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF9334298113B5009F8A58 /* Service.swift */; };
 		49C8A96129BECAF900ADFE55 /* UpsellsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96029BECAF900ADFE55 /* UpsellsData.swift */; };
 		49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96229BEEB8700ADFE55 /* DraggableView.swift */; };
+		49C8A96529BEF99B00ADFE55 /* ReportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96429BEF99B00ADFE55 /* ReportCollectionViewCell.swift */; };
+		49C8A96829BEFBB500ADFE55 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96729BEFBB500ADFE55 /* ReportView.swift */; };
+		49C8A96A29BEFE0F00ADFE55 /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96929BEFE0F00ADFE55 /* ReportData.swift */; };
+		49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96B29BF078900ADFE55 /* ReportCell.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
 		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
@@ -135,6 +139,10 @@
 		49AF9334298113B5009F8A58 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		49C8A96029BECAF900ADFE55 /* UpsellsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpsellsData.swift; sourceTree = "<group>"; };
 		49C8A96229BEEB8700ADFE55 /* DraggableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
+		49C8A96429BEF99B00ADFE55 /* ReportCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCollectionViewCell.swift; sourceTree = "<group>"; };
+		49C8A96729BEFBB500ADFE55 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		49C8A96929BEFE0F00ADFE55 /* ReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportData.swift; sourceTree = "<group>"; };
+		49C8A96B29BF078900ADFE55 /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
@@ -330,10 +338,11 @@
 			isa = PBXGroup;
 			children = (
 				496EA57329B94BE200F5581D /* MoreInfoViewController.swift */,
-				496EA57629B955A500F5581D /* UpsellCollectionViewCell.swift */,
-				496EA57829B95A0400F5581D /* UpsellSummaryView.swift */,
-				496EA57A29B9600400F5581D /* UpsellSummaryCell.swift */,
-				49C8A96029BECAF900ADFE55 /* UpsellsData.swift */,
+				49C8A96629BEF9A100ADFE55 /* Upsell */,
+				49C8A96429BEF99B00ADFE55 /* ReportCollectionViewCell.swift */,
+				49C8A96729BEFBB500ADFE55 /* ReportView.swift */,
+				49C8A96B29BF078900ADFE55 /* ReportCell.swift */,
+				49C8A96929BEFE0F00ADFE55 /* ReportData.swift */,
 			);
 			path = MoreInfo;
 			sourceTree = "<group>";
@@ -391,6 +400,17 @@
 				494162E5299AFC190086B608 /* CurrentPrice */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		49C8A96629BEF9A100ADFE55 /* Upsell */ = {
+			isa = PBXGroup;
+			children = (
+				496EA57629B955A500F5581D /* UpsellCollectionViewCell.swift */,
+				496EA57829B95A0400F5581D /* UpsellSummaryView.swift */,
+				496EA57A29B9600400F5581D /* UpsellSummaryCell.swift */,
+				49C8A96029BECAF900ADFE55 /* UpsellsData.swift */,
+			);
+			path = Upsell;
 			sourceTree = "<group>";
 		};
 		49CDEBE32988C27D00E456DF /* CustomViews */ = {
@@ -537,10 +557,12 @@
 				496EA57929B95A0400F5581D /* UpsellSummaryView.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
 				49DE3FF429A480650007EF2C /* MenuCollectionView.swift in Sources */,
+				49C8A96529BEF99B00ADFE55 /* ReportCollectionViewCell.swift in Sources */,
 				49DE3FF629A482840007EF2C /* MenuCollectionViewCell.swift in Sources */,
 				494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */,
 				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
 				495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */,
+				49C8A96829BEFBB500ADFE55 /* ReportView.swift in Sources */,
 				49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				496EA57B29B9600400F5581D /* UpsellSummaryCell.swift in Sources */,
@@ -560,12 +582,14 @@
 				4991C20A29B0524D00AB8DB5 /* RecommendationView.swift in Sources */,
 				4900939C298251C400548588 /* SocketIOManager.swift in Sources */,
 				490E6FE6298C9F040035470A /* StockTableViewCell.swift in Sources */,
+				49C8A96A29BEFE0F00ADFE55 /* ReportData.swift in Sources */,
 				4916E2A829A87C98008F9864 /* InformationTechnicalViewCell.swift in Sources */,
 				49A371C229949F0E00B28B73 /* PopupContentView.swift in Sources */,
 				49C8A96129BECAF900ADFE55 /* UpsellsData.swift in Sources */,
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				4958221E29B85FFE0049D29B /* SelectedButton.swift in Sources */,
 				4916E2A629A86331008F9864 /* InsightsResponseEntity.swift in Sources */,
+				49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */,

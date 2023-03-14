@@ -25,6 +25,11 @@ final class MoreInfoViewController: UIViewController {
             forCellWithReuseIdentifier: UpsellCollectionViewCell.identifier
         )
         
+        collectionView.register(
+            ReportCollectionViewCell.self,
+            forCellWithReuseIdentifier: ReportCollectionViewCell.identifier
+        )
+        
         collectionView.dataSource = self
         
         return collectionView
@@ -49,24 +54,41 @@ final class MoreInfoViewController: UIViewController {
 }
 
 extension MoreInfoViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 1
+        if section == 0 {
+            return 1
+        } else {
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: UpsellCollectionViewCell.identifier,
-            for: indexPath
-        ) as? UpsellCollectionViewCell else { return UICollectionViewCell() }
-        
-        if let insights = insights {
-            cell.setupCell(insights: insights)
+        if indexPath.section == 0 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: UpsellCollectionViewCell.identifier,
+                for: indexPath
+            ) as? UpsellCollectionViewCell else { return UICollectionViewCell() }
+            
+            if let insights = insights {
+                cell.setupCell(insights: insights)
+            }
+            
+            return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ReportCollectionViewCell.identifier,
+                for: indexPath
+            ) as? ReportCollectionViewCell else { return UICollectionViewCell() }
+            cell.setupCell()
+            return cell
         }
-        
-        return cell
     }
     
     
