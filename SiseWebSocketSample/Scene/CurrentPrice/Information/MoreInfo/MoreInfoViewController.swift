@@ -26,8 +26,8 @@ final class MoreInfoViewController: UIViewController {
         )
         
         collectionView.register(
-            ReportCollectionViewCell.self,
-            forCellWithReuseIdentifier: ReportCollectionViewCell.identifier
+            ReportCell.self,
+            forCellWithReuseIdentifier: ReportCell.identifier
         )
         
         collectionView.dataSource = self
@@ -65,7 +65,8 @@ extension MoreInfoViewController: UICollectionViewDataSource {
         if section == 0 {
             return 1
         } else {
-            return 1
+            guard let reports = insights?.result?.reports else { return 0}
+            return reports.count
         }
     }
     
@@ -83,9 +84,9 @@ extension MoreInfoViewController: UICollectionViewDataSource {
             return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ReportCollectionViewCell.identifier,
+                withReuseIdentifier: ReportCell.identifier,
                 for: indexPath
-            ) as? ReportCollectionViewCell else { return UICollectionViewCell() }
+            ) as? ReportCell else { return UICollectionViewCell() }
             cell.setupCell()
             return cell
         }
