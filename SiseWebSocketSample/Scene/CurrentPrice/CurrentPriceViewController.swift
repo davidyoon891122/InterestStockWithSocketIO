@@ -17,7 +17,7 @@ final class CurrentPriceViewController: UIViewController {
         currentPriceViewModel: viewModel
     )
     
-    private var code: CurrentPriceModel
+    private var stockModel: StockModel
     
     private let viewModel: CurrentPriceViewModelType = CurrentPriceViewModel()
     
@@ -25,8 +25,8 @@ final class CurrentPriceViewController: UIViewController {
     
     private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
     
-    init(code: CurrentPriceModel) {
-        self.code = code
+    init(stockModel: StockModel) {
+        self.stockModel = stockModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,12 +39,12 @@ final class CurrentPriceViewController: UIViewController {
         configureNavigation()
         setupViews()
         bindViewModel()
-        viewModel.inputs.fetchCurrentPrice(code: code.symbol)
+        viewModel.inputs.fetchCurrentPrice(code: stockModel.symbol)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.requestSise(code: self.code.symbol)
+        viewModel.inputs.requestSise(code: stockModel.symbol)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,7 +55,7 @@ final class CurrentPriceViewController: UIViewController {
 
 private extension CurrentPriceViewController {
     func configureNavigation() {
-        navigationItem.title = "\(code.stockName)"
+        navigationItem.title = "\(stockModel.name)"
         navigationController?.navigationItem.backButtonTitle = ""
     }
     

@@ -88,8 +88,8 @@ extension InterestViewController: UICollectionViewDataSource {
             for: indexPath
         ) as? CurrentPriceCollectionViewCell else { return UICollectionViewCell() }
         
-        let stock = interestStocks[indexPath.item]
-        cell.setupCell(stock: stock)
+        let currentPriceModel = interestStocks[indexPath.item]
+        cell.setupCell(currentPriceModel: currentPriceModel)
         
         return cell
     }
@@ -101,7 +101,7 @@ extension InterestViewController: UICollectionViewDelegateFlowLayout {
         didSelectItemAt indexPath: IndexPath
     ) {
         let code = interestStocks[indexPath.item]
-        let currentPriceVC = CurrentPriceViewController(code: code)
+        let currentPriceVC = CurrentPriceViewController(stockModel: StockModel(symbol: code.symbol, name: code.stockName))
         navigationController?.pushViewController(currentPriceVC, animated: true)
     }
 }
@@ -204,6 +204,15 @@ private extension InterestViewController {
                     })
                 popupViewController.modalPresentationStyle = .overFullScreen
                 self.present(popupViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.outputs.currentViewController
+            .subscribe(onNext: { [weak self] stockModel in
+                guard let self = self else { return }
+                let currentViewController = CurrentPriceViewController(stockModel: stockModel)
+                self.navigationController?.pushViewController(currentViewController, animated: true)
             })
             .disposed(by: disposeBag)
     }

@@ -15,6 +15,7 @@ protocol InterestViewModelInput {
     func openSearchViewController()
     func requestDisconnect()
     func fetchCurrentPrice(stocks: [InterestStockModel])
+    func openCurrentViewController(currentPriceModel: StockModel)
 }
 
 protocol InterestViewModelOutput {
@@ -24,6 +25,7 @@ protocol InterestViewModelOutput {
     var searchViewController: PublishSubject<UIViewController> { get }
     var interestList: PublishSubject<[StockModel]> { get }
     var errorCodePublishSubject: PublishSubject<Error> { get }
+    var currentViewController: PublishSubject<StockModel> { get }
 }
 
 protocol InterestViewModelType {
@@ -45,6 +47,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     var searchViewController: PublishSubject<UIViewController> = .init()
     var interestList: PublishSubject<[StockModel]> = .init()
     var errorCodePublishSubject: PublishSubject<Error> = .init()
+    var currentViewController: PublishSubject<StockModel> = .init()
     
     func fetchIntrestStockList() {
         repository.inputs.requestInterestList(userID: "davidyoon")
@@ -124,5 +127,9 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
                 print(error)
             }
         }
+    }
+    
+    func openCurrentViewController(currentPriceModel: StockModel) {
+        currentViewController.onNext(currentPriceModel)
     }
 }

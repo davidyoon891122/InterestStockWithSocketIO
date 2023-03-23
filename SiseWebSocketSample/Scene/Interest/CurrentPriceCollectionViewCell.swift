@@ -121,12 +121,12 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    func setupCell(stock: CurrentPriceModel) {
-        nameLabel.text = stock.stockName
-        priceLabel.text = "\(stock.currentPrice)"
-        prevLabel.text = "\(stock.prevPriceRate)"
-        rateLabel.text = "\(stock.percentChange)".percent
-        configureViewByUpAndDown(isUp: stock.isUp)
+    func setupCell(currentPriceModel: CurrentPriceModel) {
+        nameLabel.text = currentPriceModel.stockName
+        priceLabel.text = "\(currentPriceModel.currentPrice)"
+        prevLabel.text = "\(currentPriceModel.prevPriceRate)"
+        rateLabel.text = "\(currentPriceModel.percentChange)".percent
+        configureViewByUpAndDown(isUp: currentPriceModel.isUp)
         
         setupViews()
     }

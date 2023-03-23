@@ -22,7 +22,6 @@ final class SearchViewController: UIViewController {
     private lazy var searchCollectionView: UICollectionView = {
         let layout = createLayout()
         
-        
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -30,6 +29,7 @@ final class SearchViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.prefetchDataSource = self
+        collectionView.delegate = self
         
         collectionView.register(
             StockCollectionViewCell.self,
@@ -75,6 +75,23 @@ final class SearchViewController: UIViewController {
         viewModel.inputs.requestStocks(page: currentPage)
     }
 }
+
+extension SearchViewController: UICollectionViewDelegate {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        
+        let stockModel = stocks[indexPath.item]
+        
+        self.dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            self.interestViewModel.inputs.openCurrentViewController(currentPriceModel: stockModel)
+            
+        }
+    }
+}
+
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
