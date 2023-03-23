@@ -153,7 +153,7 @@ private extension MoreInfoViewController {
         }
         
         mainCollectionView.snp.makeConstraints {
-            $0.top.equalTo(draggableView.snp.bottom)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview()
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()

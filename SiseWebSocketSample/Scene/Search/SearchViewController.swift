@@ -195,6 +195,7 @@ private extension SearchViewController {
     func configureNavigation() {
         navigationItem.title = "Search".localized
         navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         let closeBarButton = UIBarButtonItem(
             image: UIImage(systemName: "xmark"),
