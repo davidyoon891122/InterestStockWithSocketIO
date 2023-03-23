@@ -10,8 +10,8 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class StockTableViewCell: UITableViewCell {
-    static let identifier = "StockTableViewCell"
+final class StockCollectionViewCell: UICollectionViewCell {
+    static let identifier = "StockCollectionViewCell"
     private lazy var codeLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .medium)
@@ -23,6 +23,7 @@ final class StockTableViewCell: UITableViewCell {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 15.0, weight: .bold)
+        label.numberOfLines = 3
         
         return label
     }()
@@ -67,13 +68,18 @@ final class StockTableViewCell: UITableViewCell {
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(codeLabel.snp.trailing).offset(offset)
-            $0.centerY.equalTo(addImageButton)
+            $0.top.equalToSuperview().offset(offset / 2)
+            $0.trailing.equalTo(addImageButton.snp.leading).offset(-offset)
+            $0.bottom.equalToSuperview().offset(-offset / 2)
         }
         
         addImageButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(offset / 2)
+            $0.centerY.equalTo(nameLabel)
+            $0.width.equalTo(30)
             $0.trailing.equalToSuperview()
         }
+        
+        addImageButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         separatorView.snp.makeConstraints {
             $0.top.equalTo(addImageButton.snp.bottom).offset(offset / 2)
@@ -89,15 +95,13 @@ final class StockTableViewCell: UITableViewCell {
     private var viewModel: SearchViewModelType?
     
     func setupCell(
-        code: String,
-        title: String,
-        isSelected: Bool?,
+        stock: StockModel,
         viewModel: SearchViewModelType
     ) {
         self.viewModel = viewModel
-        nameLabel.text = title
-        codeLabel.text = code
-        if let isSelected = isSelected {
+        nameLabel.text = stock.name
+        codeLabel.text = stock.symbol
+        if let isSelected = stock.isInterest {
             addImageButton.isSelected = isSelected
         } else {
             addImageButton.isSelected = false
@@ -111,7 +115,7 @@ final class StockTableViewCell: UITableViewCell {
     }
 }
 
-private extension StockTableViewCell {
+private extension StockCollectionViewCell {
     func setupViews() {
         [
             containerView

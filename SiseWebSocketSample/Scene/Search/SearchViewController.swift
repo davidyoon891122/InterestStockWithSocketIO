@@ -13,27 +13,27 @@ import RxCocoa
 final class SearchViewController: UIViewController {
     private lazy var presentTopView = PresentTopView(title: "종목 검색", buttonImage: "xmark")
     
-    private lazy var searchTableView: UITableView = {
-        let tableView = UITableView()
+    private lazy var searchCollectionView: UICollectionView = {
+        let layout = createLayout()
         
-        tableView.dataSource = self
-        tableView.delegate = self
         
-        tableView.register(
-            StockTableViewCell.self,
-            forCellReuseIdentifier: StockTableViewCell.identifier
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        collectionView.dataSource = self
+        
+        collectionView.register(
+            StockCollectionViewCell.self,
+            forCellWithReuseIdentifier: StockCollectionViewCell.identifier
         )
         
-        tableView.separatorStyle = .none
-        
-        return tableView
+        return collectionView
     }()
     
     private var disposeBag = DisposeBag()
     
     private var stocks: [StockModel] = [] {
         didSet {
-            self.searchTableView.reloadData()
+            self.searchCollectionView.reloadData()
         }
     }
     
@@ -64,36 +64,34 @@ final class SearchViewController: UIViewController {
     }
 }
 
-extension SearchViewController: UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
     ) -> Int {
-        return stocks.count
+        return 50
     }
     
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockTableViewCell.identifier, for: indexPath) as? StockTableViewCell else { return UITableViewCell() }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StockCollectionViewCell.identifier, for: indexPath) as? StockCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        let stock = stocks[indexPath.item]
         
-        let stockModel = stocks[indexPath.item]
+        cell.setupCell(stock: stock, viewModel: viewModel)
         
-        cell.setupCell(code: stockModel.symbol, title: stockModel.name, isSelected: stockModel.isInterest, viewModel: viewModel)
         return cell
     }
-}
-
-extension SearchViewController: UITableViewDelegate {
-    
 }
 
 private extension SearchViewController {
     func setupViews() {
         [
             presentTopView,
-            searchTableView
+            searchCollectionView
         ]
             .forEach {
                 view.addSubview($0)
@@ -106,7 +104,7 @@ private extension SearchViewController {
             $0.trailing.equalToSuperview()
         }
         
-        searchTableView.snp.makeConstraints {
+        searchCollectionView.snp.makeConstraints {
             $0.top.equalTo(presentTopView.snp.bottom)
             $0.leading.equalToSuperview().offset(offset)
             $0.trailing.equalToSuperview().offset(-offset)
@@ -133,5 +131,20 @@ private extension SearchViewController {
                 self.stocks = stockModels
             })
             .disposed(by: disposeBag)
+    }
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
+            
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0)))
+            
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0)), subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            
+            return section
+        })
+        
+        return layout
     }
 }
