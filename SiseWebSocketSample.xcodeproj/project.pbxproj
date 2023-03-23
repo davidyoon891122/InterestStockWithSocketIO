@@ -26,6 +26,7 @@
 		4916E2AD29A88F0D008F9864 /* TermView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916E2AC29A88F0D008F9864 /* TermView.swift */; };
 		49279C0E29AC565900DC3488 /* KeyTechnicalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */; };
 		49279C1029AC614B00DC3488 /* ValuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49279C0F29AC614B00DC3488 /* ValuationView.swift */; };
+		49291DA329C1598200DC6011 /* ReportHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49291DA229C1598200DC6011 /* ReportHeaderView.swift */; };
 		494162E4299AFBDA0086B608 /* TopInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E3299AFBDA0086B608 /* TopInfoView.swift */; };
 		494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */; };
 		494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */; };
@@ -100,6 +101,7 @@
 		4916E2AC29A88F0D008F9864 /* TermView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermView.swift; sourceTree = "<group>"; };
 		49279C0D29AC565900DC3488 /* KeyTechnicalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyTechnicalsView.swift; sourceTree = "<group>"; };
 		49279C0F29AC614B00DC3488 /* ValuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuationView.swift; sourceTree = "<group>"; };
+		49291DA229C1598200DC6011 /* ReportHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportHeaderView.swift; sourceTree = "<group>"; };
 		494162E3299AFBDA0086B608 /* TopInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopInfoView.swift; sourceTree = "<group>"; };
 		494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightFlowLayout.swift; sourceTree = "<group>"; };
 		494DE2EE2990CBAA0065BE1A /* InterestStockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestStockManager.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			children = (
 				496EA57329B94BE200F5581D /* MoreInfoViewController.swift */,
 				49C8A96629BEF9A100ADFE55 /* Upsell */,
+				49291DA229C1598200DC6011 /* ReportHeaderView.swift */,
 				49C8A96B29BF078900ADFE55 /* ReportCell.swift */,
 				49C8A96929BEFE0F00ADFE55 /* ReportData.swift */,
 			);
@@ -580,6 +583,7 @@
 				49C8A96129BECAF900ADFE55 /* UpsellsData.swift in Sources */,
 				49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */,
 				4958221E29B85FFE0049D29B /* SelectedButton.swift in Sources */,
+				49291DA329C1598200DC6011 /* ReportHeaderView.swift in Sources */,
 				4916E2A629A86331008F9864 /* InsightsResponseEntity.swift in Sources */,
 				49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,

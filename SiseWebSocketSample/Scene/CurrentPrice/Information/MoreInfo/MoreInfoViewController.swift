@@ -12,9 +12,7 @@ final class MoreInfoViewController: UIViewController {
     private let draggableView = DraggableView()
     
     private lazy var mainCollectionView: UICollectionView = {
-        let layout = DynamicFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-        
+        let layout = createLayout()
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout
@@ -26,11 +24,18 @@ final class MoreInfoViewController: UIViewController {
         )
         
         collectionView.register(
+            ReportHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ReportHeaderView.identifier
+        )
+        
+        collectionView.register(
             ReportCell.self,
             forCellWithReuseIdentifier: ReportCell.identifier
         )
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         
         return collectionView
     }()
@@ -53,6 +58,10 @@ final class MoreInfoViewController: UIViewController {
     }
 }
 
+extension MoreInfoViewController: UICollectionViewDelegateFlowLayout {
+
+}
+
 extension MoreInfoViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -70,7 +79,10 @@ extension MoreInfoViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: UpsellCollectionViewCell.identifier,
@@ -92,7 +104,21 @@ extension MoreInfoViewController: UICollectionViewDataSource {
         }
     }
     
-    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: ReportHeaderView.identifier,
+            for: indexPath
+        ) as? ReportHeaderView else { return UICollectionReusableView() }
+        
+        headerView.setupCell()
+        
+        return headerView
+    }
 }
 
 private extension MoreInfoViewController {
@@ -117,5 +143,44 @@ private extension MoreInfoViewController {
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
+    }
+    
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
+            
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(300.0)
+                )
+            )
+            
+            let group = NSCollectionLayoutGroup.vertical(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(300.0)
+                ),
+                subitems: [item]
+            )
+            
+            let section = NSCollectionLayoutSection(group: group)
+            if sectionIndex == 1 {
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .fractionalWidth(1.0),
+                        heightDimension: .estimated(50.0)
+                    ),
+                    elementKind: UICollectionView.elementKindSectionHeader,
+                    alignment: .top
+                )
+                
+                section.boundarySupplementaryItems = [sectionHeader]
+            }
+            
+            return section
+        })
+        
+        return layout
     }
 }
