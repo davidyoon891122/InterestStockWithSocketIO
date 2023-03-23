@@ -76,7 +76,10 @@ extension SearchViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StockCollectionViewCell.identifier, for: indexPath) as? StockCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: StockCollectionViewCell.identifier,
+            for: indexPath
+        ) as? StockCollectionViewCell else {
             return UICollectionViewCell()
         }
         let stock = stocks[indexPath.item]
@@ -136,9 +139,15 @@ private extension SearchViewController {
     func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
             
-            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0)))
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(100.0)
+            ))
             
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100.0)), subitems: [item])
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(100.0)
+            ), subitems: [item])
             
             let section = NSCollectionLayoutSection(group: group)
             
