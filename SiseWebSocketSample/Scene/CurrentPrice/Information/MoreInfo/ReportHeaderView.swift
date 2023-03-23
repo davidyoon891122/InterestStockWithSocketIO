@@ -21,10 +21,17 @@ final class ReportHeaderView: UICollectionReusableView {
         return label
     }()
     
+    private let separatorView = SeparatorView(
+        size: 0.5,
+        bgColor: .lightGray.withAlphaComponent(0.3),
+        direction: .horizontal
+    )
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         [
-            titleLabel
+            titleLabel,
+            separatorView
         ]
             .forEach {
                 view.addSubview($0)
@@ -32,10 +39,16 @@ final class ReportHeaderView: UICollectionReusableView {
         
         let offset: CGFloat = 16.0
         titleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(offset)
+            $0.top.equalToSuperview().offset(offset / 2)
             $0.leading.equalToSuperview().offset(offset)
-            $0.bottom.equalToSuperview().offset(-offset)
             $0.trailing.equalToSuperview().offset(-offset)
+        }
+        
+        separatorView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(offset / 2)
+            $0.leading.equalToSuperview().offset(offset)
+            $0.trailing.equalToSuperview().offset(-offset)
+            $0.bottom.equalToSuperview()
         }
         
         return view
@@ -43,16 +56,6 @@ final class ReportHeaderView: UICollectionReusableView {
     
     func setupCell() {
         setupViews()
-    }
-    
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-        layoutAttributes.frame.size = systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        return layoutAttributes
     }
 }
 

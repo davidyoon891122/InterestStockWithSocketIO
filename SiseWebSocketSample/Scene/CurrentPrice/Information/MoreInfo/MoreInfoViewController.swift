@@ -53,13 +53,21 @@ final class MoreInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        configureNavigation()
         setupViews()
     }
 }
 
 extension MoreInfoViewController: UICollectionViewDelegateFlowLayout {
-
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        if indexPath.section == 1 {
+            guard let report = insights?.result?.reports else { return }
+            
+        }
+    }
 }
 
 extension MoreInfoViewController: UICollectionViewDataSource {
@@ -99,7 +107,9 @@ extension MoreInfoViewController: UICollectionViewDataSource {
                 withReuseIdentifier: ReportCell.identifier,
                 for: indexPath
             ) as? ReportCell else { return UICollectionViewCell() }
-            cell.setupCell()
+            
+            guard let report = insights?.result?.reports[indexPath.item] else { return UICollectionViewCell() }
+            cell.setupCell(report: report)
             return cell
         }
     }
@@ -122,7 +132,12 @@ extension MoreInfoViewController: UICollectionViewDataSource {
 }
 
 private extension MoreInfoViewController {
+    func configureNavigation() {
+        navigationItem.title = "UpSell & Reports"
+    }
+    
     func setupViews() {
+        view.backgroundColor = .systemBackground
         [
             draggableView,
             mainCollectionView

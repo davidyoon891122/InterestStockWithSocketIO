@@ -50,7 +50,11 @@ final class ReportCell: UICollectionViewCell {
         return label
     }()
     
-    private let separatorView = SeparatorView(size: 1.0, bgColor: .gray.withAlphaComponent(0.3), direction: .horizontal)
+    private let separatorView = SeparatorView(
+        size: 0.5,
+        bgColor: .lightGray.withAlphaComponent(0.3),
+        direction: .horizontal
+    )
     
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -102,18 +106,11 @@ final class ReportCell: UICollectionViewCell {
         return view
     }()
     
-    func setupCell() {
+    func setupCell(report: Reports) {
+        dateLabel.text = report.reportDate
+        providerLabel.text = report.provider
+        titleLabel.text = report.reportTitle
         setupViews()
-    }
-    
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        return layoutAttributes
     }
 }
 

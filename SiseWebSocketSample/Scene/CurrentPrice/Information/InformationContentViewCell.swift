@@ -128,7 +128,7 @@ private extension InformationContentViewCell {
                 guard let self = self,
                       let currentVM = self.currentPriceViewModel
                 else { return }
-                currentVM.inputs.presentViewController(viewController: moreInfoVC)
+                currentVM.inputs.presentViewController(viewController: UINavigationController(rootViewController: moreInfoVC))
             })
             .disposed(by: disposeBag)
     }
