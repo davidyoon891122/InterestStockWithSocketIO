@@ -193,7 +193,7 @@ private extension SearchViewController {
     }
     
     func configureNavigation() {
-        navigationItem.title = "Search"
+        navigationItem.title = "Search".localized
         navigationItem.searchController = searchController
         
         let closeBarButton = UIBarButtonItem(

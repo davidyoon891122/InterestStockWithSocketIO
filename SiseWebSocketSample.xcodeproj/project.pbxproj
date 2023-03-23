@@ -73,6 +73,8 @@
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
 		49CDEBED2988EE5E00E456DF /* StockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEC2988EE5E00E456DF /* StockModel.swift */; };
 		49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEE2988F58D00E456DF /* MasterModel.swift */; };
+		49D31F1129CC33830068F79B /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D31F1029CC33830068F79B /* Extension+String.swift */; };
+		49D31F1429CC34460068F79B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49D31F1629CC34460068F79B /* Localizable.strings */; };
 		49DE3FF429A480650007EF2C /* MenuCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE3FF329A480650007EF2C /* MenuCollectionView.swift */; };
 		49DE3FF629A482840007EF2C /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DE3FF529A482840007EF2C /* MenuCollectionViewCell.swift */; };
 		49EB40F02993520C00BC108A /* InterestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EB40EF2993520C00BC108A /* InterestRepository.swift */; };
@@ -146,6 +148,9 @@
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
 		49CDEBEC2988EE5E00E456DF /* StockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockModel.swift; sourceTree = "<group>"; };
 		49CDEBEE2988F58D00E456DF /* MasterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterModel.swift; sourceTree = "<group>"; };
+		49D31F1029CC33830068F79B /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		49D31F1529CC34460068F79B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49D31F1729CC34520068F79B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		49DE3FF329A480650007EF2C /* MenuCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionView.swift; sourceTree = "<group>"; };
 		49DE3FF529A482840007EF2C /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		49EB40EF2993520C00BC108A /* InterestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestRepository.swift; sourceTree = "<group>"; };
@@ -216,6 +221,7 @@
 				490093922982143600548588 /* ViewModels */,
 				49CDEBEA2988ED7A00E456DF /* MasterParser.swift */,
 				494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */,
+				49D31F1029CC33830068F79B /* Extension+String.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 		49AF92FD2980F91D009F8A58 = {
 			isa = PBXGroup;
 			children = (
+				49D31F1629CC34460068F79B /* Localizable.strings */,
 				49AF93082980F91D009F8A58 /* SiseWebSocketSample */,
 				49AF93072980F91D009F8A58 /* Products */,
 			);
@@ -491,6 +498,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 49AF92FD2980F91D009F8A58;
 			packageReferences = (
@@ -515,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49AF93162980F920009F8A58 /* LaunchScreen.storyboard in Resources */,
+				49D31F1429CC34460068F79B /* Localizable.strings in Resources */,
 				49AF93132980F920009F8A58 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +542,7 @@
 				4953A63B29A5C38300CF3BE2 /* ContentCollectionViewCell.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
 				494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */,
+				49D31F1129CC33830068F79B /* Extension+String.swift in Sources */,
 				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49279C0E29AC565900DC3488 /* KeyTechnicalsView.swift in Sources */,
@@ -606,6 +616,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		49D31F1629CC34460068F79B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49D31F1529CC34460068F79B /* en */,
+				49D31F1729CC34520068F79B /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -613,6 +632,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -673,6 +693,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
