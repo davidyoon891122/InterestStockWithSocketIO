@@ -140,10 +140,13 @@ private extension StockCollectionViewCell {
                 self.addImageButton.isSelected = !self.addImageButton.isSelected
                 
                 let interestStock = InterestStockModel(code: self.codeLabel.text!)
-                if self.addImageButton.isSelected {
-                    viewModel.inputs.requestAddStockToList(stock: interestStock)
-                } else {
-                    viewModel.inputs.requestDeleteStockFromList(stock: interestStock)
+                
+                self.performScaleSmallerAnimation(targetView: self.addImageButton) { _ in
+                    if self.addImageButton.isSelected {
+                        viewModel.inputs.requestAddStockToList(stock: interestStock)
+                    } else {
+                        viewModel.inputs.requestDeleteStockFromList(stock: interestStock)
+                    }
                 }
             })
             .disposed(by: disposeBag)

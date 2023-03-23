@@ -68,6 +68,7 @@
 		49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96229BEEB8700ADFE55 /* DraggableView.swift */; };
 		49C8A96A29BEFE0F00ADFE55 /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96929BEFE0F00ADFE55 /* ReportData.swift */; };
 		49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96B29BF078900ADFE55 /* ReportCell.swift */; };
+		49CA4EE129CD130A00A14EEE /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
 		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
@@ -143,6 +144,7 @@
 		49C8A96229BEEB8700ADFE55 /* DraggableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableView.swift; sourceTree = "<group>"; };
 		49C8A96929BEFE0F00ADFE55 /* ReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportData.swift; sourceTree = "<group>"; };
 		49C8A96B29BF078900ADFE55 /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
+		49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				49CDEBEA2988ED7A00E456DF /* MasterParser.swift */,
 				494162E6299B03B60086B608 /* DynamicHeightFlowLayout.swift */,
 				49D31F1029CC33830068F79B /* Extension+String.swift */,
+				49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				4953A64029A5D6DF00CF3BE2 /* NewsContentCollectionViewCell.swift in Sources */,
 				49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */,
 				4916E2A429A845FC008F9864 /* InformationContentViewCellViewModel.swift in Sources */,
+				49CA4EE129CD130A00A14EEE /* Extension+UIView.swift in Sources */,
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
 				49FE94892992341B0081544C /* InterestStockModel.swift in Sources */,
 				49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */,
