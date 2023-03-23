@@ -11,7 +11,12 @@ import RxSwift
 import RxCocoa
 
 final class SearchViewController: UIViewController {
-    private lazy var presentTopView = PresentTopView(title: "종목 검색", buttonImage: "xmark")
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        
+        return searchController
+    }()
     
     private lazy var searchCollectionView: UICollectionView = {
         let layout = createLayout()
@@ -61,12 +66,19 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupViews()
         bindViewModel()
-        bindUI()
+        configureNavigation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.inputs.requestStocks(page: currentPage)
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let word = searchController.searchBar.text else { return }
+        print(word)
     }
 }
 
@@ -88,13 +100,9 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
             
             currentPage += 1
             viewModel.inputs.requestStocks(page: currentPage)
-            
         }
     }
-    
-    
 }
-
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(
@@ -125,7 +133,6 @@ extension SearchViewController: UICollectionViewDataSource {
 private extension SearchViewController {
     func setupViews() {
         [
-            presentTopView,
             searchCollectionView
         ]
             .forEach {
@@ -133,30 +140,12 @@ private extension SearchViewController {
             }
         
         let offset: CGFloat = 16.0
-        presentTopView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalToSuperview()
-            $0.trailing.equalToSuperview()
-        }
-        
         searchCollectionView.snp.makeConstraints {
-            $0.top.equalTo(presentTopView.snp.bottom)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.equalToSuperview().offset(offset)
             $0.trailing.equalToSuperview().offset(-offset)
             $0.bottom.equalToSuperview()
         }
-    }
-    
-    func bindUI() {
-        presentTopView.buttonTap
-            .asDriver()
-            .drive(onNext: { [weak self] in
-                guard let self = self else { return }
-                self.dismiss(animated: true) {
-                    self.interestViewModel.inputs.fetchIntrestStockList()
-                }
-            })
-            .disposed(by: disposeBag)
     }
     
     func bindViewModel() {
@@ -187,5 +176,25 @@ private extension SearchViewController {
         })
         
         return layout
+    }
+    
+    func configureNavigation() {
+        navigationItem.title = "Search"
+        navigationItem.searchController = searchController
+        
+        let closeBarButton = UIBarButtonItem(
+            image: UIImage(systemName: "xmark"),
+            style: .done,
+            target: self,
+            action: #selector(didTapCloseBarButton)
+        )
+        navigationItem.leftBarButtonItem = closeBarButton
+    }
+    
+    @objc
+    func didTapCloseBarButton() {
+        self.dismiss(animated: true) {
+            self.interestViewModel.inputs.fetchIntrestStockList()
+        }
     }
 }

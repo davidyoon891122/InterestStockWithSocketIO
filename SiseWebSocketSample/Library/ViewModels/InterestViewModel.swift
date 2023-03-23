@@ -98,7 +98,7 @@ final class InterestViewModel: InterestViewModelType, InterestViewModelInput, In
     }
     
     func openSearchViewController() {
-        let searchViewController = SearchViewController(viewModel: self)
+        let searchViewController = UINavigationController(rootViewController: SearchViewController(viewModel: self))
         searchViewController.modalPresentationStyle = .fullScreen
         
         outputs.searchViewController.onNext(searchViewController)
