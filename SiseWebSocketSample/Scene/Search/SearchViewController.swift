@@ -14,6 +14,7 @@ final class SearchViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         
         return searchController
     }()
@@ -75,10 +76,22 @@ final class SearchViewController: UIViewController {
     }
 }
 
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        currentPage = 0
+        
+        viewModel.inputs.requestStocks(page: currentPage)
+    }
+}
+
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let word = searchController.searchBar.text else { return }
         print(word)
+        if !word.isEmpty {
+            currentPage = 0
+            viewModel.inputs.requestMatchedStock(keyword: word, page: currentPage)
+        }
     }
 }
 
@@ -150,6 +163,7 @@ private extension SearchViewController {
     
     func bindViewModel() {
         viewModel.outputs.stockModels
+            .debug("stockModels")
             .subscribe(onNext: { [weak self] stockModels in
                 guard let self = self else { return }
                 self.stocks = stockModels

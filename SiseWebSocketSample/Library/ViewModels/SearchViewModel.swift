@@ -12,6 +12,7 @@ protocol SearchViewModelInput {
     func requestStocks(page: Int)
     func requestAddStockToList(stock: InterestStockModel)
     func requestDeleteStockFromList(stock: InterestStockModel)
+    func requestMatchedStock(keyword: String, page: Int)
 }
 
 protocol SearchViewModelOutput {
@@ -69,5 +70,23 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
     func requestDeleteStockFromList(stock: InterestStockModel) {
         InterestStockManager.shared.removeInterestStock(stockModel: stock)
         repository.inputs.fetchDeletingInterestCode(userId: "davidyoon", code: stock.code)
+    }
+    
+    func requestMatchedStock(keyword: String, page: Int) {
+        let filteredStocks = self.stocks.filter {
+            $0.name.contains(keyword)
+        }
+        
+        
+        let startPage = itemsPerPage * page
+        print("\(startPage)...\(startPage + itemsPerPage)")
+        
+        if filteredStocks.count > 100 {
+            self.currnetPageModel = Array(filteredStocks[startPage...startPage + itemsPerPage])
+        } else {
+            self.currnetPageModel = filteredStocks
+        }
+        
+        stockModels.onNext(currnetPageModel)
     }
 }
