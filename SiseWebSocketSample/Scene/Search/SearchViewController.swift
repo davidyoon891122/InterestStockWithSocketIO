@@ -17,9 +17,13 @@ final class SearchViewController: UIViewController {
         let layout = createLayout()
         
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
         
         collectionView.dataSource = self
+        collectionView.prefetchDataSource = self
         
         collectionView.register(
             StockCollectionViewCell.self,
@@ -36,6 +40,8 @@ final class SearchViewController: UIViewController {
             self.searchCollectionView.reloadData()
         }
     }
+    
+    private var currentPage = 0
     
     private let viewModel: SearchViewModelType = SearchViewModel()
     
@@ -60,16 +66,42 @@ final class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.inputs.requestStocks()
+        viewModel.inputs.requestStocks(page: currentPage)
     }
 }
+
+extension SearchViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        prefetchItemsAt indexPaths: [IndexPath]
+    ) {
+        for indexPath in indexPaths {
+            let currentRow = indexPath.row
+            let itemsPerPage = 100
+            let expectedRowModules = itemsPerPage - 20
+            let currentPageForExpectedRow = expectedRowModules / itemsPerPage
+            
+            guard currentRow % itemsPerPage == expectedRowModules,
+                  currentRow / itemsPerPage == currentPageForExpectedRow + currentPage else {
+                continue
+            }
+            
+            currentPage += 1
+            viewModel.inputs.requestStocks(page: currentPage)
+            
+        }
+    }
+    
+    
+}
+
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 50
+        return stocks.count
     }
     
     func collectionView(

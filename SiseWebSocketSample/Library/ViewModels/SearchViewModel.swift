@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol SearchViewModelInput {
-    func requestStocks()
+    func requestStocks(page: Int)
     func requestAddStockToList(stock: InterestStockModel)
     func requestDeleteStockFromList(stock: InterestStockModel)
 }
@@ -34,7 +34,12 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
     
     var stockModels: PublishSubject<[StockModel]> = .init()
     
-    func requestStocks() {
+    var currnetPageModel: [StockModel] = []
+    
+    private let itemsPerPage = 100
+    var pageCount = 0
+    
+    func requestStocks(page: Int) {
         let interestStocks = InterestStockManager.shared.getInterestStocks()
         var stocks = MasterParser.overseaStocks
     
@@ -44,9 +49,16 @@ final class SearchViewModel: SearchViewModelType, SearchViewModelInput, SearchVi
             }
         }
         
-        stockModels.onNext(stocks.map {
+        self.stocks = stocks.map {
             $0.value
-        })
+        }.sorted { $0.name < $1.name }
+        let startPage = itemsPerPage * page
+        
+        print("\(startPage)...\(startPage + itemsPerPage)")
+        
+        self.currnetPageModel += Array(self.stocks[startPage...startPage + itemsPerPage])
+        
+        stockModels.onNext(currnetPageModel)
     }
     
     func requestAddStockToList(stock: InterestStockModel) {
