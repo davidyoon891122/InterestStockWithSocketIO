@@ -18,7 +18,6 @@ final class InformationContentViewCell: UICollectionViewCell {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         
-        
         let collectionView = UICollectionView(
             frame: .zero,
             collectionViewLayout: layout

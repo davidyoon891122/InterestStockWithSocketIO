@@ -34,6 +34,11 @@ final class ContentCollectionView: UIView {
         )
         
         collectionView.register(
+            OrderPaperContentViewCell.self,
+            forCellWithReuseIdentifier: OrderPaperContentViewCell.identifier
+        )
+        
+        collectionView.register(
             NewsContentViewCell.self,
             forCellWithReuseIdentifier: NewsContentViewCell.identifier
         )
@@ -99,6 +104,14 @@ extension ContentCollectionView: UICollectionViewDataSource {
             cell.setupCell(currentViewModel: currentPriceViewModel)
             return cell
             
+        } else if indexPath.item == 1 {
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: OrderPaperContentViewCell.identifier,
+                for: indexPath
+            ) as? OrderPaperContentViewCell else { return UICollectionViewCell() }
+            cell.setupCell()
+            
+            return cell
         } else if indexPath.item == 4 {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: NewsContentViewCell.identifier,

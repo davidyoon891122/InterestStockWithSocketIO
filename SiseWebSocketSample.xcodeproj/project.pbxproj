@@ -70,6 +70,11 @@
 		49CA4EE129CD130A00A14EEE /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */; };
 		49CA4EE329CD318400A14EEE /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE229CD318400A14EEE /* MainTabbarController.swift */; };
 		49CA4EE529CD318E00A14EEE /* MainTarbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */; };
+		49CA4EEA29CD5D5F00A14EEE /* OrderPaperContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE929CD5D5F00A14EEE /* OrderPaperContentViewCell.swift */; };
+		49CA4EED29CD67C100A14EEE /* AskVolumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EEC29CD67C100A14EEE /* AskVolumnCell.swift */; };
+		49CA4EEF29CD69FA00A14EEE /* AskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EEE29CD69FA00A14EEE /* AskCell.swift */; };
+		49CA4EF229CD6F5500A14EEE /* MatchVolumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EF129CD6F5500A14EEE /* MatchVolumnCell.swift */; };
+		49CA4EF429CD733300A14EEE /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EF329CD733300A14EEE /* MatchCell.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
 		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
@@ -147,6 +152,11 @@
 		49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		49CA4EE229CD318400A14EEE /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTarbarItem.swift; sourceTree = "<group>"; };
+		49CA4EE929CD5D5F00A14EEE /* OrderPaperContentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPaperContentViewCell.swift; sourceTree = "<group>"; };
+		49CA4EEC29CD67C100A14EEE /* AskVolumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskVolumnCell.swift; sourceTree = "<group>"; };
+		49CA4EEE29CD69FA00A14EEE /* AskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCell.swift; sourceTree = "<group>"; };
+		49CA4EF129CD6F5500A14EEE /* MatchVolumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchVolumnCell.swift; sourceTree = "<group>"; };
+		49CA4EF329CD733300A14EEE /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
@@ -318,6 +328,7 @@
 				4953A63A29A5C38300CF3BE2 /* ContentCollectionViewCell.swift */,
 				4953A64529A5ECFE00CF3BE2 /* Information */,
 				4953A63E29A5D62500CF3BE2 /* News */,
+				49CA4EEB29CD678700A14EEE /* OrderPaper */,
 			);
 			path = CurrentPrice;
 			sourceTree = "<group>";
@@ -428,6 +439,26 @@
 				49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */,
 			);
 			path = MainTabbar;
+			sourceTree = "<group>";
+		};
+		49CA4EEB29CD678700A14EEE /* OrderPaper */ = {
+			isa = PBXGroup;
+			children = (
+				49CA4EE929CD5D5F00A14EEE /* OrderPaperContentViewCell.swift */,
+				49CA4EF029CD6F1700A14EEE /* AskVolumn */,
+				49CA4EF129CD6F5500A14EEE /* MatchVolumnCell.swift */,
+				49CA4EF329CD733300A14EEE /* MatchCell.swift */,
+			);
+			path = OrderPaper;
+			sourceTree = "<group>";
+		};
+		49CA4EF029CD6F1700A14EEE /* AskVolumn */ = {
+			isa = PBXGroup;
+			children = (
+				49CA4EEC29CD67C100A14EEE /* AskVolumnCell.swift */,
+				49CA4EEE29CD69FA00A14EEE /* AskCell.swift */,
+			);
+			path = AskVolumn;
 			sourceTree = "<group>";
 		};
 		49CDEBE32988C27D00E456DF /* CustomViews */ = {
@@ -556,7 +587,9 @@
 				4953A63B29A5C38300CF3BE2 /* ContentCollectionViewCell.swift in Sources */,
 				4900938829820BF000548588 /* Constants.swift in Sources */,
 				494162E7299B03B60086B608 /* DynamicHeightFlowLayout.swift in Sources */,
+				49CA4EEF29CD69FA00A14EEE /* AskCell.swift in Sources */,
 				49D31F1129CC33830068F79B /* Extension+String.swift in Sources */,
+				49CA4EF229CD6F5500A14EEE /* MatchVolumnCell.swift in Sources */,
 				49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */,
 				490093972982187A00548588 /* CurrentPriceModel.swift in Sources */,
 				49279C0E29AC565900DC3488 /* KeyTechnicalsView.swift in Sources */,
@@ -580,11 +613,13 @@
 				496EA57929B95A0400F5581D /* UpsellSummaryView.swift in Sources */,
 				49AF9335298113B5009F8A58 /* Service.swift in Sources */,
 				49DE3FF429A480650007EF2C /* MenuCollectionView.swift in Sources */,
+				49CA4EF429CD733300A14EEE /* MatchCell.swift in Sources */,
 				49DE3FF629A482840007EF2C /* MenuCollectionViewCell.swift in Sources */,
 				494DE2EF2990CBAA0065BE1A /* InterestStockManager.swift in Sources */,
 				490E6FE2298C84500035470A /* PresentTopView.swift in Sources */,
 				495DD8E9299A1F1200FD185E /* CurrentPriceViewModel.swift in Sources */,
 				49C8A96329BEEB8700ADFE55 /* DraggableView.swift in Sources */,
+				49CA4EED29CD67C100A14EEE /* AskVolumnCell.swift in Sources */,
 				49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */,
 				496EA57B29B9600400F5581D /* UpsellSummaryCell.swift in Sources */,
 				49CDEBEF2988F58D00E456DF /* MasterModel.swift in Sources */,
@@ -613,6 +648,7 @@
 				4916E2A629A86331008F9864 /* InsightsResponseEntity.swift in Sources */,
 				49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */,
 				490093842981FD8600548588 /* StockRepository.swift in Sources */,
+				49CA4EEA29CD5D5F00A14EEE /* OrderPaperContentViewCell.swift in Sources */,
 				49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */,
 				49EB40F2299353B700BC108A /* CommonResponseModel.swift in Sources */,
 				49AF932729810CB4009F8A58 /* DynamicFlowLayout.swift in Sources */,
