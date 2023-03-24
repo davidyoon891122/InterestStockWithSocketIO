@@ -450,9 +450,9 @@
 		49CDEBE42988C29C00E456DF /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
-				494162E5299AFC190086B608 /* CurrentPrice */,
 				49AF930D2980F91D009F8A58 /* WatchlistViewController.swift */,
 				49AF93202980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift */,
+				494162E5299AFC190086B608 /* CurrentPrice */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";

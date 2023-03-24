@@ -33,28 +33,28 @@ enum MainTabbarItem: CaseIterable {
         switch self {
         case .watchlist:
             return (
-                UIImage(systemName: ""),
-                UIImage(systemName: "")
+                UIImage(systemName: "star"),
+                UIImage(systemName: "star.fill")
             )
         case .chart:
             return (
-                UIImage(systemName: ""),
-                UIImage(systemName: "")
+                UIImage(systemName: "chart.line.uptrend.xyaxis.circle"),
+                UIImage(systemName: "chart.line.uptrend.xyaxis.circle.fill")
             )
         case .Ideas:
             return (
-                UIImage(systemName: ""),
-                UIImage(systemName: "")
+                UIImage(systemName: "bubble.left.and.bubble.right"),
+                UIImage(systemName: "bubble.left.and.bubble.right.fill")
             )
         case .news:
             return (
-                UIImage(systemName: ""),
-                UIImage(systemName: "")
+                UIImage(systemName: "newspaper"),
+                UIImage(systemName: "newspaper.fill")
             )
         case .settings:
             return (
-                UIImage(systemName: ""),
-                UIImage(systemName: "")
+                UIImage(systemName: "gearshape"),
+                UIImage(systemName: "gearshape.fill")
             )
         }
     }
