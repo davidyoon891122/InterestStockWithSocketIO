@@ -52,7 +52,7 @@
 		49A5850A298B46320070D8CC /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A58509298B46320070D8CC /* RootViewModel.swift */; };
 		49AF930A2980F91D009F8A58 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF93092980F91D009F8A58 /* AppDelegate.swift */; };
 		49AF930C2980F91D009F8A58 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930B2980F91D009F8A58 /* SceneDelegate.swift */; };
-		49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* InterestViewController.swift */; };
+		49AF930E2980F91D009F8A58 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AF930D2980F91D009F8A58 /* WatchlistViewController.swift */; };
 		49AF93132980F920009F8A58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49AF93122980F920009F8A58 /* Assets.xcassets */; };
 		49AF93162980F920009F8A58 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AF93142980F920009F8A58 /* LaunchScreen.storyboard */; };
 		49AF931F2980FA06009F8A58 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 49AF931E2980FA06009F8A58 /* SnapKit */; };
@@ -69,6 +69,8 @@
 		49C8A96A29BEFE0F00ADFE55 /* ReportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96929BEFE0F00ADFE55 /* ReportData.swift */; };
 		49C8A96C29BF078900ADFE55 /* ReportCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8A96B29BF078900ADFE55 /* ReportCell.swift */; };
 		49CA4EE129CD130A00A14EEE /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */; };
+		49CA4EE329CD318400A14EEE /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE229CD318400A14EEE /* MainTabbarController.swift */; };
+		49CA4EE529CD318E00A14EEE /* MainTarbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */; };
 		49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */; };
 		49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBE82988E4E100E456DF /* UpdateRepository.swift */; };
 		49CDEBEB2988ED7A00E456DF /* MasterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CDEBEA2988ED7A00E456DF /* MasterParser.swift */; };
@@ -131,7 +133,7 @@
 		49AF93062980F91D009F8A58 /* SiseWebSocketSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SiseWebSocketSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49AF93092980F91D009F8A58 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49AF930B2980F91D009F8A58 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		49AF930D2980F91D009F8A58 /* InterestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestViewController.swift; sourceTree = "<group>"; };
+		49AF930D2980F91D009F8A58 /* WatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
 		49AF93122980F920009F8A58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49AF93152980F920009F8A58 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		49AF93172980F920009F8A58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -145,6 +147,8 @@
 		49C8A96929BEFE0F00ADFE55 /* ReportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportData.swift; sourceTree = "<group>"; };
 		49C8A96B29BF078900ADFE55 /* ReportCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCell.swift; sourceTree = "<group>"; };
 		49CA4EE029CD130A00A14EEE /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		49CA4EE229CD318400A14EEE /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTarbarItem.swift; sourceTree = "<group>"; };
 		49CDEBE62988C2EA00E456DF /* UpdateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewModel.swift; sourceTree = "<group>"; };
 		49CDEBE82988E4E100E456DF /* UpdateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRepository.swift; sourceTree = "<group>"; };
 		49CDEBEA2988ED7A00E456DF /* MasterParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterParser.swift; sourceTree = "<group>"; };
@@ -405,6 +409,8 @@
 				490E6FE0298C84380035470A /* Root */,
 				490E6FDF298C84310035470A /* Search */,
 				494162E5299AFC190086B608 /* CurrentPrice */,
+				49CA4EE229CD318400A14EEE /* MainTabbarController.swift */,
+				49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -437,7 +443,7 @@
 		49CDEBE42988C29C00E456DF /* Interest */ = {
 			isa = PBXGroup;
 			children = (
-				49AF930D2980F91D009F8A58 /* InterestViewController.swift */,
+				49AF930D2980F91D009F8A58 /* WatchlistViewController.swift */,
 				49AF93202980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift */,
 			);
 			path = Interest;
@@ -554,7 +560,8 @@
 				49CDEBE72988C2EA00E456DF /* UpdateViewModel.swift in Sources */,
 				49CDEBE92988E4E100E456DF /* UpdateRepository.swift in Sources */,
 				4953A64029A5D6DF00CF3BE2 /* NewsContentCollectionViewCell.swift in Sources */,
-				49AF930E2980F91D009F8A58 /* InterestViewController.swift in Sources */,
+				49AF930E2980F91D009F8A58 /* WatchlistViewController.swift in Sources */,
+				49CA4EE529CD318E00A14EEE /* MainTarbarItem.swift in Sources */,
 				4916E2A429A845FC008F9864 /* InformationContentViewCellViewModel.swift in Sources */,
 				49CA4EE129CD130A00A14EEE /* Extension+UIView.swift in Sources */,
 				49AF932529810974009F8A58 /* SeparatorView.swift in Sources */,
@@ -582,6 +589,7 @@
 				4916E2AA29A88145008F9864 /* TitleValueLabelView.swift in Sources */,
 				490093862982066700548588 /* URLInfo.swift in Sources */,
 				49A58508298B45510070D8CC /* RootViewController.swift in Sources */,
+				49CA4EE329CD318400A14EEE /* MainTabbarController.swift in Sources */,
 				49A371C42994A94E00B28B73 /* PopupViewController.swift in Sources */,
 				4900939E298264B700548588 /* SiseModel.swift in Sources */,
 				49EB40F4299354D900BC108A /* InterestAddResponseModel.swift in Sources */,

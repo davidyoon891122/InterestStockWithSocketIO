@@ -38,7 +38,7 @@ final class RootViewModel: RootViewModelType, RootViewModelInput, RootViewModelO
     
     
     func presentInterestViewController() {
-        let interestViewController = InterestViewController(rootViewModel: self)
+        let interestViewController = WatchlistViewController()
         outputs.interestViewController.onNext(interestViewController)
     }
     

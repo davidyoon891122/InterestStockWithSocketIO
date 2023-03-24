@@ -1,5 +1,5 @@
 //
-//  InterestViewController.swift
+//  WatchlistViewController.swift
 //  SiseWebSocketSample
 //
 //  Created by jiwon Yoon on 2023/01/25.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class InterestViewController: UIViewController {
+class WatchlistViewController: UIViewController {
     private lazy var currentPriceCollectionView: UICollectionView = {
         let layout = DynamicFlowLayout()
         layout.estimatedItemSize = CGSize(
@@ -40,17 +40,6 @@ class InterestViewController: UIViewController {
     
     private var interestStocks: [CurrentPriceModel] = []
     
-    private var rootViewModel: RootViewModelType
-    
-    init(rootViewModel: RootViewModelType) {
-        self.rootViewModel = rootViewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPurple
@@ -71,7 +60,7 @@ class InterestViewController: UIViewController {
     }
 }
 
-extension InterestViewController: UICollectionViewDataSource {
+extension WatchlistViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -95,7 +84,7 @@ extension InterestViewController: UICollectionViewDataSource {
     }
 }
 
-extension InterestViewController: UICollectionViewDelegateFlowLayout {
+extension WatchlistViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
@@ -112,7 +101,7 @@ extension InterestViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-private extension InterestViewController {
+private extension WatchlistViewController {
     func setupViews() {
         view.backgroundColor = .systemBackground
         [
@@ -124,7 +113,8 @@ private extension InterestViewController {
         
         currentPriceCollectionView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     

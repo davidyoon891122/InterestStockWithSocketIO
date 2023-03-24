@@ -59,9 +59,9 @@ private extension RootViewController {
         viewModel.outputs.interestViewController
             .subscribe(onNext: { [weak self] interestVC in
                 guard let self = self else { return }
-                let interestNavigationVC = UINavigationController(rootViewController: interestVC)
-                interestNavigationVC.modalPresentationStyle = .fullScreen
-                self.present(interestNavigationVC, animated: false)
+                let mainTabbarController = MainTabbarController()
+                mainTabbarController.modalPresentationStyle = .fullScreen
+                self.present(mainTabbarController, animated: false)
             })
             .disposed(by: disposeBag)
     }
