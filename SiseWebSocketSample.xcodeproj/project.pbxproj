@@ -404,7 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				49CDEBE32988C27D00E456DF /* CustomViews */,
-				49CDEBE42988C29C00E456DF /* Interest */,
+				49CDEBE42988C29C00E456DF /* Watchlist */,
 				49CDEBE52988C2B700E456DF /* Update */,
 				490E6FE0298C84380035470A /* Root */,
 				490E6FDF298C84310035470A /* Search */,
@@ -440,13 +440,13 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		49CDEBE42988C29C00E456DF /* Interest */ = {
+		49CDEBE42988C29C00E456DF /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
 				49AF930D2980F91D009F8A58 /* WatchlistViewController.swift */,
 				49AF93202980FB0C009F8A58 /* CurrentPriceCollectionViewCell.swift */,
 			);
-			path = Interest;
+			path = Watchlist;
 			sourceTree = "<group>";
 		};
 		49CDEBE52988C2B700E456DF /* Update */ = {
