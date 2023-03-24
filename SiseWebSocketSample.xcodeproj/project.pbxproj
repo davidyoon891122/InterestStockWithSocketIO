@@ -409,8 +409,7 @@
 				490E6FE0298C84380035470A /* Root */,
 				490E6FDF298C84310035470A /* Search */,
 				494162E5299AFC190086B608 /* CurrentPrice */,
-				49CA4EE229CD318400A14EEE /* MainTabbarController.swift */,
-				49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */,
+				49CA4EE629CD37E700A14EEE /* MainTabbar */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -424,6 +423,15 @@
 				49C8A96029BECAF900ADFE55 /* UpsellsData.swift */,
 			);
 			path = Upsell;
+			sourceTree = "<group>";
+		};
+		49CA4EE629CD37E700A14EEE /* MainTabbar */ = {
+			isa = PBXGroup;
+			children = (
+				49CA4EE229CD318400A14EEE /* MainTabbarController.swift */,
+				49CA4EE429CD318E00A14EEE /* MainTarbarItem.swift */,
+			);
+			path = MainTabbar;
 			sourceTree = "<group>";
 		};
 		49CDEBE32988C27D00E456DF /* CustomViews */ = {
