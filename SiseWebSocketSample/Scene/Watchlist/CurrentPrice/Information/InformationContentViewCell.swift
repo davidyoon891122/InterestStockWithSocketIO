@@ -31,11 +31,6 @@ final class InformationContentViewCell: UICollectionViewCell {
             forCellWithReuseIdentifier: InformationTechnicalViewCell.identifier
         )
         
-        collectionView.register(
-            InformationCollectionViewCell.self,
-            forCellWithReuseIdentifier: InformationCollectionViewCell.identifier
-        )
-        
         return collectionView
     }()
     
@@ -57,7 +52,7 @@ final class InformationContentViewCell: UICollectionViewCell {
 
 extension InformationContentViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return 1
     }
     
     func collectionView(
@@ -82,14 +77,6 @@ extension InformationContentViewCell: UICollectionViewDataSource {
             ) as? InformationTechnicalViewCell else { return UICollectionViewCell() }
             
             cell.setupCell(viewModel: viewModel, insight: insightResponseEntity)
-            return cell
-        } else if indexPath.section == 1 {
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: InformationCollectionViewCell.identifier,
-                for: indexPath
-            ) as? InformationCollectionViewCell else { return UICollectionViewCell() }
-            
-            cell.setupCell()
             return cell
         } else {
             return UICollectionViewCell()
