@@ -83,11 +83,11 @@ extension SearchViewController: UICollectionViewDelegate {
     ) {
         
         let stockModel = stocks[indexPath.item]
-        
+    
+        self.dismiss(animated: true)
         self.dismiss(animated: true) { [weak self] in
             guard let self = self else { return }
             self.interestViewModel.inputs.openCurrentViewController(currentPriceModel: stockModel)
-            
         }
     }
 }
