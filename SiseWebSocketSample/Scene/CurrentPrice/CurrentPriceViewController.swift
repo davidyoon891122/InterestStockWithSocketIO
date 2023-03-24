@@ -23,7 +23,13 @@ final class CurrentPriceViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
     
-    private let menus = ["Information", "AskingPrice", "Chart", "Conclusion", "News"]
+    private let menus = [
+        "Information".localized,
+        "AskingPrice".localized,
+        "Chart".localized,
+        "Conclusion".localized,
+        "News".localized
+    ]
     
     init(stockModel: StockModel) {
         self.stockModel = stockModel

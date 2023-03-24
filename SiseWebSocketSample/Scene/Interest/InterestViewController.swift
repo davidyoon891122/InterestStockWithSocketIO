@@ -101,7 +101,12 @@ extension InterestViewController: UICollectionViewDelegateFlowLayout {
         didSelectItemAt indexPath: IndexPath
     ) {
         let code = interestStocks[indexPath.item]
-        let currentPriceVC = CurrentPriceViewController(stockModel: StockModel(symbol: code.symbol, name: code.stockName))
+        let currentPriceVC = CurrentPriceViewController(
+            stockModel: StockModel(
+                symbol: code.symbol,
+                name: code.stockName
+            )
+        )
         navigationController?.pushViewController(currentPriceVC, animated: true)
     }
 }
@@ -124,7 +129,7 @@ private extension InterestViewController {
     }
     
     func configureNavigation() {
-        navigationItem.title = "Items of Interest"
+        navigationItem.title = "Items of Interest".localized
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "magnifyingglass"),
@@ -174,10 +179,10 @@ private extension InterestViewController {
             .subscribe(onNext: { [weak self] error in
                 guard let self = self else { return }
                 let popupViewController = PopupViewController(
-                    title: "Error",
+                    title: "Error".localized,
                     content: error.localizedDescription,
                     leftButtonTitle: nil,
-                    rightButtonTitle: "Confirm",
+                    rightButtonTitle: "Confirm".localized,
                     leftAction: {
                         self.dismiss(animated: true)
                     }, rightAction: {
@@ -193,10 +198,10 @@ private extension InterestViewController {
             .subscribe(onNext: { [weak self] errorString in
                 guard let self = self else { return }
                 let popupViewController = PopupViewController(
-                    title: "Error",
+                    title: "Error".localized,
                     content: errorString,
                     leftButtonTitle: nil,
-                    rightButtonTitle: "Confirm",
+                    rightButtonTitle: "Confirm".localized,
                     leftAction: {
                         self.dismiss(animated: true)
                     }, rightAction: {
