@@ -44,6 +44,7 @@ final class MatchVolumnCell: UICollectionViewCell {
         )
         
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = false
         
         return collectionView
     }()

@@ -11,7 +11,7 @@ import SnapKit
 final class OrderPaperContentViewCell: UICollectionViewCell {
     static let identifier = "OrderPaperContentViewCell"
     
-    private lazy var orderPaperCollectionView: UICollectionView = {
+    private lazy var orderPaperTopCollectionView: UICollectionView = {
         let layout = createLayout()
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -19,6 +19,11 @@ final class OrderPaperContentViewCell: UICollectionViewCell {
         collectionView.register(
             AskVolumnCell.self,
             forCellWithReuseIdentifier: AskVolumnCell.identifier
+        )
+        
+        collectionView.register(
+            AskPriceContainerCell.self,
+            forCellWithReuseIdentifier: AskPriceContainerCell.identifier
         )
         
         collectionView.register(
@@ -38,7 +43,7 @@ final class OrderPaperContentViewCell: UICollectionViewCell {
 
 extension OrderPaperContentViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        6
+        3
     }
     
     func collectionView(
@@ -61,6 +66,11 @@ extension OrderPaperContentViewCell: UICollectionViewDataSource {
             cell.setupCell()
             
             return cell
+        } else if indexPath.section == 1 {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AskPriceContainerCell.identifier, for: indexPath) as? AskPriceContainerCell else { return UICollectionViewCell() }
+            cell.setupCell()
+            
+            return cell
         } else {
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: MatchVolumnCell.identifier,
@@ -78,9 +88,9 @@ extension OrderPaperContentViewCell: UICollectionViewDataSource {
 
 private extension OrderPaperContentViewCell {
     func setupViews() {
-        contentView.addSubview(orderPaperCollectionView)
+        contentView.addSubview(orderPaperTopCollectionView)
         
-        orderPaperCollectionView.snp.makeConstraints {
+        orderPaperTopCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
@@ -103,13 +113,14 @@ private extension OrderPaperContentViewCell {
     }
     
     func createSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(330.0)))
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .estimated(350.0)))
         
-        let group = NSCollectionLayoutGroup.vertical(
+        let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1/3),
-                heightDimension: .estimated(330.0)),
-                subitems: [item]
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .estimated(350.0)),
+                subitem: item,
+            count: 3
             )
         
         let section = NSCollectionLayoutSection(group: group)

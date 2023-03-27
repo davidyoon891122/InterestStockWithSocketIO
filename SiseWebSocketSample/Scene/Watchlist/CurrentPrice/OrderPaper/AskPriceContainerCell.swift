@@ -1,17 +1,17 @@
 //
-//  AskVolumnCell.swift
+//  AskPriceContainerCell.swift
 //  SiseWebSocketSample
 //
-//  Created by jiwon Yoon on 2023/03/24.
+//  Created by jiwon Yoon on 2023/03/27.
 //
 
 import UIKit
 import SnapKit
 
-final class AskVolumnCell: UICollectionViewCell {
-    static let identifier = "AskVolumnCell"
+final class AskPriceContainerCell: UICollectionViewCell {
+    static let identifier = "AskPriceContainerCell"
     
-    private lazy var askVolumnCollectionView: UICollectionView = {
+    private lazy var askPriceCollectionView: UICollectionView = {
         let layout = createLayout()
         
         let collectionView = UICollectionView(
@@ -20,22 +20,21 @@ final class AskVolumnCell: UICollectionViewCell {
         )
         
         collectionView.register(
-            AskCell.self,
-            forCellWithReuseIdentifier: AskCell.identifier
+            AskPriceCell.self,
+            forCellWithReuseIdentifier: AskPriceCell.identifier
         )
         
         collectionView.dataSource = self
-        collectionView.isScrollEnabled = false
         
         return collectionView
     }()
-
+    
     func setupCell() {
-        setupViews()
+       setupViews()
     }
 }
 
-extension AskVolumnCell: UICollectionViewDataSource {
+extension AskPriceContainerCell: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
@@ -48,32 +47,34 @@ extension AskVolumnCell: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: AskCell.identifier,
+            withReuseIdentifier: AskPriceCell.identifier,
             for: indexPath
-        ) as? AskCell else { return UICollectionViewCell() }
+        ) as? AskPriceCell else { return UICollectionViewCell() }
         
         cell.setupCell()
         
         return cell
     }
-    
-    
 }
 
-private extension AskVolumnCell {
+private extension AskPriceContainerCell {
     func setupViews() {
-        contentView.addSubview(askVolumnCollectionView)
+        [
+            askPriceCollectionView
+        ]
+            .forEach {
+                contentView.addSubview($0)
+            }
         
-        askVolumnCollectionView.snp.makeConstraints {
+        askPriceCollectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
     
     func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
-            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(35.0)))
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(350.0)), subitems: [item])
-            
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(33.0)))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(330.0)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             
             return section
