@@ -44,8 +44,7 @@ final class ContentCollectionView: UIView {
         )
         
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
-        
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
     

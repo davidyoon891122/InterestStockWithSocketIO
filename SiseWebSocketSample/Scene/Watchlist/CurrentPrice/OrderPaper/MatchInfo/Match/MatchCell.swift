@@ -1,8 +1,8 @@
 //
 //  MatchCell.swift
-//  SiseWebSocketSample
+//  OrderPaperSample
 //
-//  Created by jiwon Yoon on 2023/03/24.
+//  Created by jiwon Yoon on 2023/04/11.
 //
 
 import UIKit
@@ -13,24 +13,26 @@ final class MatchCell: UICollectionViewCell {
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .medium)
+        label.font = .systemFont(ofSize: 8.0, weight: .medium)
         label.textColor = .label
-        label.text = "62,800"
+        label.text = "9.0500"
         
         return label
     }()
     
     private lazy var volumnLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .medium)
+        label.font = .systemFont(ofSize: 8.0, weight: .medium)
         label.textColor = .label
-        label.text = "423"
+        label.text = "42,000"
         
         return label
     }()
     
     private lazy var containerView: UIView = {
         let view = UIView()
+        view.backgroundColor = .systemBackground
+        
         [
             priceLabel,
             volumnLabel
@@ -41,9 +43,9 @@ final class MatchCell: UICollectionViewCell {
         
         let offset: CGFloat = 8.0
         priceLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(offset)
+            $0.top.equalToSuperview().offset(offset / 4)
             $0.leading.equalToSuperview().offset(offset)
-            $0.bottom.equalToSuperview().offset(-offset)
+            $0.bottom.equalToSuperview().offset(-offset / 4)
         }
         
         volumnLabel.snp.makeConstraints {
@@ -56,18 +58,42 @@ final class MatchCell: UICollectionViewCell {
         return view
     }()
     
-    func setupCell() {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupCell(matchData: MatchData) {
+        priceLabel.text = matchData.priceValue.fourPointStringNumber
+        volumnLabel.text = "\(matchData.volumQuanti)"
     }
 }
 
 private extension MatchCell {
     func setupViews() {
         contentView.addSubview(containerView)
-        
         containerView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
 }
 
+
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+
+struct MatchCellPreview: PreviewProvider {
+    static var previews: some View {
+        UIView.UIViewPreview {
+            MatchCell()
+        }
+        .frame(width: Constants.OrderPaper.volumeViewWidth, height: 30.0)
+    }
+}
+
+
+#endif

@@ -7,126 +7,81 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 final class OrderPaperContentViewCell: UICollectionViewCell {
     static let identifier = "OrderPaperContentViewCell"
     
-    private lazy var orderPaperTopCollectionView: UICollectionView = {
-        let layout = createLayout()
+    private let scrollView = UIScrollView()
+    
+    private let containerView = UIView()
+    
+    private lazy var orderPaperView = OrderPaperView(viewModel: viewModel)
+    
+    private lazy var scrollTestView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .gray
         
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
-        collectionView.register(
-            AskVolumnCell.self,
-            forCellWithReuseIdentifier: AskVolumnCell.identifier
-        )
-        
-        collectionView.register(
-            AskPriceContainerCell.self,
-            forCellWithReuseIdentifier: AskPriceContainerCell.identifier
-        )
-        
-        collectionView.register(
-            MatchVolumnCell.self,
-            forCellWithReuseIdentifier: MatchVolumnCell.identifier
-        )
-        
-        collectionView.dataSource = self
-        
-        return collectionView
+        return view
     }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
+        
+        orderPaperView.backgroundColor = .systemBackground
+        
+        [
+            orderPaperView
+        ]
+            .forEach {
+                stackView.addArrangedSubview($0)
+            }
+        
+        return stackView
+    }()
+    
+    private var viewModel: MainViewModelType = MainViewModel()
+    
+    private var disposeBag = DisposeBag()
     
     func setupCell() {
         setupViews()
+        bindViewModel()
+        
+        viewModel.inputs.requestStockInfo(code: "Apple")
     }
-}
-
-extension OrderPaperContentViewCell: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        3
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        return 1
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: AskVolumnCell.identifier,
-                for: indexPath
-            ) as? AskVolumnCell else { return UICollectionViewCell() }
-            
-            cell.setupCell()
-            
-            return cell
-        } else if indexPath.section == 1 {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AskPriceContainerCell.identifier, for: indexPath) as? AskPriceContainerCell else { return UICollectionViewCell() }
-            cell.setupCell()
-            
-            return cell
-        } else {
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: MatchVolumnCell.identifier,
-                for: indexPath
-            ) as? MatchVolumnCell else { return UICollectionViewCell() }
-            
-            cell.setupCell()
-            
-            return cell
-        }
-    }
-    
-    
 }
 
 private extension OrderPaperContentViewCell {
     func setupViews() {
-        contentView.addSubview(orderPaperTopCollectionView)
+        contentView.backgroundColor = .systemBackground
+        contentView.addSubview(scrollView)
+        scrollView.addSubview(containerView)
+        containerView.addSubview(stackView)
         
-        orderPaperTopCollectionView.snp.makeConstraints {
+        scrollView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        containerView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.width.equalToSuperview()
+        }
+        
+        stackView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
     }
     
-    
-    func createLayout() -> UICollectionViewCompositionalLayout {
-        let configure = UICollectionViewCompositionalLayoutConfiguration()
-        configure.scrollDirection = .horizontal
-        
-        let layout = UICollectionViewCompositionalLayout(sectionProvider: { sectionIndex, layoutEnvironment in
-            
-            if sectionIndex == 0 {
-                return self.createSection()
-            } else {
-                return self.createSection()
-            }
-        }, configuration: configure)
-        
-        return layout
+    func bindViewModel() {
+        viewModel.outputs.stockInfoPublishSubject
+            .subscribe(onNext: { [weak self] stockInfo in
+                guard let self = self else { return }
+                self.orderPaperView.setStockInfoData(stockInfo: stockInfo)
+            })
+            .disposed(by: disposeBag)
     }
-    
-    func createSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .estimated(350.0)))
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(350.0)),
-                subitem: item,
-            count: 3
-            )
-        
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    
 }
             
