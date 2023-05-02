@@ -95,7 +95,7 @@ final class CurrentPriceViewModel: CurrentPriceViewModelType, CurrentPriceViewMo
     }
     
     func requestDisconnect() {
-        SiseSocketManager.shared.socket.disconnect()
+        SiseSocketManager.shared.closeConnection()
     }
     
     func presentViewController(viewController: UIViewController) {
