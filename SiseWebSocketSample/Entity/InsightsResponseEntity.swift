@@ -16,7 +16,7 @@ struct InsightsEntity: Decodable {
     let symbol: String
     let instrumentInfo: InstrumentInfo
     let companySnapshot: CompanySnapshot
-    let recommendation: Recommendation
+    let recommendation: Recommendation?
     let upsell: Upsell
     let upsellSearchDD: UpsellSearchDD
     let events: [Events]
@@ -124,11 +124,11 @@ struct Recommendation: Decodable {
 }
 
 struct Upsell: Decodable {
-    let msBullishSummary: [String]
-    let msBearishSummary: [String]
+    let msBullishSummary: [String]?
+    let msBearishSummary: [String]?
     let companyName: String
-    let msBullishBearishSummariesPublishDate: String
-    let upsellReportType: String
+    let msBullishBearishSummariesPublishDate: String?
+    let upsellReportType: String?
 }
 
 struct UpsellSearchDD: Decodable {
