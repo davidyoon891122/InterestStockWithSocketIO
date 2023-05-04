@@ -11,12 +11,7 @@ import RxSwift
 
 class WatchlistViewController: UIViewController {
     private lazy var currentPriceCollectionView: UICollectionView = {
-        let layout = DynamicFlowLayout()
-        layout.estimatedItemSize = CGSize(
-            width: UIScreen.main.bounds.width,
-            height: 50.0
-        )
-        layout.minimumLineSpacing = 0
+        let layout = createLayout()
         
         let collectionView = UICollectionView(
             frame: .zero,
@@ -221,8 +216,20 @@ private extension WatchlistViewController {
     func requestStockListSise() {
         viewModel.inputs.fetchSise(interestStocks: interestStocks)
     }
+    
+    func createLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] sectionIndex, layoutEnvironment in
+            let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(70.0)))
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(70.0)), subitems: [item])
+            
+            let section = NSCollectionLayoutSection(group: group)
+            
+            return section
+        })
+        
+        return layout
+    }
 }
-
 
 extension String {
     var toFloatWithoutComma: Double {

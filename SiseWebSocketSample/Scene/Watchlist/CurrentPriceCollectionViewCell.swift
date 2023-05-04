@@ -131,17 +131,6 @@ final class CurrentPriceCollectionViewCell: UICollectionViewCell {
         setupViews()
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(
-            targetSize,
-            withHorizontalFittingPriority: .required,
-            verticalFittingPriority: .fittingSizeLevel
-        )
-        
-        return layoutAttributes
-    }
-    
     func updateSise(model: SiseModel) {
         priceLabel.text = "\(model.currentPrice.toFloatWithoutComma)"
         prevLabel.text = "\(model.prevPriceRate)"
