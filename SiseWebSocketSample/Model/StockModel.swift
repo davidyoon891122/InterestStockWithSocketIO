@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StockModel: Decodable {
+struct StockModel: Decodable, Hashable {
     let symbol: String
     let name: String
     var isInterest: Bool? = false

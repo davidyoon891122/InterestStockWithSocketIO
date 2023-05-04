@@ -27,7 +27,6 @@ final class SearchViewController: UIViewController {
             collectionViewLayout: layout
         )
         
-        collectionView.dataSource = self
         collectionView.prefetchDataSource = self
         collectionView.delegate = self
         
@@ -41,11 +40,9 @@ final class SearchViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
     
-    private var stocks: [StockModel] = [] {
-        didSet {
-            self.searchCollectionView.reloadData()
-        }
-    }
+    private var stocks: [StockModel] = []
+    
+    private var datasource: UICollectionViewDiffableDataSource<Int, StockModel>!
     
     private var currentPage = 0
     
@@ -64,10 +61,10 @@ final class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setupViews()
         bindViewModel()
         configureNavigation()
+        configureDatasource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,34 +131,9 @@ extension SearchViewController: UICollectionViewDataSourcePrefetching {
     }
 }
 
-extension SearchViewController: UICollectionViewDataSource {
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
-        return stocks.count
-    }
-    
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: StockCollectionViewCell.identifier,
-            for: indexPath
-        ) as? StockCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        let stock = stocks[indexPath.item]
-        
-        cell.setupCell(stock: stock, viewModel: viewModel)
-        
-        return cell
-    }
-}
-
 private extension SearchViewController {
     func setupViews() {
+        view.backgroundColor = .systemBackground
         [
             searchCollectionView
         ]
@@ -184,6 +156,7 @@ private extension SearchViewController {
             .subscribe(onNext: { [weak self] stockModels in
                 guard let self = self else { return }
                 self.stocks = stockModels
+                self.applySnapshot()
             })
             .disposed(by: disposeBag)
     }
@@ -228,5 +201,28 @@ private extension SearchViewController {
         self.dismiss(animated: true) {
             self.interestViewModel.inputs.fetchIntrestStockList()
         }
+    }
+    
+    func configureDatasource() {
+        datasource = UICollectionViewDiffableDataSource(collectionView: searchCollectionView, cellProvider: { collectionView, indexPath, item in
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: StockCollectionViewCell.identifier,
+                for: indexPath
+            ) as? StockCollectionViewCell else { return UICollectionViewCell() }
+            
+            cell.setupCell(stock: item, viewModel: self.viewModel)
+            
+            return cell
+        })
+        
+        applySnapshot()
+    }
+    
+    func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, StockModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(stocks)
+        
+        datasource.apply(snapshot, animatingDifferences: true)
     }
 }
